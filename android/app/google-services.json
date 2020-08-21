@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "200817164655",
+    "firebase_url": "https://rental-life-in-real-estate.firebaseio.com",
+    "project_id": "rental-life-in-real-estate",
+    "storage_bucket": "rental-life-in-real-estate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200817164655:android:558c4fde95db2dff61289a",
+        "android_client_info": {
+          "package_name": "com.rentallife.realestate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "200817164655-48uf31pjrc6cm937c24e4umuc8f813p1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rentallife.realestate",
+            "certificate_hash": "fd7360d6f2c477be621c0b7c57005cfefab9b3bf"
+          }
+        },
+        {
+          "client_id": "200817164655-pldh7np5ua8kjaooak0sq41p2a0lrjec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnNjHmlmqS0kTAREPoRKJ66LXrnzD3NYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "200817164655-pldh7np5ua8kjaooak0sq41p2a0lrjec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
