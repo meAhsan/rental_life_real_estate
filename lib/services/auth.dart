@@ -1,84 +1,88 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:realestate/model/user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
 //import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:realestate/services/database.dart';
 
-class AuthService{
-
+class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   //Create user object based on FirebaseUser
-  User _userFromFireBaseUser(FirebaseUser user){
-    return user!= null ? User(uid: user.uid) : null;
+  User _userFromFireBaseUser(FirebaseUser user) {
+    return user != null ? User(uid: user.uid) : null;
   }
 
   //Auth change user stream
-  Stream<User> get user{
+  Stream<User> get user {
     return _auth.onAuthStateChanged
         //.map((FirebaseUser user) => _userFromFireBaseUser(user));
         .map(_userFromFireBaseUser);
   }
 
   //Sign in anonymously
-  Future signinAnon() async{
-    try{
+  Future signinAnon() async {
+    try {
       AuthResult result = await _auth.signInAnonymously();
       return _userFromFireBaseUser(result.user);
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
   }
 
-
   //Sign in with email and password
-  Future signInWithEmail(String email, String password) async{
+  Future signInWithEmail(String email, String password) async {
     try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
       return _userFromFireBaseUser(user);
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
   }
 
   //Register with email & password
-  Future registerWithEmail(String email, String password) async{
-    try{
-      AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+  Future registerWithEmail(String email, String password) async {
+    try {
+      AuthResult result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       FirebaseUser user = result.user;
 
       //create new document for the user with the uid
-      await DatabaseService(uid: user.uid).updateUserData(user.phoneNumber, user.displayName, user.email);
+      await DatabaseService(uid: user.uid)
+          .updateUserData(user.displayName, user.email, 0);
       return _userFromFireBaseUser(user);
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
   }
 
   //Sign in with Google
-  Future signInWithGoogle()async{
+  Future signInWithGoogle() async {
     try {
-      GoogleSignInAccount  result = await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleSignInAuthentication = await result.authentication;
+      GoogleSignInAccount result = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await result.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.getCredential(
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
       );
 
-      final AuthResult authResult = await _auth.signInWithCredential(credential);
+      final AuthResult authResult =
+          await _auth.signInWithCredential(credential);
       final FirebaseUser user = authResult.user;
 
       //create new document for the user with the uid
-      await DatabaseService(uid: user.uid).updateUserData(user.phoneNumber, user.displayName, user.email);
+      await DatabaseService(uid: user.uid)
+          .updateUserData(user.displayName, user.email, 0);
       return _userFromFireBaseUser(user);
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
@@ -140,10 +144,10 @@ class AuthService{
   }*/
 
   //Sign out
-  Future signOut() async{
-    try{
+  Future signOut() async {
+    try {
       return await _auth.signOut();
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }

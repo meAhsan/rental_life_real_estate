@@ -1,7 +1,7 @@
-class UserInfo{
-  String name;
-  String email;
-  String age;
+class UserData {
+  final String name;
+  final String email;
+  final int age;
 
-  UserInfo({this.name, this.email, this.age});
+  UserData({this.name, this.email, this.age});
 }

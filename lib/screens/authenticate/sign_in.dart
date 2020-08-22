@@ -1,9 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:realestate/model/user.dart';
 import 'package:realestate/screens/authenticate/signInWithEmail.dart';
 import 'package:realestate/services/auth.dart';
-import 'package:realestate/shared/constants.dart';
 import 'package:realestate/shared/loading.dart';
 
 class SignIn extends StatefulWidget {
@@ -17,7 +14,7 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final AuthService _authService = AuthService();
-  final _formKey = GlobalKey<FormState>();
+  //final _formKey = GlobalKey<FormState>();
 
   bool loading = false;
 
@@ -49,113 +46,110 @@ class _SignInState extends State<SignIn> {
               ],
             ),
             body: Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 100,
-                      ),
-
-                      RaisedButton(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(Icons.email),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Text(
-                                'SIGN IN',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        color: Colors.teal,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignInWithEmail()),
-                          );
-                        },
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        error,
-                        style: TextStyle(color: Colors.red, fontSize: 14),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Divider(
-                          height: 20,
-                          indent: 20,
-                          endIndent: 20,
-                          thickness: 0,
-                          color: Colors.teal),
-                      SizedBox(height: 20),
-                      Text(
-                        'Login with other ways',
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                      SizedBox(height: 20),
-                      RaisedButton(
-                        onPressed: () async {
-                          setState(() {
-                            loading = true;
-                          });
-                          dynamic result =
-                          await _authService.signInWithGoogle();
-                          if (result == null) {
-                            setState(() {
-                              loading = false;
-                              return error =
-                              'Invalid credentials. Could not sign it.';
-                            });
-                          }
-                        },
-                        textColor: Colors.white,
-                        padding: const EdgeInsets.all(0.0),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: <Color>[
-                                Colors.teal,
-                                Color(0xFFDD2C00),
-                                //Color(0xFFFFC400),
-                                //Color(0xFF689F38),
-                                Color(0xFF0277BD),
-                              ],
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 100,
+                  ),
+                  RaisedButton(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.email),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(
+                            'SIGN IN',
+                            style: TextStyle(
+                              fontSize: 16,
                             ),
                           ),
-                          padding: const EdgeInsets.all(10.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Image(
-                                  image: AssetImage(
-                                      "image_assets/google_logo.png"),
-                                  height: 35.0),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Text(
-                                  'Connect with Google',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
+                        )
+                      ],
+                    ),
+                    color: Colors.teal,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SignInWithEmail()),
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    error,
+                    style: TextStyle(color: Colors.red, fontSize: 14),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Divider(
+                      height: 20,
+                      indent: 20,
+                      endIndent: 20,
+                      thickness: 0,
+                      color: Colors.teal),
+                  SizedBox(height: 20),
+                  Text(
+                    'Login with other ways',
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  SizedBox(height: 20),
+                  RaisedButton(
+                    onPressed: () async {
+                      setState(() {
+                        loading = true;
+                      });
+                      dynamic result = await _authService.signInWithGoogle();
+                      if (result == null) {
+                        setState(() {
+                          loading = false;
+                          return error =
+                              'Invalid credentials. Could not sign it.';
+                        });
+                      }
+                    },
+                    textColor: Colors.white,
+                    padding: const EdgeInsets.all(0.0),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: <Color>[
+                            Colors.teal,
+                            Color(0xFFDD2C00),
+                            //Color(0xFFFFC400),
+                            //Color(0xFF689F38),
+                            Color(0xFF0277BD),
+                          ],
                         ),
                       ),
-                      /*RaisedButton(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image(
+                              image: AssetImage("image_assets/google_logo.png"),
+                              height: 35.0),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Text(
+                              'Connect with Google',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  /*RaisedButton(
                         child: Text('Facebook Login'),
                         onPressed: ()async{
                           setState(() {
@@ -175,7 +169,7 @@ class _SignInState extends State<SignIn> {
                           }
                         },
                       ),*/
-                      /*OutlineButton(
+                  /*OutlineButton(
                         hoverColor: Colors.orange,
                         splashColor: Colors.white,
                         onPressed: () async {
@@ -220,7 +214,7 @@ class _SignInState extends State<SignIn> {
                           ),
                         ),
                       ),*/
-                      /*SizedBox(
+                  /*SizedBox(
                         height: 20,
                       ),
                       RaisedButton.icon(
@@ -245,10 +239,10 @@ class _SignInState extends State<SignIn> {
                           }
                         },
                       ),*/
-                    ],
-                  ),
+                ],
+              ),
 
-                /*RaisedButton(
+              /*RaisedButton(
           child: Text('Sign in anonymously'),
           onPressed: () async{
             dynamic result = await _authService.signinAnon();
@@ -260,8 +254,7 @@ class _SignInState extends State<SignIn> {
             }
           },
         ),*/
-
-                ),
+            ),
           );
   }
 }
