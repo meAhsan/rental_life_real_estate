@@ -11,7 +11,7 @@ class UserInfoList extends StatefulWidget {
 class _UserInfoListState extends State<UserInfoList> {
   @override
   Widget build(BuildContext context) {
-    final userInfo = Provider.of<List<UserData>>(context);
+    final userInfo = Provider.of<List<UserData>>(context) ?? [];
 
     return ListView.builder(
       itemCount: userInfo.length,

@@ -4,6 +4,8 @@ import 'package:realestate/model/user.dart';
 import 'package:realestate/screens/authenticate/authenticate.dart';
 import 'package:realestate/screens/home/home.dart';
 
+import 'home/bottom_navigation_bar.dart';
+
 class Wrapper extends StatelessWidget {
   @override
   Widget _widget;
@@ -14,7 +16,7 @@ class Wrapper extends StatelessWidget {
     if(user == null){
       _widget =  Authenticate();
     }else{
-      _widget =  Home();
+      _widget =  BottomNavigationWidget();//Home();
     }
     return _widget;
   }

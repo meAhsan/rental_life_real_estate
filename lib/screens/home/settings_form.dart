@@ -12,7 +12,7 @@ class SettingsForm extends StatefulWidget {
 
 List<int> createAgeArray() {
   List<int> age = new List();
-  for (int i = 10; i <= 100; i++) {
+  for (int i = 0; i <= 100; i++) {
     age.add(i);
   }
   return age;
@@ -49,7 +49,7 @@ class _SettingsFormState extends State<SettingsForm> {
                     height: 20,
                   ),
                   TextFormField(
-                    initialValue: userDocumentData.name ?? 'Name',
+                    initialValue: userDocumentData.name ?? userDocumentData.name,
                     decoration: textInputDecorationForString,
                     validator: (val) =>
                         val.isEmpty ? 'Please enter a name' : null,
@@ -61,7 +61,7 @@ class _SettingsFormState extends State<SettingsForm> {
                   //dropdown
                   DropdownButtonFormField(
                     decoration: textInputDecorationForString,
-                    value: _currentAge ?? 15,
+                    value: _currentAge ?? userDocumentData.age,
                     items: age.map((a) {
                       return DropdownMenuItem(
                         value: a,
@@ -72,10 +72,10 @@ class _SettingsFormState extends State<SettingsForm> {
                   ),
                   //slider
                   Slider(
-                    value: (_currentAge ?? 10).toDouble(),
-                    activeColor: Colors.blue[_currentAge ?? 100],
-                    inactiveColor: Colors.blue[_currentAge ?? 100],
-                    min: 10,
+                    value: (_currentAge ?? userDocumentData.age).toDouble(),
+                    activeColor: Colors.blue[_currentAge ?? (((userDocumentData.age+1)%10)*100)],
+                    inactiveColor: Colors.blue[_currentAge ?? (((userDocumentData.age+1)%10)*100)],
+                    min: 0,
                     max: 100,
                     divisions: 85,
                     onChanged: (val) =>
@@ -88,9 +88,13 @@ class _SettingsFormState extends State<SettingsForm> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
-                      print(_currentName);
-                      print(_currentPhoneNumber);
-                      print(_currentAge);
+                      if(_formKey.currentState.validate()){
+                        await DatabaseService(uid: user.uid).updateUserData(
+                            _currentName ?? userDocumentData.name,
+                            userDocumentData.email,
+                            _currentAge ?? userDocumentData.age);
+                      }
+                      Navigator.pop(context);
                     },
                   )
                 ],
