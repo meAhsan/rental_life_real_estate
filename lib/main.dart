@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:realestate/model/user.dart';
+import 'package:realestate/screens/authenticate/welcome_screen.dart';
 import 'package:realestate/screens/wrapper.dart';
 import 'package:realestate/services/auth.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       child: MaterialApp(
         home: Wrapper(),
+        //home: AuthThreePage(),
       ),
     );
   }
