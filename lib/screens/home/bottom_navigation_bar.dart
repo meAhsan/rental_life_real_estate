@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:realestate/screens/ads/image_capture.dart';
 import 'package:realestate/screens/ads/user_ads_main_page.dart';
 import 'package:realestate/screens/home/home.dart';
+import 'package:realestate/screens/home/user_profile.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   BottomNavigationWidget({Key key}) : super(key: key);
@@ -15,13 +16,14 @@ class _MyStatefulWidgetState extends State<BottomNavigationWidget> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    Text(
+    /*Text(
       'Index 0: Home',
       style: optionStyle,
-    ),
+    ),*/
+    ProfilePage(),
     ImageCapture(),
     Text(
-      'Index 2: Chat',
+      'Chat Coming Soon.',
       style: optionStyle,
     ),
     Home(),

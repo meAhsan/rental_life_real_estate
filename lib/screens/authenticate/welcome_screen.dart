@@ -5,14 +5,14 @@ import 'package:realestate/shared/loading.dart';
 //import 'package:flutter_ui_challenges/core/presentation/res/assets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class AuthThreePage extends StatefulWidget {
+class AuthenticationPage extends StatefulWidget {
   static final String path = "lib/screens/authenticate/welcome_screen.dart";
 
   @override
-  _AuthThreePageState createState() => _AuthThreePageState();
+  _AuthenticationPageState createState() => _AuthenticationPageState();
 }
 
-class _AuthThreePageState extends State<AuthThreePage> {
+class _AuthenticationPageState extends State<AuthenticationPage> {
   final AuthService _authService = AuthService();
 
   final String backImg = "image_assets/welcome_screen_bg.jpg";
@@ -318,10 +318,12 @@ class _SignInWithEmailState extends State<SignInWithEmail> {
               SizedBox(
                 height: 12,
               ),
-              Text(
-                error,
-                style: TextStyle(color: Colors.red, fontSize: 14),
-              ),
+              Center(
+                child: Text(
+                  error,
+                  style: TextStyle(color: Colors.red, fontSize: 14),
+                ),
+              )
             ],
           ),
         ));
@@ -393,6 +395,8 @@ class _RegisterState extends State<Register> {
 
   //text field state
   String email = '';
+  String firstName = '';
+  String lastName = '';
   String password = '';
   String error = '';
 
@@ -412,6 +416,42 @@ class _RegisterState extends State<Register> {
                 shrinkWrap: true,
                 padding: const EdgeInsets.all(16.0),
                 children: <Widget>[
+                  /*Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[*/
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "First Name",
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: ((val) => val.isEmpty ? 'First Name is mandatory' : null),
+                        onChanged: (val) {
+                          setState(() {
+                            firstName = val;
+                          });
+                        },
+                      ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "Last Name",
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: ((val) => val.isEmpty ? 'Last Name is mandatory' : null),
+                        onChanged: (val) {
+                          setState(() {
+                            lastName = val;
+                          });
+                        },
+                      ),
+                    /*],
+                  ),*/
+                  SizedBox(
+                    height: 10,
+                  ),
                   TextFormField(
                     decoration: InputDecoration(
                       suffixIcon: Icon(Icons.email,
@@ -427,7 +467,7 @@ class _RegisterState extends State<Register> {
                     },
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   TextFormField(
                     obscureText: true,
@@ -447,7 +487,7 @@ class _RegisterState extends State<Register> {
                     },
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   RaisedButton(
                     color: Colors.red,
@@ -465,23 +505,26 @@ class _RegisterState extends State<Register> {
                           loading = true;
                         });
                         dynamic result = await _authService.registerWithEmail(
-                            email, password);
+                            email, password, firstName, lastName);
                         if (result == null) {
                           setState(() {
                             loading = false;
-                            return error = 'Please supply a valid email';
+                            return error = 'Please supply a valid email id';
                           });
                         }
                       }
                     },
                   ),
                   SizedBox(
-                    height: 12,
+                    height: 0,
                   ),
-                  Text(
-                    error,
-                    style: TextStyle(color: Colors.red, fontSize: 14),
-                  )
+                  Center(
+                    child: Text(
+                      error,
+                      style: TextStyle(color: Colors.red, fontSize: 14),
+                    ),
+                  ),
+
                 ],
               ),
             ));

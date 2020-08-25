@@ -22,7 +22,8 @@ class _SettingsFormState extends State<SettingsForm> {
   final _formKey = GlobalKey<FormState>();
   final List<int> age = createAgeArray();
 
-  String _currentName;
+  String firstName;
+  String lastName;
   String _currentPhoneNumber;
   int _currentAge;
 
@@ -46,21 +47,40 @@ class _SettingsFormState extends State<SettingsForm> {
                     style: TextStyle(fontSize: 18),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 8,
                   ),
                   TextFormField(
-                    initialValue: userDocumentData.name ?? userDocumentData.name,
-                    decoration: textInputDecorationForString,
+                    initialValue: userDocumentData.firstName ?? userDocumentData.firstName,
+                    decoration: InputDecoration(
+                      hintText: "First Name",
+                      border: OutlineInputBorder(),
+                    ),
                     validator: (val) =>
-                        val.isEmpty ? 'Please enter a name' : null,
-                    onChanged: (val) => setState(() => _currentName = val),
+                    val.isEmpty ? 'Please enter a name' : null,
+                    onChanged: (val) => setState(() => firstName = val),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 8,
+                  ),
+                  TextFormField(
+
+                    initialValue: userDocumentData.lastName ?? userDocumentData.lastName,
+                    decoration: InputDecoration(
+                      hintText: "Last Name",
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (val) =>
+                    val.isEmpty ? 'Please enter a name' : null,
+                    onChanged: (val) => setState(() => lastName = val),
+                  ),
+                  SizedBox(
+                    height: 8,
                   ),
                   //dropdown
                   DropdownButtonFormField(
-                    decoration: textInputDecorationForString,
+                    decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
                     value: _currentAge ?? userDocumentData.age,
                     items: age.map((a) {
                       return DropdownMenuItem(
@@ -90,7 +110,8 @@ class _SettingsFormState extends State<SettingsForm> {
                     onPressed: () async {
                       if(_formKey.currentState.validate()){
                         await DatabaseService(uid: user.uid).updateUserData(
-                            _currentName ?? userDocumentData.name,
+                          firstName ?? userDocumentData.firstName,
+                            lastName ?? userDocumentData.lastName,
                             userDocumentData.email,
                             _currentAge ?? userDocumentData.age);
                       }

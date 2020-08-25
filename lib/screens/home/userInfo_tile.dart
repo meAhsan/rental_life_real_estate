@@ -18,7 +18,7 @@ class UserInfoTile extends StatelessWidget {
             backgroundColor: Colors.blue,
           ),
           title: Text(userData.email),
-          subtitle: Text('Name: ${userData.name} & Age: ${userData.age}'),
+          subtitle: Text('First Name: ${userData.firstName}, Last Name: ${userData.lastName} & Age: ${userData.age}'),
         ),
       ),
     );

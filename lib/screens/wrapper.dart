@@ -16,7 +16,7 @@ class Wrapper extends StatelessWidget {
 
     if(user == null){
       //_widget =  Authenticate();
-      _widget =  AuthThreePage();
+      _widget =  AuthenticationPage();
     }else{
       _widget =  BottomNavigationWidget();//Home();
     }

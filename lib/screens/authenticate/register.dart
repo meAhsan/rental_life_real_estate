@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:realestate/services/auth.dart';
 import 'package:realestate/shared/constants.dart';
@@ -114,7 +115,8 @@ class _RegisterState extends State<Register> {
                   ),
                 )
 
-                /*RaisedButton(
+                */
+/*RaisedButton(
           child: Text('Sign in anonymously'),
           onPressed: () async{
             dynamic result = await _authService.signinAnon();
@@ -125,9 +127,11 @@ class _RegisterState extends State<Register> {
               print(result.uid);
             }
           },
-        ),*/
+        ),*//*
+
 
                 ),
           );
   }
 }
+*/

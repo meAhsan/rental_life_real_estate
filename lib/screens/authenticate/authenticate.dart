@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:realestate/screens/authenticate/register.dart';
 import 'package:realestate/screens/authenticate/sign_in.dart';
@@ -25,3 +26,4 @@ class _AuthenticateState extends State<Authenticate> {
     }
   }
 }
+*/

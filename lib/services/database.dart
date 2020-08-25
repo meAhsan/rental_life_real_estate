@@ -12,17 +12,18 @@ class DatabaseService {
       Firestore.instance.collection('user');
 
   //create a new document with uid
-  Future updateUserData(String name, String email, int age) async {
+  Future updateUserData(String firstName, String lastName, String email, int age) async {
     return await userCollection
         .document(uid)
-        .setData({'name': name, 'email': email, 'age': age});
+        .setData({'first name': firstName,'last name': lastName, 'email': email, 'age': age});
   }
 
   //UserInfo list from snapshot
   List<UserData> _userInfoListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return UserData(
-          name: doc.data['name'] ?? '',
+          firstName: doc.data['first name'] ?? '',
+          lastName: doc.data['last name'] ?? '',
           email: doc.data['email'] ?? '',
           age: doc.data['age'] ?? 0);
     }).toList();
@@ -37,7 +38,8 @@ class DatabaseService {
   UserDocumentData _userDocumentDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserDocumentData(
       uid: uid,
-      name: snapshot.data['name'],
+      firstName: snapshot.data['first name'],
+      lastName: snapshot.data['last name'],
       email: snapshot.data['email'],
       age: snapshot.data['age'],
     );

@@ -25,10 +25,10 @@ class Home extends StatelessWidget {
     return StreamProvider<List<UserData>>.value(
       value: DatabaseService().userDocumentsStream,
       child: Scaffold(
-        backgroundColor: Colors.brown[50],
+        backgroundColor: Colors.orange[50],
         appBar: AppBar(
           title: Text('Home'),
-          backgroundColor: Colors.brown[400],
+          backgroundColor: Colors.red[600],
           elevation: 0,
           actions: <Widget>[
             FlatButton.icon(

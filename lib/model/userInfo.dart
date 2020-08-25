@@ -1,7 +1,8 @@
 class UserData {
-  final String name;
+  final String firstName;
+  final String lastName;
   final String email;
   final int age;
 
-  UserData({this.name, this.email, this.age});
+  UserData({this.firstName, this.lastName, this.email, this.age});
 }
