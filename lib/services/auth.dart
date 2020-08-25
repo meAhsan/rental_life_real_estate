@@ -79,8 +79,10 @@ class AuthService {
           await _auth.signInWithCredential(credential);
       final FirebaseUser user = authResult.user;
 
-      String firstName = user.displayName;
-      String lastName = user.displayName;
+      var name = user.displayName;
+      name.split(" ");
+      String firstName = name[0];
+      String lastName = name[1];
       //create new document for the user with the uid
       await DatabaseService(uid: user.uid)
           .updateUserData(firstName, lastName, user.email, 0);

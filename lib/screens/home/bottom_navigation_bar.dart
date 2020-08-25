@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realestate/screens/ads/image_capture.dart';
+import 'package:realestate/screens/ads/post_Ad_Screen.dart';
 import 'package:realestate/screens/ads/user_ads_main_page.dart';
 import 'package:realestate/screens/home/home.dart';
 import 'package:realestate/screens/home/user_profile.dart';
@@ -21,7 +22,7 @@ class _MyStatefulWidgetState extends State<BottomNavigationWidget> {
       style: optionStyle,
     ),*/
     ProfilePage(),
-    ImageCapture(),
+    PostAd(),//ImageCapture(),
     Text(
       'Chat Coming Soon.',
       style: optionStyle,

@@ -4,6 +4,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:realestate/screens/ads/post_Ad_Screen.dart';
+import 'package:realestate/screens/home/bottom_navigation_bar.dart';
 
 /// Widget to capture and crop the image
 class ImageCapture extends StatefulWidget {
@@ -18,20 +20,15 @@ class _ImageCaptureState extends State<ImageCapture> {
   Future<void> _cropImage() async {
     File cropped = await ImageCropper.cropImage(
         sourcePath: _imageFile.path,
-        // ratioX: 1.0,
-        // ratioY: 1.0,
-        // maxWidth: 512,
-        // maxHeight: 512,
-        toolbarColor: Colors.purple,
-        toolbarWidgetColor: Colors.white,
-        toolbarTitle: 'Crop It'
+        //toolbarColor: Colors.purple,
+        //toolbarWidgetColor: Colors.white,
+        //toolbarTitle: 'Crop It'
     );
 
     setState(() {
       _imageFile = cropped ?? _imageFile;
     });
   }
-
 
   /// Select an image via gallery or camera
   Future<void> _pickImage(ImageSource source) async {
@@ -50,19 +47,61 @@ class _ImageCaptureState extends State<ImageCapture> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      appBar: new AppBar(
+        backgroundColor: Colors.red[600],
+        centerTitle: true,
+        title: Column(children: [
+          Text(
+            "Post an Ad",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 22,
+            ),
+          ),
+          Text(
+            "Upload an Image",
+            style: TextStyle(
+              color: Colors.white54,
+              fontSize: 17,
+            ),
+          ),
+        ]),
+      ),
       // Select an image from the camera or gallery
       bottomNavigationBar: BottomAppBar(
         child: Row(
           children: <Widget>[
-            IconButton(
+            RaisedButton.icon(
+              icon: Icon(Icons.photo_camera),
+              color: Colors.red,
+              textColor: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              label: Text("Capture"),
+              onPressed: () => _pickImage(ImageSource.camera),
+            ),
+            SizedBox(width: 20,),
+            RaisedButton.icon(
+              icon: Icon(Icons.photo_library),
+              color: Colors.red,
+              textColor: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              label: Text("Gallery"),
+                onPressed: () => _pickImage(ImageSource.gallery),
+            ),
+            /*IconButton(
               icon: Icon(Icons.photo_camera),
               onPressed: () => _pickImage(ImageSource.camera),
             ),
             IconButton(
               icon: Icon(Icons.photo_library),
               onPressed: () => _pickImage(ImageSource.gallery),
-            ),
+            ),*/
           ],
         ),
       ),
@@ -71,9 +110,7 @@ class _ImageCaptureState extends State<ImageCapture> {
       body: ListView(
         children: <Widget>[
           if (_imageFile != null) ...[
-
             Image.file(_imageFile),
-
             Row(
               children: <Widget>[
                 FlatButton(
@@ -96,14 +133,13 @@ class _ImageCaptureState extends State<ImageCapture> {
 }
 
 class _UploaderState extends State<Uploader> {
-  final FirebaseStorage _storage =
-  FirebaseStorage(storageBucket: 'gs://rental-life-in-real-estate.appspot.com');
+  final FirebaseStorage _storage = FirebaseStorage(
+      storageBucket: 'gs://rental-life-in-real-estate.appspot.com');
 
   StorageUploadTask _uploadTask;
 
   /// Starts an upload task
   void _startUpload() {
-
     /// Unique file name for the file
     String filePath = 'Ads_Images/${DateTime.now()}.png';
 
@@ -115,7 +151,6 @@ class _UploaderState extends State<Uploader> {
   @override
   Widget build(BuildContext context) {
     if (_uploadTask != null) {
-
       /// Manage the task state and event subscription with a StreamBuilder
       return StreamBuilder<StorageTaskEvent>(
           stream: _uploadTask.events,
@@ -127,10 +162,34 @@ class _UploaderState extends State<Uploader> {
                 : 0;
 
             return Column(
-
               children: [
-                if (_uploadTask.isComplete)
-                  Text('🎉🎉🎉'),
+                if (_uploadTask.isComplete) Text('🎉 Ad Posted Successfully 🎉'),
+                  RaisedButton(
+                    color: Colors.red,
+                    textColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Text("Back"),
+                    onPressed: ()  {
+                      Navigator.pop(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ImageCapture()),
+                      );
+                      Navigator.pop(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PostAd()),
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BottomNavigationWidget()),
+                      );
+                    },
+                  ),
 
 
                 if (_uploadTask.isPaused)
@@ -147,23 +206,31 @@ class _UploaderState extends State<Uploader> {
 
                 // Progress bar
                 LinearProgressIndicator(value: progressPercent),
-                Text(
-                    '${(progressPercent * 100).toStringAsFixed(2)} % '
-                ),
+                Text('${(progressPercent * 100).toStringAsFixed(2)} % '),
               ],
             );
           });
-
-
     } else {
-
       // Allows user to decide when to start the upload
-      return FlatButton.icon(
+      return
+        RaisedButton.icon(
+
+          icon: Icon(Icons.cloud_upload),
+          color: Colors.red,
+          textColor: Colors.white,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(2),
+          ),
+          label: Text('Upload Ad'),
+          onPressed: _startUpload,
+        );
+
+        /*FlatButton.icon(
         label: Text('Upload to Firebase'),
         icon: Icon(Icons.cloud_upload),
         onPressed: _startUpload,
-      );
-
+      );*/
     }
   }
 }

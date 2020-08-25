@@ -33,6 +33,7 @@ dependencies:
   firebase_storage: ^3.0.4
   image_picker: ^0.6.0+17
   image_cropper: ^1.0.2
+  dcdg: ^2.0.1
   font_awesome_flutter: 8.8.1
   #flutter_facebook_login: ^3.0.0
 

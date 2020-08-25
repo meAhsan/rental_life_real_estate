@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realestate/services/auth.dart';
 import 'package:realestate/shared/loading.dart';
-
-//import 'package:flutter_ui_challenges/core/presentation/res/assets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AuthenticationPage extends StatefulWidget {
@@ -120,7 +118,8 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        icon: Icon(FontAwesomeIcons.google, color: Colors.amber),
+                        icon:
+                            Icon(FontAwesomeIcons.google, color: Colors.amber),
                         label: Text("Continue with Google"),
                         onPressed: () async {
                           setState(() {
@@ -253,10 +252,11 @@ class _SignInWithEmailState extends State<SignInWithEmail> {
             padding: const EdgeInsets.all(16.0),
             children: <Widget>[
               TextFormField(
-
                 decoration: InputDecoration(
-                  suffixIcon: Icon(Icons.email,
-                  color: Colors.blueGrey,),
+                  suffixIcon: Icon(
+                    Icons.email,
+                    color: Colors.blueGrey,
+                  ),
                   hintText: "Enter email",
                   border: OutlineInputBorder(),
                 ),
@@ -273,8 +273,10 @@ class _SignInWithEmailState extends State<SignInWithEmail> {
               TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
-                  suffixIcon: Icon(Icons.lock,
-                    color: Colors.blueGrey,),
+                  suffixIcon: Icon(
+                    Icons.lock,
+                    color: Colors.blueGrey,
+                  ),
                   hintText: "Enter password",
                   border: OutlineInputBorder(),
                 ),
@@ -330,7 +332,7 @@ class _SignInWithEmailState extends State<SignInWithEmail> {
   }
 }
 
-class LoginForm extends StatelessWidget {
+/*class LoginForm extends StatelessWidget {
   const LoginForm({
     Key key,
   }) : super(key: key);
@@ -376,7 +378,7 @@ class LoginForm extends StatelessWidget {
       ),
     );
   }
-}
+}*/
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -420,42 +422,46 @@ class _RegisterState extends State<Register> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[*/
-                      TextFormField(
-                        decoration: InputDecoration(
-                          hintText: "First Name",
-                          border: OutlineInputBorder(),
-                        ),
-                        validator: ((val) => val.isEmpty ? 'First Name is mandatory' : null),
-                        onChanged: (val) {
-                          setState(() {
-                            firstName = val;
-                          });
-                        },
-                      ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "First Name",
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: ((val) =>
+                        val.isEmpty ? 'First Name is mandatory' : null),
+                    onChanged: (val) {
+                      setState(() {
+                        firstName = val;
+                      });
+                    },
+                  ),
                   SizedBox(
                     height: 10,
                   ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          hintText: "Last Name",
-                          border: OutlineInputBorder(),
-                        ),
-                        validator: ((val) => val.isEmpty ? 'Last Name is mandatory' : null),
-                        onChanged: (val) {
-                          setState(() {
-                            lastName = val;
-                          });
-                        },
-                      ),
-                    /*],
+                  TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Last Name",
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: ((val) =>
+                        val.isEmpty ? 'Last Name is mandatory' : null),
+                    onChanged: (val) {
+                      setState(() {
+                        lastName = val;
+                      });
+                    },
+                  ),
+                  /*],
                   ),*/
                   SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.email,
-                        color: Colors.blueGrey,),
+                      suffixIcon: Icon(
+                        Icons.email,
+                        color: Colors.blueGrey,
+                      ),
                       hintText: "Enter email",
                       border: OutlineInputBorder(),
                     ),
@@ -472,8 +478,10 @@ class _RegisterState extends State<Register> {
                   TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.lock,
-                        color: Colors.blueGrey,),
+                      suffixIcon: Icon(
+                        Icons.lock,
+                        color: Colors.blueGrey,
+                      ),
                       hintText: "Enter password",
                       border: OutlineInputBorder(),
                     ),
@@ -524,12 +532,12 @@ class _RegisterState extends State<Register> {
                       style: TextStyle(color: Colors.red, fontSize: 14),
                     ),
                   ),
-
                 ],
               ),
             ));
   }
 }
+/*
 
 class SignupForm extends StatelessWidget {
   const SignupForm({
@@ -587,3 +595,4 @@ class SignupForm extends StatelessWidget {
     );
   }
 }
+*/
