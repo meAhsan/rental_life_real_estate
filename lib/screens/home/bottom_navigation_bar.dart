@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:realestate/screens/Chat/ChatScreen.dart';
+import 'package:realestate/screens/Chat/ChatUI.dart';
+import 'package:realestate/screens/NewsFeed/AdsFeed.dart';
+import 'package:realestate/screens/NewsFeed/NewsFeed.dart';
+import 'package:realestate/screens/ads/commercialAd.dart';
 import 'package:realestate/screens/ads/image_capture.dart';
+import 'package:realestate/screens/ads/non_CommercialAd.dart';
 import 'package:realestate/screens/ads/post_Ad_Screen.dart';
 import 'package:realestate/screens/ads/user_ads_main_page.dart';
 import 'package:realestate/screens/home/home.dart';
@@ -21,13 +27,15 @@ class _MyStatefulWidgetState extends State<BottomNavigationWidget> {
       'Index 0: Home',
       style: optionStyle,
     ),*/
-    ProfilePage(),
-    PostAd(),//ImageCapture(),
-    Text(
-      'Chat Coming Soon.',
-      style: optionStyle,
-    ),
     Home(),
+    PostAd(), //ImageCapture(),
+    commercialAd(),
+    non_CommercialAd(),
+    NewsFeed(),
+    AdsFeed(),
+    ChatUi(),
+    ProfilePage(),
+
   ];
 
   void _onItemTapped(int index) {
@@ -50,6 +58,22 @@ class _MyStatefulWidgetState extends State<BottomNavigationWidget> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.camera_enhance),
+            title: Text('Ads'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shop),
+            title: Text('Commercial Ads'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('NonCommercial Ads'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.timeline),
+            title: Text('Feed'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.image_sharp),
             title: Text('Ads'),
           ),
           BottomNavigationBarItem(

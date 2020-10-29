@@ -4,8 +4,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:realestate/model/user.dart';
 import 'package:realestate/screens/ads/post_Ad_Screen.dart';
 import 'package:realestate/screens/home/bottom_navigation_bar.dart';
+import 'package:realestate/services/database.dart';
 
 /// Widget to capture and crop the image
 class ImageCapture extends StatefulWidget {
@@ -132,16 +135,26 @@ class _ImageCaptureState extends State<ImageCapture> {
   }
 }
 
+/// Widget used to handle the management of
+class Uploader extends StatefulWidget {
+  final File file;
+
+  Uploader({Key key, this.file}) : super(key: key);
+
+  createState() => _UploaderState();
+}
+
+
 class _UploaderState extends State<Uploader> {
   final FirebaseStorage _storage = FirebaseStorage(
       storageBucket: 'gs://rental-life-in-real-estate.appspot.com');
 
   StorageUploadTask _uploadTask;
-
+  String filePath = '';
   /// Starts an upload task
   void _startUpload() {
     /// Unique file name for the file
-    String filePath = 'Ads_Images/${DateTime.now()}.png';
+    //filePath = 'Ads/userId/${DateTime.now()}.png';
 
     setState(() {
       _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
@@ -150,7 +163,10 @@ class _UploaderState extends State<Uploader> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+    filePath = 'Ads/${user.uid}/Image1.png';
     if (_uploadTask != null) {
+      //filePath= 'Ads/${DateTime.now()}.png';
       /// Manage the task state and event subscription with a StreamBuilder
       return StreamBuilder<StorageTaskEvent>(
           stream: _uploadTask.events,
@@ -223,6 +239,7 @@ class _UploaderState extends State<Uploader> {
             borderRadius: BorderRadius.circular(2),
           ),
           label: Text('Upload Ad'),
+
           onPressed: _startUpload,
         );
 
@@ -235,11 +252,3 @@ class _UploaderState extends State<Uploader> {
   }
 }
 
-/// Widget used to handle the management of
-class Uploader extends StatefulWidget {
-  final File file;
-
-  Uploader({Key key, this.file}) : super(key: key);
-
-  createState() => _UploaderState();
-}
