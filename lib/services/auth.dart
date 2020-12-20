@@ -1,12 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:realestate/model/user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-//import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:realestate/services/database.dart';
 
 class AuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuthentication = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   //Create user object based on FirebaseUser
@@ -16,7 +14,7 @@ class AuthService {
 
   //Auth change user stream
   Stream<User> get user {
-    return _auth.onAuthStateChanged
+    return _firebaseAuthentication.onAuthStateChanged
         //.map((FirebaseUser user) => _userFromFireBaseUser(user));
         .map(_userFromFireBaseUser);
   }
@@ -24,7 +22,7 @@ class AuthService {
   //Sign in anonymously
   Future signinAnon() async {
     try {
-      AuthResult result = await _auth.signInAnonymously();
+      AuthResult result = await _firebaseAuthentication.signInAnonymously();
       return _userFromFireBaseUser(result.user);
     } catch (e) {
       print(e.toString());
@@ -35,7 +33,7 @@ class AuthService {
   //Sign in with email and password
   Future signInWithEmail(String email, String password) async {
     try {
-      AuthResult result = await _auth.signInWithEmailAndPassword(
+      AuthResult result = await _firebaseAuthentication.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
       return _userFromFireBaseUser(user);
@@ -48,7 +46,7 @@ class AuthService {
   //Register with email & password
   Future registerWithEmail(String email, String password, String firstName, String lastName) async {
     try {
-      AuthResult result = await _auth.createUserWithEmailAndPassword(
+      AuthResult result = await _firebaseAuthentication.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
 
@@ -76,7 +74,7 @@ class AuthService {
       );
 
       final AuthResult authResult =
-          await _auth.signInWithCredential(credential);
+          await _firebaseAuthentication.signInWithCredential(credential);
       final FirebaseUser user = authResult.user;
 
       var name = user.displayName;
@@ -117,7 +115,7 @@ class AuthService {
 
           final AuthCredential credential = FacebookAuthProvider.getCredential(accessToken: accessToken.toString());
 
-          final AuthResult authResult = await _auth.signInWithCredential(credential);
+          final AuthResult authResult = await _firebaseAuthentication.signInWithCredential(credential);
           final FirebaseUser user = authResult.user;
           return _userFromFireBaseUser(user);
 
@@ -151,7 +149,7 @@ class AuthService {
   //Sign out
   Future signOut() async {
     try {
-      return await _auth.signOut();
+      return await _firebaseAuthentication.signOut();
     } catch (e) {
       print(e.toString());
       return null;

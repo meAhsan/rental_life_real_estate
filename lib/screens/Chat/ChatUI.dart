@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:avataaar_image/avataaar_image.dart';
 
 class ChatUi extends StatelessWidget {
-  static final String path = "lib/src/pages/misc/chatui.dart";
+  // static final String path = "lib/src/pages/misc/chatui.dart";
 
 
   @override
   Widget build(BuildContext context) {
     createTile(Friend friend) => Container(
+
       decoration: const BoxDecoration(
+
         border: Border(
-          bottom: BorderSide(color: Color(0xFF565973), width: 1.0),
+          bottom: BorderSide(color: Colors.deepOrangeAccent, width: 1.0),
         ),
       ),
       child: Padding(
@@ -26,7 +28,7 @@ class ChatUi extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   image: DecorationImage(
-                      image: NetworkImage(friend.image), fit: BoxFit.cover),
+                      image: NetworkImage('https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar-300x300.jpg'), fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(50.0),
                 ),
               ),
@@ -75,25 +77,12 @@ class ChatUi extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50.0),
                   ),
                   child: IconButton(
-                    color: Color(0xFF5791FB),
+                    color: Colors.deepOrange,
                     icon: Icon(Icons.call),
                     onPressed: () {},
                   ),
                 ),
                 SizedBox(width: 10.0),
-                Container(
-                  width: 42.0,
-                  height: 42.0,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF414350),
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
-                  child: IconButton(
-                    color: Color(0xFF5791FB),
-                    icon: Icon(Icons.videocam),
-                    onPressed: () {},
-                  ),
-                ),
               ],
             ),
           ],
@@ -152,31 +141,31 @@ class ChatUi extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       OnlinePersonAction(
-                        personImagePath: avatars[0],
+                        personImagePath: '',
                         actColor: Colors.greenAccent,
                       ),
                       OnlinePersonAction(
-                        personImagePath: avatars[1],
-                        actColor: Colors.yellowAccent,
+                        personImagePath:'',
+                        actColor: Colors.greenAccent,
                       ),
                       OnlinePersonAction(
-                        personImagePath: avatars[2],
+                        personImagePath: '',
                         actColor: Colors.redAccent,
                       ),
                       OnlinePersonAction(
-                        personImagePath: avatars[3],
-                        actColor: Colors.yellowAccent,
-                      ),
-                      OnlinePersonAction(
-                        personImagePath: avatars[4],
+                        personImagePath: '',
                         actColor: Colors.greenAccent,
                       ),
                       OnlinePersonAction(
-                        personImagePath: avatars[5],
+                        personImagePath: '',
                         actColor: Colors.greenAccent,
                       ),
                       OnlinePersonAction(
-                        personImagePath: avatars[6],
+                        personImagePath: '',
+                        actColor: Colors.greenAccent,
+                      ),
+                      OnlinePersonAction(
+                        personImagePath: '',
                         actColor: Colors.greenAccent,
                       ),
                     ],
@@ -243,7 +232,7 @@ class OnlinePersonAction extends StatelessWidget {
               borderRadius: BorderRadius.circular(50.0),
               border: Border.all(
                 width: 2.0,
-                color: const Color(0xFF558AED),
+                color: Colors.deepOrange,
               ),
             ),
             child: Container(
@@ -252,7 +241,7 @@ class OnlinePersonAction extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50.0),
                 image: DecorationImage(
-                    image: NetworkImage(personImagePath), fit: BoxFit.cover),
+                    image: NetworkImage('https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar-300x300.jpg'), fit: BoxFit.cover),
               ),
             ),
           ),
@@ -283,20 +272,15 @@ class Friend {
 
   Friend(this.name, this.image, this.message, this.msgTime);
 }
-const List<String> avatars = [
-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F1.jpg?alt=media',
-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media',
-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F6.jpg?alt=media',
-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F7.jpg?alt=media',
-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2Fdev_damodar.jpg?alt=media&token=aaf47b41-3485-4bab-bcb6-2e472b9afee6',
-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2Fdev_sudip.jpg?alt=media',
-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2Fdev_sid.png?alt=media',
-];
+
+// const List<String> avatars = [
+//   'https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar-300x300.jpg',
+// ];
 final List<Friend> friends = [
-  Friend('John', avatars[0], 'Hello, how are you?', '1 hr.'),
-  Friend('RIna', avatars[1], 'Hello, how are you?', '1 hr.'),
-  Friend('Brad', avatars[2], 'Hello, how are you?', '1 hr.'),
-  Friend('Don', avatars[3], 'Hello, how are you?', '1 hr.'),
-  Friend('Mukambo', avatars[4], 'Hello, how are you?', '1 hr.'),
-  Friend('Sid', avatars[6], 'Hello, how are you?', '1 hr.'),
+  Friend('John', '', 'Hello, how are you?', '1 hr.'),
+  Friend('RIna', '', 'Hello, how are you?', '1 hr.'),
+  Friend('Brad', '', 'Hello, how are you?', '2 hr.'),
+  Friend('Don', '', 'Hello, how are you?', '1 hr.'),
+  Friend('Mukambo', '', 'Hello, how are you?', '1 hr.'),
+  Friend('Sid', '', 'Hello, how are you?', '1 hr.'),
 ];

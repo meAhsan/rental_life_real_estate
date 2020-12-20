@@ -4,7 +4,7 @@ import 'package:realestate/shared/loading.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AuthenticationPage extends StatefulWidget {
-  static final String path = "lib/screens/authenticate/welcome_screen.dart";
+  //static final String path = "lib/screens/authenticate/welcome_screen.dart";
 
   @override
   _AuthenticationPageState createState() => _AuthenticationPageState();

@@ -35,7 +35,6 @@ class _MyStatefulWidgetState extends State<BottomNavigationWidget> {
     AdsFeed(),
     ChatUi(),
     ProfilePage(),
-
   ];
 
   void _onItemTapped(int index) {
