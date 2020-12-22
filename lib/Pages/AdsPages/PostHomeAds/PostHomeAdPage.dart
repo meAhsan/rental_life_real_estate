@@ -33,28 +33,59 @@ class _PostHomeAdPageState extends State<PostHomeAdPage> {
     final FormDetailsKey = GlobalKey<FormState>(); //const Key('__PHAKEY1__');
     final FormDescriptionKey = GlobalKey<FormState>();
     final FormImagesKey = GlobalKey<FormState>(); //const Key('__PHAKEY3__');
+    final _globalKey = GlobalKey<ScaffoldState>();
     // final rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
     // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     return MaterialApp(
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
+          key: _globalKey,
           appBar: AppBar(
             actions: [
-              RaisedButton.icon(
-                icon: Icon(Icons.point_of_sale),
-                label: Text("validate"),
-                onPressed: (() {
-                  print(FormDescriptionKey);
-                  if (FormDescriptionKey.currentState.validate() &&
-                      FormDetailsKey.currentState.validate() && FormImagesKey.currentState.validate()) {
-                    print("Form validated");
-                    FormDetailsKey.currentState.save();
-                    print("Details $details");
-                  } else {
-                    print("Form not validated");
-                  }
-                }),
+              ButtonTheme(
+                minWidth: 200.0,
+                height: 100.0,
+                child: RaisedButton.icon(
+                  color: firstColor,
+                  icon: Icon(
+                    Icons.camera,
+                    color: secondColor,
+                  ),
+                  label: Text(
+                    "Validate and Post",
+                    style: TextStyle(color: secondColor, fontSize: 16),
+                  ),
+                  onPressed: (() async{
+                    //print(FormDescriptionKey);
+                    if (FormDetailsKey.currentState.validate() &&
+                        FormDescriptionKey.currentState.validate() &&
+                        FormImagesKey.currentState.validate()) {
+                      print("Form validated");
+                      await FormDetailsKey.currentState.save();
+                      await FormDescriptionKey.currentState.save();
+                      await FormImagesKey.currentState.save();
+                      print("Details $details");
+                    } else {
+                      SnackBar _snackbar =
+                          SnackBar(content: Text('Form Fields not validated'));
+                      if (!FormDetailsKey.currentState.validate()) {
+                        _snackbar =
+                            SnackBar(content: Text('Please Insert Ad Details'));
+                      } else if (!FormDescriptionKey.currentState.validate()) {
+                        _snackbar = SnackBar(
+                            content:
+                                Text('Please Insert Description and Location'));
+                      } else if (!FormImagesKey.currentState.validate()) {
+                        _snackbar = SnackBar(
+                            content: Text('Please Insert Atleast one image'));
+                      }
+                      _globalKey.currentState.showSnackBar(_snackbar);
+                      setState(() {});
+                      print("Form not validated");
+                    }
+                  }),
+                ),
               )
             ],
             backgroundColor: firstColor,
@@ -66,42 +97,44 @@ class _PostHomeAdPageState extends State<PostHomeAdPage> {
                 ),
                 Tab(icon: Icon(Icons.camera_alt_outlined /*Icons.camera*/)),
               ],
+              indicatorColor: Colors.red,
+              indicatorWeight: 5.0,
             ),
             title: Text('Post Home Ad'),
           ),
           body: TabBarView(children: [
-            HomeAdDetailsPage(FormDetailsKey),
-            HomeAdDescriptionPage(FormDescriptionKey),
-            HomeAdImagesPage(),
+            HomeAdDetailsPage(FormDetailsKey, widget._rentalLifeUser),
+            HomeAdDescriptionPage(FormDescriptionKey, widget._rentalLifeUser),
+            HomeAdImagesPage(FormImagesKey, widget._rentalLifeUser, _globalKey),
           ]
-            //             if(isDetailsTabCompleted == false){
-            //         children: [
-            //         HomeAdDetailsPage(),
-            //         HomeAdDescriptionPage(),
-            //         HomeAdImagesPage(),
-            //         ]
-            //
-            //         }else
-            //             if(isDescriptionTabCompleted == false){
-            //     children: [
-            //     HomeAdDetailsPage(),
-            //     HomeAdDescriptionPage(),
-            //     HomeAdImagesPage(),
-            //     ]
-            //     }else
-            //         if(isImagesTabCompleted== false){
-            // children: [
-            // HomeAdDetailsPage(),
-            // HomeAdDescriptionPage(),
-            // HomeAdImagesPage(),
-            // ]
-            // }else{
-            //
-            // }
+              //             if(isDetailsTabCompleted == false){
+              //         children: [
+              //         HomeAdDetailsPage(),
+              //         HomeAdDescriptionPage(),
+              //         HomeAdImagesPage(),
+              //         ]
+              //
+              //         }else
+              //             if(isDescriptionTabCompleted == false){
+              //     children: [
+              //     HomeAdDetailsPage(),
+              //     HomeAdDescriptionPage(),
+              //     HomeAdImagesPage(),
+              //     ]
+              //     }else
+              //         if(isImagesTabCompleted== false){
+              // children: [
+              // HomeAdDetailsPage(),
+              // HomeAdDescriptionPage(),
+              // HomeAdImagesPage(),
+              // ]
+              // }else{
+              //
+              // }
 
-            // Text(widget._rentalLifeUser.toString()),
+              // Text(widget._rentalLifeUser.toString()),
 
-          ),
+              ),
         ),
       ),
     );

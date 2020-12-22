@@ -19,9 +19,9 @@ class _AdsMainPageState extends State<AdsMainPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: firstColor,
-        title: Text("Ads"),
+        title: Text("My Ads"),
       ),
-      body: Center(child: Text(rentalLifeUserFromProvider.toString())),
+      body: Center(child: Text("")),//rentalLifeUserFromProvider.toString()
       drawer: AppMenuDrawerOvalRight(),
     );
   }

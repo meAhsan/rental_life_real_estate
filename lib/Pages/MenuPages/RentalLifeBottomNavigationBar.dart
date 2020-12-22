@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
 import 'package:realestate/Pages/AdsPages/AdsMainPage.dart';
 import 'package:realestate/Pages/AdsPages/BottomRevealPostAdPage.dart';
+import 'package:realestate/Pages/AdsPages/DisplayAdPages/HomeAdDetailedDisplayPage.dart';
+import 'package:realestate/Pages/AdsPages/DisplayAdPages/HomeAdsCards.dart';
+import 'package:realestate/Pages/ImagesPages/first.dart';
 import 'package:realestate/Pages/MenuPages/AppMenuDrawerOvalRight.dart';
 import 'package:realestate/Pages/SettingsPages/RentalLifeUserProfile.dart';
 import 'package:realestate/Service%20Classes/FirebaseUserAuthenticationService.dart';
@@ -40,6 +44,10 @@ class _RentalLifeBottomNavigationBarState
     rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
 
     return FutureProvider<RentalLifeUser>.value(
+        catchError: (context, error) {
+          print("Error: $error");
+          return null;
+        },
         value: FirestoreDatabaseServicesForUser(
                 rentalLifeUserID: rentalLifeUserFromProvider.uid)
             .getRentalLifeUserFromFireStoreDocument(),
@@ -63,22 +71,39 @@ class _RentalLifeBottomNavigationBarState
   getPage(int page) {
     switch (page) {
       case 0:
-        return Center(
-            child: Container(
-          child: Text("Home Page"),
-        ));
+        return //First();
+            Center(
+                //child: Container(
+          child: HomeAdsCardsPage(), //Text("Home Page"),
+        //)
+    );
       case 1:
         return BottomRevealPostAdPage();
-        //AdsMainPage();
-        // return Center(
-        //     child: Container(
-        //   child: Text("Profile Page"),
-        // ));
+      //AdsMainPage();
+      // return Center(
+      //     child: Container(
+      //   child: Text("Profile Page"),
+      // ));
       case 2:
+        //return BikeDetailsPage(null);
         // return BottomRevealAdMainPage();
-        return Center(
+        return
+          Center(
             child: Container(
-          child: Text("Menu venue Page"),
+          child: RaisedButton(
+            child: Text("Press to reveal ad details."),
+            onPressed: () async {
+              // final tempAdDocumnet = Firestore.instance
+              //     .collection('AdsDocument')
+              //     .document("XBAM8FwVLZPNXd4DhXT9Ftn67Zh21");
+              // final DocumentSnapshot docSnapshot = await tempAdDocumnet.get();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeAdsCardsPage()),
+                //HomeAdDetailedDisplayPage(docSnapshot)
+              );
+            },
+          ),
         ));
     }
   }
@@ -103,7 +128,6 @@ class AnimatedBottomNav extends StatelessWidget {
             child: InkWell(
               onTap: () => onChange(0),
               child: BottomNavItem(
-
                 activeColor: secondColor,
                 //inactiveColor: fourthColor,
                 icon: Icons.home,

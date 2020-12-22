@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:realestate/ModelClasses/AdsModelClasses/Ads.dart';
 import 'package:realestate/ModelClasses/AdsModelClasses/NonCommercialAds.dart';
 
@@ -10,6 +11,10 @@ class RentAHomeAd extends Ads {
   int _floorNumber;
   double _sizeInMarlas;
   String _AD_TYPE = "NonCommercial-Home";
+
+
+  List<Asset> _images = List<Asset>();
+  List<String> _imageUrls = <String>[];
 
   RentAHomeAd(
       {String adTitle,
@@ -79,4 +84,22 @@ class RentAHomeAd extends Ads {
   }
 
   String get AD_TYPE => _AD_TYPE;
+
+  List<String> get imageUrls => _imageUrls;
+
+  set imageUrls(List<String> value) {
+    _imageUrls = value;
+  }
+
+  List<Asset> get images => _images;
+
+  set images(List<Asset> value) {
+    _images = value;
+  }
+
+  int get numberOfRooms => _numberOfRooms;
+
+  set numberOfRooms(int value) {
+    _numberOfRooms = value;
+  }
 }

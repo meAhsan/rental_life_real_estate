@@ -40,6 +40,7 @@ class FirestoreDatabaseServicesForUser {
       'totalAdsPosted': rentalLifeUser.totalAdsPosted,
       'totalTenantsConnected': rentalLifeUser.totalTenantsConnected,
       'totalOwnersConnected': rentalLifeUser.totalOwnersConnected,
+      'adsDocumentsId': rentalLifeUser.adsDocumentIdList
     });
   }
 
@@ -59,9 +60,51 @@ class FirestoreDatabaseServicesForUser {
       totalAdsPosted: docSnapshot.data['totalAdsPosted'],
       userDisplayImageAddress: docSnapshot.data['userDisplayImageAddress'],
       totalTenantsConnected: docSnapshot.data['totalTenantsConnected'],
-      totalOwnersConnected: docSnapshot.data['totalOwnersConnected']
+      totalOwnersConnected: docSnapshot.data['totalOwnersConnected'],
+      // adsDocumentsIdList: (docSnapshot.data["adsDocumentsId"]),
+      // adsDocumentsIdList: (List < String>) docSnapshot.data"dungeon_group"];
     );
+
+    bool isAdsIDsExists;
+    try {
+      isAdsIDsExists = (docSnapshot.data['adDocumentsId'].exists != null);
+      isAdsIDsExists = true;
+    } catch (e) {
+      isAdsIDsExists = false;
+      print("ERROR CATCHED1: $e");
+    }
+    List<String> _adsDocumentsIdList = <String>[];
+    if (isAdsIDsExists) {
+      for (int i = 0; i < docSnapshot.data['adDocumentsId'].length; i++) {
+        _adsDocumentsIdList.add(docSnapshot.data['adDocumentsId'][i]);
+      }
+    }
+    rentalLifeUser.adsDocumentsIdList = _adsDocumentsIdList;
     return rentalLifeUser;
+  }
+
+  void updateUserDocumentWithAdDocumentsIDs(String newAdId) {}
+
+  Future<List<String>> getUserAdsDocumentsList() async {
+    final userFirestoreDocumentReference =
+        Firestore.instance.collection('user').document(rentalLifeUserID);
+    final DocumentSnapshot docSnapshot =
+        await userFirestoreDocumentReference.get();
+    bool isAdsIDsExists;
+    try {
+      isAdsIDsExists = (docSnapshot.data['adDocumentsId'].exists != null);
+      isAdsIDsExists = true;
+    } catch (e) {
+      isAdsIDsExists = false;
+      print("ERROR CATCHED2: $e");
+    }
+    List<String> _adsDocumentsIdList = <String>[];
+    if (isAdsIDsExists) {
+      for (int i = 0; i < docSnapshot.data['adDocumentsId'].length; i++) {
+        _adsDocumentsIdList.add(docSnapshot.data['adDocumentsId'][i]);
+      }
+    }
+    return _adsDocumentsIdList;
   }
 
 //create a new document with uid

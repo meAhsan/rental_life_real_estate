@@ -1,0 +1,5162 @@
+Index: lib/screens/Chat/ChatUI.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/screens/Chat/ChatUI.dart	(revision 12c283d1f9ff5c732ebd97120e6c09a85e6ff615)
++++ lib/screens/Chat/ChatUI.dart	(date 1603962108595)
+@@ -3,15 +3,17 @@
+ import 'package:avataaar_image/avataaar_image.dart';
+ 
+ class ChatUi extends StatelessWidget {
+-  static final String path = "lib/src/pages/misc/chatui.dart";
++  // static final String path = "lib/src/pages/misc/chatui.dart";
+ 
+ 
+   @override
+   Widget build(BuildContext context) {
+     createTile(Friend friend) => Container(
++
+       decoration: const BoxDecoration(
++
+         border: Border(
+-          bottom: BorderSide(color: Color(0xFF565973), width: 1.0),
++          bottom: BorderSide(color: Colors.deepOrangeAccent, width: 1.0),
+         ),
+       ),
+       child: Padding(
+@@ -26,7 +28,7 @@
+                 decoration: BoxDecoration(
+                   color: Colors.transparent,
+                   image: DecorationImage(
+-                      image: NetworkImage(friend.image), fit: BoxFit.cover),
++                      image: NetworkImage('https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar-300x300.jpg'), fit: BoxFit.cover),
+                   borderRadius: BorderRadius.circular(50.0),
+                 ),
+               ),
+@@ -75,25 +77,12 @@
+                     borderRadius: BorderRadius.circular(50.0),
+                   ),
+                   child: IconButton(
+-                    color: Color(0xFF5791FB),
++                    color: Colors.deepOrange,
+                     icon: Icon(Icons.call),
+                     onPressed: () {},
+                   ),
+                 ),
+                 SizedBox(width: 10.0),
+-                Container(
+-                  width: 42.0,
+-                  height: 42.0,
+-                  decoration: BoxDecoration(
+-                    color: Color(0xFF414350),
+-                    borderRadius: BorderRadius.circular(50.0),
+-                  ),
+-                  child: IconButton(
+-                    color: Color(0xFF5791FB),
+-                    icon: Icon(Icons.videocam),
+-                    onPressed: () {},
+-                  ),
+-                ),
+               ],
+             ),
+           ],
+@@ -152,31 +141,31 @@
+                   child: Row(
+                     children: <Widget>[
+                       OnlinePersonAction(
+-                        personImagePath: avatars[0],
++                        personImagePath: '',
+                         actColor: Colors.greenAccent,
+                       ),
+                       OnlinePersonAction(
+-                        personImagePath: avatars[1],
+-                        actColor: Colors.yellowAccent,
++                        personImagePath:'',
++                        actColor: Colors.greenAccent,
+                       ),
+                       OnlinePersonAction(
+-                        personImagePath: avatars[2],
++                        personImagePath: '',
+                         actColor: Colors.redAccent,
+                       ),
+                       OnlinePersonAction(
+-                        personImagePath: avatars[3],
+-                        actColor: Colors.yellowAccent,
++                        personImagePath: '',
++                        actColor: Colors.greenAccent,
+                       ),
+                       OnlinePersonAction(
+-                        personImagePath: avatars[4],
++                        personImagePath: '',
+                         actColor: Colors.greenAccent,
+                       ),
+                       OnlinePersonAction(
+-                        personImagePath: avatars[5],
++                        personImagePath: '',
+                         actColor: Colors.greenAccent,
+                       ),
+                       OnlinePersonAction(
+-                        personImagePath: avatars[6],
++                        personImagePath: '',
+                         actColor: Colors.greenAccent,
+                       ),
+                     ],
+@@ -243,7 +232,7 @@
+               borderRadius: BorderRadius.circular(50.0),
+               border: Border.all(
+                 width: 2.0,
+-                color: const Color(0xFF558AED),
++                color: Colors.deepOrange,
+               ),
+             ),
+             child: Container(
+@@ -252,7 +241,7 @@
+               decoration: BoxDecoration(
+                 borderRadius: BorderRadius.circular(50.0),
+                 image: DecorationImage(
+-                    image: NetworkImage(personImagePath), fit: BoxFit.cover),
++                    image: NetworkImage('https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar-300x300.jpg'), fit: BoxFit.cover),
+               ),
+             ),
+           ),
+@@ -283,20 +272,15 @@
+ 
+   Friend(this.name, this.image, this.message, this.msgTime);
+ }
+-const List<String> avatars = [
+-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F1.jpg?alt=media',
+-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media',
+-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F6.jpg?alt=media',
+-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F7.jpg?alt=media',
+-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2Fdev_damodar.jpg?alt=media&token=aaf47b41-3485-4bab-bcb6-2e472b9afee6',
+-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2Fdev_sudip.jpg?alt=media',
+-  'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2Fdev_sid.png?alt=media',
+-];
++
++// const List<String> avatars = [
++//   'https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar-300x300.jpg',
++// ];
+ final List<Friend> friends = [
+-  Friend('John', avatars[0], 'Hello, how are you?', '1 hr.'),
+-  Friend('RIna', avatars[1], 'Hello, how are you?', '1 hr.'),
+-  Friend('Brad', avatars[2], 'Hello, how are you?', '1 hr.'),
+-  Friend('Don', avatars[3], 'Hello, how are you?', '1 hr.'),
+-  Friend('Mukambo', avatars[4], 'Hello, how are you?', '1 hr.'),
+-  Friend('Sid', avatars[6], 'Hello, how are you?', '1 hr.'),
++  Friend('John', '', 'Hello, how are you?', '1 hr.'),
++  Friend('RIna', '', 'Hello, how are you?', '1 hr.'),
++  Friend('Brad', '', 'Hello, how are you?', '2 hr.'),
++  Friend('Don', '', 'Hello, how are you?', '1 hr.'),
++  Friend('Mukambo', '', 'Hello, how are you?', '1 hr.'),
++  Friend('Sid', '', 'Hello, how are you?', '1 hr.'),
+ ];
+\ No newline at end of file
+Index: lib/services/auth.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/services/auth.dart	(revision 12c283d1f9ff5c732ebd97120e6c09a85e6ff615)
++++ lib/services/auth.dart	(date 1607814229625)
+@@ -1,12 +1,10 @@
+ import 'package:firebase_auth/firebase_auth.dart';
+ import 'package:realestate/model/user.dart';
+ import 'package:google_sign_in/google_sign_in.dart';
+-
+-//import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+ import 'package:realestate/services/database.dart';
+ 
+ class AuthService {
+-  final FirebaseAuth _auth = FirebaseAuth.instance;
++  final FirebaseAuth _firebaseAuthentication = FirebaseAuth.instance;
+   final GoogleSignIn _googleSignIn = GoogleSignIn();
+ 
+   //Create user object based on FirebaseUser
+@@ -16,7 +14,7 @@
+ 
+   //Auth change user stream
+   Stream<User> get user {
+-    return _auth.onAuthStateChanged
++    return _firebaseAuthentication.onAuthStateChanged
+         //.map((FirebaseUser user) => _userFromFireBaseUser(user));
+         .map(_userFromFireBaseUser);
+   }
+@@ -24,7 +22,7 @@
+   //Sign in anonymously
+   Future signinAnon() async {
+     try {
+-      AuthResult result = await _auth.signInAnonymously();
++      AuthResult result = await _firebaseAuthentication.signInAnonymously();
+       return _userFromFireBaseUser(result.user);
+     } catch (e) {
+       print(e.toString());
+@@ -35,7 +33,7 @@
+   //Sign in with email and password
+   Future signInWithEmail(String email, String password) async {
+     try {
+-      AuthResult result = await _auth.signInWithEmailAndPassword(
++      AuthResult result = await _firebaseAuthentication.signInWithEmailAndPassword(
+           email: email, password: password);
+       FirebaseUser user = result.user;
+       return _userFromFireBaseUser(user);
+@@ -48,7 +46,7 @@
+   //Register with email & password
+   Future registerWithEmail(String email, String password, String firstName, String lastName) async {
+     try {
+-      AuthResult result = await _auth.createUserWithEmailAndPassword(
++      AuthResult result = await _firebaseAuthentication.createUserWithEmailAndPassword(
+           email: email, password: password);
+       FirebaseUser user = result.user;
+ 
+@@ -76,7 +74,7 @@
+       );
+ 
+       final AuthResult authResult =
+-          await _auth.signInWithCredential(credential);
++          await _firebaseAuthentication.signInWithCredential(credential);
+       final FirebaseUser user = authResult.user;
+ 
+       var name = user.displayName;
+@@ -117,7 +115,7 @@
+ 
+           final AuthCredential credential = FacebookAuthProvider.getCredential(accessToken: accessToken.toString());
+ 
+-          final AuthResult authResult = await _auth.signInWithCredential(credential);
++          final AuthResult authResult = await _firebaseAuthentication.signInWithCredential(credential);
+           final FirebaseUser user = authResult.user;
+           return _userFromFireBaseUser(user);
+ 
+@@ -151,7 +149,7 @@
+   //Sign out
+   Future signOut() async {
+     try {
+-      return await _auth.signOut();
++      return await _firebaseAuthentication.signOut();
+     } catch (e) {
+       print(e.toString());
+       return null;
+Index: lib/Pages/AdsPages/PostHomeAds/HomeAdImagesPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/AdsPages/PostHomeAds/HomeAdImagesPage.dart	(date 1608448043944)
++++ lib/Pages/AdsPages/PostHomeAds/HomeAdImagesPage.dart	(date 1608448043944)
+@@ -0,0 +1,20 @@
++import 'package:flutter/material.dart';
++import 'package:flutter/services.dart';
++
++class HomeAdImagesPage extends StatefulWidget {
++  @override
++  _HomeAdImagesPageState createState() => _HomeAdImagesPageState();
++}
++
++class _HomeAdImagesPageState extends State<HomeAdImagesPage>
++    with AutomaticKeepAliveClientMixin<HomeAdImagesPage> {
++  @override
++  bool get wantKeepAlive => true;
++
++  @override
++  Widget build(BuildContext context) {
++    return Container(
++      child: TextFormField(),
++    );
++  }
++}
+Index: lib/screens/authenticate/welcome_screen.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/screens/authenticate/welcome_screen.dart	(revision 12c283d1f9ff5c732ebd97120e6c09a85e6ff615)
++++ lib/screens/authenticate/welcome_screen.dart	(date 1607812589720)
+@@ -4,7 +4,7 @@
+ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+ 
+ class AuthenticationPage extends StatefulWidget {
+-  static final String path = "lib/screens/authenticate/welcome_screen.dart";
++  //static final String path = "lib/screens/authenticate/welcome_screen.dart";
+ 
+   @override
+   _AuthenticationPageState createState() => _AuthenticationPageState();
+Index: lib/Pages/AdsPages/PostHomeAds/HomeAdDetailsPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/AdsPages/PostHomeAds/HomeAdDetailsPage.dart	(date 1608462930122)
++++ lib/Pages/AdsPages/PostHomeAds/HomeAdDetailsPage.dart	(date 1608462930122)
+@@ -0,0 +1,220 @@
++import 'package:flutter/material.dart';
++import 'package:flutter/services.dart';
++
++class HomeAdDetailsPage extends StatefulWidget {
++  final GlobalKey<FormState> _formKey;
++
++  HomeAdDetailsPage(this._formKey);
++
++  @override
++  _HomeAdDetailsPageState createState() => _HomeAdDetailsPageState();
++}
++
++class _HomeAdDetailsPageState extends State<HomeAdDetailsPage>
++    with AutomaticKeepAliveClientMixin<HomeAdDetailsPage> {
++  @override
++  bool get wantKeepAlive => true;
++
++  @override
++  Widget build(BuildContext context) {
++    return Container(
++        child: SingleChildScrollView(
++            child: Container(
++                margin: const EdgeInsets.all(16.0),
++                decoration: BoxDecoration(
++                  color: Colors.white,
++                  borderRadius: BorderRadius.circular(16.0),
++                ),
++                child: Form(
++                  // onChanged: _onFormChange,
++                  // onWillPop: _onWillPop,
++                  key: widget._formKey,
++                  child: ListView(
++                    shrinkWrap: true,
++                    padding: const EdgeInsets.all(16.0),
++                    children: <Widget>[
++                      TextFormField(
++                        onSaved: ((val) {
++                          print('saved val: $val');
++                        }),
++                        // initialValue: widget._rentalLifeUser.name,//_name,
++                        autovalidateMode: AutovalidateMode.onUserInteraction,
++                        // autofocus: true,
++                        decoration: InputDecoration(
++                          suffixIcon: Icon(
++                            Icons.drive_file_rename_outline,
++                            color: Colors.blueGrey,
++                          ),
++                          labelText: "Name ",
++                          hintText: "Required",
++                          border: OutlineInputBorder(),
++                        ),
++                        validator: ((val) {
++                          if (val.length < 3) {
++                            return 'Name too short';
++                          } else if (val.length > 15) {
++                            return 'Name too long';
++                          }
++                          return null;
++                        }),
++                        onChanged: (val) {
++                          setState(() {
++                          });
++                        },
++                      ),
++                      SizedBox(
++                        height: 20,
++                      ),
++                      // TextFormField(
++                      //   initialValue: widget._rentalLifeUser.phoneNum,
++                      //   autovalidateMode: AutovalidateMode.onUserInteraction,
++                      //   // autofocus: true,
++                      //   decoration: InputDecoration(
++                      //     prefixIcon: Padding(
++                      //         padding: EdgeInsets.all(15), child: Text('+92 ')),
++                      //     suffixIcon: Icon(
++                      //       Icons.phone_android_sharp,
++                      //       color: Colors.blueGrey,
++                      //     ),
++                      //     labelText: "Mobile # ",
++                      //     hintText: "(Required)",
++                      //     border: OutlineInputBorder(),
++                      //   ),
++                      //   validator: ((val) {
++                      //     if (val.length > 10) {
++                      //       return 'Mobile Number too long';
++                      //     } else if (val.length < 10) {
++                      //       return 'Mobile Number too short';
++                      //     }
++                      //     return null;
++                      //   }),
++                      //   onChanged: (val) {
++                      //     setState(() {
++                      //       _phoneNum = val; //(val as int);
++                      //     });
++                      //   },
++                      // ),
++                      // SizedBox(
++                      //   height: 20,
++                      // ),
++                      // TextFormField(
++                      //   initialValue: widget._rentalLifeUser.age.toString(),
++                      //   autovalidateMode: AutovalidateMode.onUserInteraction,
++                      //   keyboardType: TextInputType.number,
++                      //   decoration: InputDecoration(
++                      //     suffixIcon: Icon(
++                      //       Icons.calendar_today_rounded,
++                      //       color: Colors.blueGrey,
++                      //     ),
++                      //     labelText: "Age ",
++                      //     hintText: "Required",
++                      //     border: OutlineInputBorder(),
++                      //   ),
++                      //   validator: ((val) {
++                      //     if (val.length > 2) {
++                      //       return 'Invalid age. Should be in year.';
++                      //     }
++                      //     return null;
++                      //   }),
++                      //   onChanged: (val) {
++                      //     setState(() {
++                      //       _age = val;
++                      //     });
++                      //   },
++                      // ),
++                      // SizedBox(
++                      //   height: 20,
++                      // ),
++                      // TextFormField(
++                      //   initialValue: widget._rentalLifeUser.emailAddress,
++                      //   enabled: false,
++                      //   decoration: InputDecoration(
++                      //     suffixIcon: Icon(
++                      //       Icons.email,
++                      //       color: Colors.blueGrey,
++                      //     ),
++                      //     labelText: "Email ",
++                      //     border: OutlineInputBorder(),
++                      //   ),
++                      // ),
++                      // SizedBox(
++                      //   height: 20,
++                      // ),
++                      // TextFormField(
++                      //   initialValue: widget._rentalLifeUser.bio,
++                      //   maxLines: 10,
++                      //   decoration: InputDecoration(
++                      //     suffixIcon: Icon(
++                      //       Icons.info,
++                      //       color: Colors.blueGrey,
++                      //     ),
++                      //     labelText: "Bio ",
++                      //     hintText: "Required",
++                      //     border: OutlineInputBorder(),
++                      //   ),
++                      //   validator: ((val) => (val.length <= 10 ||
++                      //       val.length >= 180)
++                      //       ? 'Bio should be minimum 10 and maximum 180 characters long.'
++                      //       : null),
++                      //   onChanged: (val) {
++                      //     setState(() {
++                      //       _bio = val;
++                      //     });
++                      //   },
++                      // ),
++                      // Divider(
++                      //   height: 32.0,
++                      // ),
++                      // Row(
++                      //   mainAxisAlignment: MainAxisAlignment.end,
++                      //   children: <Widget>[
++                      //     Padding(
++                      //       padding: const EdgeInsets.all(8.0),
++                      //       child: FlatButton(
++                      //         textColor: Colors.red[400],
++                      //         child: Text("Cancel"),
++                      //         onPressed: () async {
++                      //           // bool toCancel = await _onWillPop();
++                      //           // print(" Cancel Button");
++                      //
++                      //           // if (toCancel) {
++                      //             // print("CANCELLED");
++                      //             Navigator.pop(context, "Cancelled");
++                      //             // _firebaseUserAuthenticationService.signOut();
++                      //           }
++                      //         },
++                      //       ),
++                      //     ),
++                      //     Padding(
++                      //         padding: const EdgeInsets.all(8.0),
++                      //         child: RaisedButton(
++                      //           color: Colors.red,
++                      //           textColor: Colors.white,
++                      //           elevation: 0,
++                      //           shape: RoundedRectangleBorder(
++                      //             borderRadius: BorderRadius.circular(20.0),
++                      //           ),
++                      //           child: Text("Update"),
++                      //           onPressed: (() {
++                      //
++                      //             // _submitUserPersonalInfoForm(
++                      //             //     widget._rentalLifeUser);
++                      //             final snackBar = SnackBar(
++                      //               content: Text('Yay! A SnackBar!'),
++                      //               action: SnackBarAction(
++                      //                 label: 'Undo',
++                      //                 onPressed: () {
++                      //                   // Some code to undo the change.
++                      //                 },
++                      //               ),
++                      //             );
++                      //           }
++                      //           ),
++                      //         ))
++                      //   ],
++                      // ),
++                    ],
++                  ),
++                ))));
++  }
++}
+Index: lib/Pages/AdsPages/PostHomeAds/HomeAdDescriptionPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/AdsPages/PostHomeAds/HomeAdDescriptionPage.dart	(date 1608449930992)
++++ lib/Pages/AdsPages/PostHomeAds/HomeAdDescriptionPage.dart	(date 1608449930992)
+@@ -0,0 +1,70 @@
++import 'package:flutter/material.dart';
++import 'package:flutter/services.dart';
++
++class HomeAdDescriptionPage extends StatefulWidget {
++  final GlobalKey<FormState> _formKey;
++
++  HomeAdDescriptionPage(this._formKey);
++
++  @override
++  _HomeAdDescriptionPageState createState() => _HomeAdDescriptionPageState();
++}
++
++class _HomeAdDescriptionPageState extends State<HomeAdDescriptionPage>
++    with AutomaticKeepAliveClientMixin<HomeAdDescriptionPage> {
++  @override
++  bool get wantKeepAlive => true;
++
++  @override
++  Widget build(BuildContext context) {
++    return Container(
++        child: SingleChildScrollView(
++      child: Container(
++        margin: const EdgeInsets.all(16.0),
++        decoration: BoxDecoration(
++          color: Colors.white,
++          borderRadius: BorderRadius.circular(16.0),
++        ),
++        child: Form(
++          // onChanged: _onFormChange,
++          // onWillPop: _onWillPop,
++          key: widget._formKey,
++          child: ListView(
++            shrinkWrap: true,
++            padding: const EdgeInsets.all(16.0),
++            children: <Widget>[
++              TextFormField(
++                // initialValue: widget._rentalLifeUser.name,//_name,
++                autovalidateMode: AutovalidateMode.onUserInteraction,
++                // autofocus: true,
++                decoration: InputDecoration(
++                  suffixIcon: Icon(
++                    Icons.drive_file_rename_outline,
++                    color: Colors.blueGrey,
++                  ),
++                  labelText: "Name ",
++                  hintText: "Required",
++                  border: OutlineInputBorder(),
++                ),
++                validator: ((val) {
++                  if (val.length < 3) {
++                    return 'Name too short';
++                  } else if (val.length > 15) {
++                    return 'Name too long';
++                  }
++                  return null;
++                }),
++                onChanged: (val) {
++                  setState(() {});
++                },
++              ),
++              SizedBox(
++                height: 20,
++              ),
++            ],
++          ),
++        ),
++      ),
++    ));
++  }
++}
+Index: lib/Pages/AdsPages/PostHomeAds/PostHomeAdPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/AdsPages/PostHomeAds/PostHomeAdPage.dart	(date 1608462997095)
++++ lib/Pages/AdsPages/PostHomeAds/PostHomeAdPage.dart	(date 1608462997095)
+@@ -0,0 +1,109 @@
++import 'package:flutter/material.dart';
++import 'package:font_awesome_flutter/font_awesome_flutter.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/Pages/AdsPages/PostHomeAds/HomeAdDescriptionPage.dart';
++import 'package:realestate/Pages/AdsPages/PostHomeAds/HomeAdImagesPage.dart';
++
++import 'HomeAdDetailsPage.dart';
++
++class PostHomeAdPage extends StatefulWidget {
++  RentalLifeUser _rentalLifeUser;
++
++  PostHomeAdPage(this._rentalLifeUser);
++
++  @override
++  _PostHomeAdPageState createState() => _PostHomeAdPageState();
++}
++
++Color firstColor = Colors.deepOrangeAccent;
++Color secondColor = Colors.white;
++Color thirdColor = Colors.deepPurple;
++Color fourthColor = Colors.grey;
++
++bool isDetailsTabCompleted = false;
++bool isDescriptionTabCompleted = false;
++bool isImagesTabCompleted = false;
++
++class _PostHomeAdPageState extends State<PostHomeAdPage> {
++  String details;
++
++  @override
++  Widget build(BuildContext context) {
++    final FormDetailsKey = GlobalKey<FormState>(); //const Key('__PHAKEY1__');
++    final FormDescriptionKey = GlobalKey<FormState>();
++    final FormImagesKey = GlobalKey<FormState>(); //const Key('__PHAKEY3__');
++    // final rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
++    // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
++    return MaterialApp(
++      home: DefaultTabController(
++        length: 3,
++        child: Scaffold(
++          appBar: AppBar(
++            actions: [
++              RaisedButton.icon(
++                icon: Icon(Icons.point_of_sale),
++                label: Text("validate"),
++                onPressed: (() {
++                  print(FormDescriptionKey);
++                  if (FormDescriptionKey.currentState.validate() &&
++                      FormDetailsKey.currentState.validate() && FormImagesKey.currentState.validate()) {
++                    print("Form validated");
++                    FormDetailsKey.currentState.save();
++                    print("Details $details");
++                  } else {
++                    print("Form not validated");
++                  }
++                }),
++              )
++            ],
++            backgroundColor: firstColor,
++            bottom: TabBar(
++              tabs: [
++                Tab(icon: Icon(FontAwesomeIcons.questionCircle)),
++                Tab(
++                  icon: Icon(Icons.description),
++                ),
++                Tab(icon: Icon(Icons.camera_alt_outlined /*Icons.camera*/)),
++              ],
++            ),
++            title: Text('Post Home Ad'),
++          ),
++          body: TabBarView(children: [
++            HomeAdDetailsPage(FormDetailsKey),
++            HomeAdDescriptionPage(FormDescriptionKey),
++            HomeAdImagesPage(),
++          ]
++            //             if(isDetailsTabCompleted == false){
++            //         children: [
++            //         HomeAdDetailsPage(),
++            //         HomeAdDescriptionPage(),
++            //         HomeAdImagesPage(),
++            //         ]
++            //
++            //         }else
++            //             if(isDescriptionTabCompleted == false){
++            //     children: [
++            //     HomeAdDetailsPage(),
++            //     HomeAdDescriptionPage(),
++            //     HomeAdImagesPage(),
++            //     ]
++            //     }else
++            //         if(isImagesTabCompleted== false){
++            // children: [
++            // HomeAdDetailsPage(),
++            // HomeAdDescriptionPage(),
++            // HomeAdImagesPage(),
++            // ]
++            // }else{
++            //
++            // }
++
++            // Text(widget._rentalLifeUser.toString()),
++
++          ),
++        ),
++      ),
++    );
++  }
++}
+Index: lib/Pages/AdsPages/PostNonCommercialAdPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/AdsPages/PostNonCommercialAdPage.dart	(date 1608448812920)
++++ lib/Pages/AdsPages/PostNonCommercialAdPage.dart	(date 1608448812920)
+@@ -0,0 +1,231 @@
++import 'package:flutter/material.dart';
++import 'package:font_awesome_flutter/font_awesome_flutter.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'file:///C:/Users/msnk5/StudioProjects/rental_life_real_estate/lib/Pages/AdsPages/PostHomeAds/PostHomeAdPage.dart';
++
++class PostNonCommercialAdPage extends StatefulWidget {
++  RentalLifeUser _rentalLifeUser;
++
++
++  PostNonCommercialAdPage(this._rentalLifeUser);
++
++  @override
++  _PostNonCommercialAdPageState createState() =>
++      _PostNonCommercialAdPageState();
++}
++
++class _PostNonCommercialAdPageState extends State<PostNonCommercialAdPage> {
++  final TextStyle whiteText = TextStyle(color: Colors.white);
++
++  @override
++  Widget build(BuildContext context) {
++    return Provider.value(
++      value: widget._rentalLifeUser,
++      child: Scaffold(
++        backgroundColor: Colors.grey.shade800,
++        appBar: AppBar(
++          backgroundColor: Colors.transparent,
++          elevation: 0,
++          title: Text("Post Non-Commercial Ads"),
++          centerTitle: true,
++        ),
++        body: _buildBody(context),
++      ),
++    );
++  }
++
++  Widget _buildBody(BuildContext context) {
++    return SingleChildScrollView(
++      padding: const EdgeInsets.all(16.0),
++      child: Column(
++        children: <Widget>[
++          _buildHeader(),
++          const SizedBox(height: 50.0),
++          Row(
++            children: <Widget>[
++              Expanded(
++                child: Column(
++                  children: <Widget>[
++                    GestureDetector(
++                      onTap: (() {
++                        Navigator.push(
++                            context,
++                            MaterialPageRoute(
++                                builder: (context) => PostHomeAdPage(widget._rentalLifeUser)));
++                      }),
++                      child: Container(
++                        height: 190,
++                        color: Colors.blue,
++                        child: Column(
++                          crossAxisAlignment: CrossAxisAlignment.start,
++                          children: <Widget>[
++                            ListTile(
++                              title: Text(
++                                "Home",
++                                style: Theme.of(context)
++                                    .textTheme
++                                    .display1
++                                    .copyWith(
++                                      color: Colors.white,
++                                      fontSize: 24.0,
++                                    ),
++                              ),
++                              trailing: Icon(
++                                FontAwesomeIcons.home,
++                                color: Colors.white,
++                              ),
++                            ),
++                            Padding(
++                              padding: const EdgeInsets.only(left: 16.0),
++                              child: Text(
++                                'Residential Home Properties',
++                                style: whiteText,
++                              ),
++                            )
++                          ],
++                        ),
++                      ),
++                    ),
++                    const SizedBox(height: 10.0),
++                    Container(
++                      height: 120,
++                      color: Colors.green,
++                      child: Column(
++                        crossAxisAlignment: CrossAxisAlignment.start,
++                        children: <Widget>[
++                          ListTile(
++                            title: Text(
++                              "Hostel",
++                              style:
++                                  Theme.of(context).textTheme.display1.copyWith(
++                                        color: Colors.white,
++                                        fontSize: 24.0,
++                                      ),
++                            ),
++                            trailing: Icon(
++                              FontAwesomeIcons.book,
++                              color: Colors.white,
++                            ),
++                          ),
++                          Padding(
++                            padding: const EdgeInsets.only(left: 16.0),
++                            child: Text(
++                              'Hostel Room(s) For Rent',
++                              style: whiteText,
++                            ),
++                          )
++                        ],
++                      ),
++                    ),
++                  ],
++                ),
++              ),
++              const SizedBox(width: 10.0),
++              Expanded(
++                child: Column(
++                  children: <Widget>[
++                    Container(
++                      height: 120,
++                      color: Colors.red,
++                      child: Column(
++                        crossAxisAlignment: CrossAxisAlignment.start,
++                        children: <Widget>[
++                          ListTile(
++                            title: Text(
++                              "Flat",
++                              style:
++                                  Theme.of(context).textTheme.display1.copyWith(
++                                        color: Colors.white,
++                                        fontSize: 24.0,
++                                      ),
++                            ),
++                            trailing: Icon(
++                              FontAwesomeIcons.building,
++                              color: Colors.white,
++                            ),
++                          ),
++                          Padding(
++                            padding: const EdgeInsets.only(left: 16.0),
++                            child: Text(
++                              'Apartment For Rent',
++                              style: whiteText,
++                            ),
++                          )
++                        ],
++                      ),
++                    ),
++                    const SizedBox(height: 10.0),
++                    Container(
++                      height: 190,
++                      color: Colors.yellow,
++                      child: Column(
++                        crossAxisAlignment: CrossAxisAlignment.start,
++                        children: <Widget>[
++                          ListTile(
++                            title: Text(
++                              "Others",
++                              style:
++                                  Theme.of(context).textTheme.display1.copyWith(
++                                        fontSize: 24.0,
++                                        color: Colors.black,
++                                      ),
++                            ),
++                            trailing: Icon(
++                              FontAwesomeIcons.road,
++                              color: Colors.black,
++                            ),
++                          ),
++                          Padding(
++                            padding: const EdgeInsets.only(left: 16.0),
++                            child: Text(
++                              'Any Other Type of Non-Commercial Property',
++                            ),
++                          )
++                        ],
++                      ),
++                    ),
++                  ],
++                ),
++              )
++            ],
++          )
++        ],
++      ),
++    );
++  }
++
++  Widget _buildHeader() {
++    return Row(
++      children: <Widget>[
++        Container(
++          height: 100,
++          width: 100,
++          padding: const EdgeInsets.all(8.0),
++          child: CircularProgressIndicator(
++            value: 0.25,
++            valueColor: AlwaysStoppedAnimation(Colors.blue),
++            backgroundColor: Colors.grey.shade700,
++          ),
++        ),
++        const SizedBox(width: 20.0),
++        Expanded(
++          child: Column(
++            crossAxisAlignment: CrossAxisAlignment.start,
++            children: <Widget>[
++              Text(
++                "Please Select Property Type Below",
++                style: whiteText.copyWith(fontSize: 20.0),
++              ),
++              const SizedBox(height: 20.0),
++              Text(
++                "Step 1 of 4",
++                style: TextStyle(color: Colors.grey, fontSize: 16.0),
++              ),
++            ],
++          ),
++        )
++      ],
++    );
++  }
++}
+Index: lib/screens/home/bottom_navigation_bar.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/screens/home/bottom_navigation_bar.dart	(revision 12c283d1f9ff5c732ebd97120e6c09a85e6ff615)
++++ lib/screens/home/bottom_navigation_bar.dart	(date 1608372266520)
+@@ -35,7 +35,6 @@
+     AdsFeed(),
+     ChatUi(),
+     ProfilePage(),
+-
+   ];
+ 
+   void _onItemTapped(int index) {
+Index: lib/Pages/AdsPages/PostCommercialAdPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/AdsPages/PostCommercialAdPage.dart	(date 1608432634806)
++++ lib/Pages/AdsPages/PostCommercialAdPage.dart	(date 1608432634806)
+@@ -0,0 +1,19 @@
++import 'package:flutter/material.dart';
++
++class PostCommercialAdPage extends StatefulWidget {
++  @override
++  _PostCommercialAdPageState createState() => _PostCommercialAdPageState();
++}
++
++class _PostCommercialAdPageState extends State<PostCommercialAdPage> {
++  @override
++  Widget build(BuildContext context) {
++    return Scaffold(
++
++      body: Center(
++          child: Container(
++            child: Text("Commercial Ad"),
++          )),
++    );
++  }
++}
+Index: lib/WrapperClasses/AuthenticationWrapper.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/WrapperClasses/AuthenticationWrapper.dart	(date 1608438483051)
++++ lib/WrapperClasses/AuthenticationWrapper.dart	(date 1608438483051)
+@@ -0,0 +1,21 @@
++import 'package:flutter/material.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/Pages/AuthenticationPages/AuthenticationMainPage.dart';
++import 'package:realestate/Pages/HomePages/FirstScreenAfterLoginDecider.dart';
++
++class AuthenticationWrapper extends StatelessWidget {
++  @override
++  Widget _widget;
++
++  Widget build(BuildContext context) {
++    final rentalLifeUser = Provider.of<RentalLifeUser>(context);
++
++    if (rentalLifeUser == null) {
++      _widget = AuthenticationMainPage();
++    } else {
++      _widget = FirstScreenAfterLoginDecider(); //Home();
++    }
++    return _widget;
++  }
++}
+\ No newline at end of file
+Index: lib/Pages/AuthenticationPages/LoginWithEmailPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/AuthenticationPages/LoginWithEmailPage.dart	(date 1607812589732)
++++ lib/Pages/AuthenticationPages/LoginWithEmailPage.dart	(date 1607812589732)
+@@ -0,0 +1,117 @@
++import 'package:flutter/material.dart';
++import 'package:realestate/Service%20Classes/FirebaseUserAuthenticationService.dart';
++
++class LoginWithEmailPage extends StatefulWidget {
++  final Function toggleView;
++
++  LoginWithEmailPage({this.toggleView});
++
++  @override
++  _LoginWithEmailPageState createState() => _LoginWithEmailPageState();
++}
++
++class _LoginWithEmailPageState extends State<LoginWithEmailPage> {
++  bool loading = false;
++
++  //text field state
++  String email = '';
++  String password = '';
++  String error = '';
++  final FirebaseUserAuthenticationService _authService = FirebaseUserAuthenticationService();
++  final _formKey = GlobalKey<FormState>();
++
++  @override
++  Widget build(BuildContext context) {
++    return Container(
++        margin: const EdgeInsets.all(16.0),
++        decoration: BoxDecoration(
++          color: Colors.white,
++          borderRadius: BorderRadius.circular(16.0),
++        ),
++        child: Form(
++          key: _formKey,
++          child: ListView(
++            shrinkWrap: true,
++            padding: const EdgeInsets.all(16.0),
++            children: <Widget>[
++              TextFormField(
++                decoration: InputDecoration(
++                  suffixIcon: Icon(
++                    Icons.email,
++                    color: Colors.blueGrey,
++                  ),
++                  hintText: "Enter email",
++                  border: OutlineInputBorder(),
++                ),
++                validator: ((val) => val.isEmpty ? 'Enter an email' : null),
++                onChanged: (val) {
++                  setState(() {
++                    email = val;
++                  });
++                },
++              ),
++              SizedBox(
++                height: 20,
++              ),
++              TextFormField(
++                obscureText: true,
++                decoration: InputDecoration(
++                  suffixIcon: Icon(
++                    Icons.lock,
++                    color: Colors.blueGrey,
++                  ),
++                  hintText: "Enter password",
++                  border: OutlineInputBorder(),
++                ),
++                validator: ((val) => val.length < 6
++                    ? 'Enter a password atleast 6 characters long'
++                    : null),
++                onChanged: (val) {
++                  setState(() {
++                    password = val;
++                  });
++                },
++              ),
++              SizedBox(
++                height: 20,
++              ),
++              RaisedButton(
++                color: Colors.red,
++                textColor: Colors.white,
++                elevation: 0,
++                shape: RoundedRectangleBorder(
++                  borderRadius: BorderRadius.circular(20.0),
++                ),
++                child: Text("Login"),
++                onPressed: () async {
++                  if (_formKey.currentState.validate()) {
++                    setState(() {
++                      loading = true;
++                    });
++                    dynamic result =
++                    await _authService.signInWithEmail(email, password);
++                    if (result == null) {
++                      setState(() {
++                        loading = false;
++                        return error =
++                        'Invalid credentials. Could not sign it.';
++                      });
++                    }
++                  }
++                },
++              ),
++              SizedBox(
++                height: 12,
++              ),
++              Center(
++                child: Text(
++                  error,
++                  style: TextStyle(color: Colors.red, fontSize: 14),
++                ),
++              )
++            ],
++          ),
++        ));
++  }
++}
++
+Index: lib/Pages/AuthenticationPages/AuthenticationMainPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/AuthenticationPages/AuthenticationMainPage.dart	(date 1608155660802)
++++ lib/Pages/AuthenticationPages/AuthenticationMainPage.dart	(date 1608155660802)
+@@ -0,0 +1,221 @@
++import 'package:flutter/material.dart';
++import 'package:font_awesome_flutter/font_awesome_flutter.dart';
++import 'package:realestate/Service%20Classes/FirebaseUserAuthenticationService.dart';
++import 'package:realestate/shared/loading.dart';
++
++import 'LoginWithEmailPage.dart';
++import 'RegisterWithEmailPage.dart';
++
++class AuthenticationMainPage extends StatefulWidget {
++  @override
++  _AuthenticationMainPageState createState() => _AuthenticationMainPageState();
++}
++
++class _AuthenticationMainPageState extends State<AuthenticationMainPage> {
++  final FirebaseUserAuthenticationService _authService =
++      FirebaseUserAuthenticationService();
++
++  final String backImg = "image_assets/welcome_screen_bg.jpg";
++  bool formVisible;
++  int _formsIndex;
++  bool loading = false;
++  String error = '';
++
++  @override
++  void initState() {
++    super.initState();
++    formVisible = false;
++    _formsIndex = 1;
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    return loading
++        ? Loading()
++        : Scaffold(
++            body: Container(
++            decoration: BoxDecoration(
++              image: DecorationImage(
++                image: AssetImage(backImg),
++                fit: BoxFit.cover,
++              ),
++            ),
++            child: Stack(
++              children: <Widget>[
++                Container(
++                  color: Colors.black54,
++                  child: Column(
++                    children: <Widget>[
++                      const SizedBox(height: kToolbarHeight + 40),
++                      Expanded(
++                        child: Column(
++                          children: <Widget>[
++                            Text(
++                              "Welcome",
++                              style: TextStyle(
++                                color: Colors.white,
++                                fontWeight: FontWeight.w500,
++                                fontSize: 30.0,
++                              ),
++                            ),
++                            const SizedBox(height: 10.0),
++                            Text(
++                              "Welcome to Rental Life\nReal Estate Chapter.",
++                              style: TextStyle(
++                                color: Colors.white70,
++                                fontSize: 18.0,
++                              ),
++                              textAlign: TextAlign.center,
++                            ),
++                          ],
++                        ),
++                      ),
++                      const SizedBox(height: 10.0),
++                      Row(
++                        children: <Widget>[
++                          const SizedBox(width: 10.0),
++                          Expanded(
++                            child: RaisedButton(
++                              color: Colors.red,
++                              textColor: Colors.white,
++                              elevation: 0,
++                              shape: RoundedRectangleBorder(
++                                borderRadius: BorderRadius.circular(20.0),
++                              ),
++                              child: Text("Login"),
++                              onPressed: () {
++                                setState(() {
++                                  formVisible = true;
++                                  _formsIndex = 1;
++                                });
++                              },
++                            ),
++                          ),
++                          const SizedBox(width: 10.0),
++                          Expanded(
++                            child: RaisedButton(
++                              color: Colors.grey.shade700,
++                              textColor: Colors.white,
++                              elevation: 0,
++                              shape: RoundedRectangleBorder(
++                                borderRadius: BorderRadius.circular(20.0),
++                              ),
++                              child: Text("Signup"),
++                              onPressed: () {
++                                setState(() {
++                                  formVisible = true;
++                                  _formsIndex = 2;
++                                });
++                              },
++                            ),
++                          ),
++                          const SizedBox(width: 10.0),
++                        ],
++                      ),
++                      const SizedBox(height: 40.0),
++                      OutlineButton.icon(
++                        borderSide: BorderSide(color: Colors.red),
++                        color: Colors.red,
++                        textColor: Colors.white,
++                        shape: RoundedRectangleBorder(
++                          borderRadius: BorderRadius.circular(20.0),
++                        ),
++                        icon:
++                            Icon(FontAwesomeIcons.google, color: Colors.amber),
++                        label: Text("Continue with Google"),
++                        onPressed: () async {
++                          setState(() {
++                            loading = true;
++                          });
++                          dynamic result =
++                              await _authService.signInWithGoogle();
++                          if (result == null) {
++                            setState(() {
++                              loading = false;
++                              return error =
++                                  'Invalid credentials. Could not sign it.';
++                            });
++                          }
++                        },
++                      ),
++                      const SizedBox(height: 20.0),
++                    ],
++                  ),
++                ),
++                AnimatedSwitcher(
++                  duration: Duration(milliseconds: 200),
++                  child: (!formVisible)
++                      ? null
++                      : Container(
++                          color: Colors.black54,
++                          alignment: Alignment.center,
++                          child: Column(
++                            mainAxisSize: MainAxisSize.min,
++                            children: <Widget>[
++                              Row(
++                                mainAxisAlignment: MainAxisAlignment.center,
++                                children: <Widget>[
++                                  RaisedButton(
++                                    textColor: _formsIndex == 1
++                                        ? Colors.white
++                                        : Colors.black,
++                                    color: _formsIndex == 1
++                                        ? Colors.red
++                                        : Colors.white,
++                                    child: Text("Login"),
++                                    shape: RoundedRectangleBorder(
++                                        borderRadius:
++                                            BorderRadius.circular(20.0)),
++                                    onPressed: () {
++                                      setState(() {
++                                        _formsIndex = 1;
++                                      });
++                                    },
++                                  ),
++                                  const SizedBox(width: 10.0),
++                                  RaisedButton(
++                                    textColor: _formsIndex == 2
++                                        ? Colors.white
++                                        : Colors.black,
++                                    color: _formsIndex == 2
++                                        ? Colors.red
++                                        : Colors.white,
++                                    child: Text("Signup"),
++                                    shape: RoundedRectangleBorder(
++                                        borderRadius:
++                                            BorderRadius.circular(20.0)),
++                                    onPressed: () {
++                                      setState(() {
++                                        _formsIndex = 2;
++                                      });
++                                    },
++                                  ),
++                                  const SizedBox(width: 10.0),
++                                  IconButton(
++                                    color: Colors.white,
++                                    icon: Icon(Icons.clear),
++                                    onPressed: () {
++                                      setState(() {
++                                        formVisible = false;
++                                      });
++                                    },
++                                  )
++                                ],
++                              ),
++                              Container(
++                                child: AnimatedSwitcher(
++                                  duration: Duration(milliseconds: 300),
++                                  child: _formsIndex == 1
++                                      ? LoginWithEmailPage()
++                                      : RegisterWithEmailPage(),
++                                ),
++                              )
++                            ],
++                          ),
++                        ),
++                )
++              ],
++            ),
++          ));
++  }
++}
+Index: lib/ModelClasses/AdsModelClasses/RentAHomeAd.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/ModelClasses/AdsModelClasses/RentAHomeAd.dart	(date 1608448669255)
++++ lib/ModelClasses/AdsModelClasses/RentAHomeAd.dart	(date 1608448669255)
+@@ -0,0 +1,82 @@
++import 'package:flutter/material.dart';
++import 'package:google_maps_flutter/google_maps_flutter.dart';
++import 'package:realestate/ModelClasses/AdsModelClasses/Ads.dart';
++import 'package:realestate/ModelClasses/AdsModelClasses/NonCommercialAds.dart';
++
++class RentAHomeAd extends Ads {
++  int _numberOfRooms;
++  int _numberofBaths;
++  int _totalNmberOfFloors;
++  int _floorNumber;
++  double _sizeInMarlas;
++  String _AD_TYPE = "NonCommercial-Home";
++
++  RentAHomeAd(
++      {String adTitle,
++      String adDescription,
++      @required String adOwnerId,
++      int adNumberByOwner,
++      int numberOfAdImagesUploaded,
++      String adLocation,
++      String adPostDate,
++      int adRent,
++      bool isAdDeactivated,
++      int totalThumbsUp,
++      int totalRating,
++      // String adType,
++      int numberOfBeds,
++      int numberofBaths,
++      int totalNmberOfFloors,
++      int floorNumber,
++      double sizeInMarlas})
++      : super(
++            adOwnerId: adOwnerId,
++            adTitle: adTitle,
++            adDescription: adDescription,
++            adNumberByOwner: adNumberByOwner,
++            adPostDate: adPostDate,
++            adRent: adRent,
++            isAdDeactivated: isAdDeactivated,
++            numberOfAdImagesUploaded: numberOfAdImagesUploaded,
++            totalRating: totalRating,
++            totalThumbsUp: totalThumbsUp) {
++    this._numberOfRooms = numberOfBeds;
++    this._numberofBaths = numberofBaths;
++    this._totalNmberOfFloors = totalNmberOfFloors;
++    this._floorNumber = floorNumber;
++    this._sizeInMarlas = sizeInMarlas;
++    super.adType = _AD_TYPE;
++  }
++
++  double get sizeInMarlas => _sizeInMarlas;
++
++  set sizeInMarlas(double value) {
++    _sizeInMarlas = value;
++  }
++
++  int get floorNumber => _floorNumber;
++
++  set floorNumber(int value) {
++    _floorNumber = value;
++  }
++
++  int get totalNmberOfFloors => _totalNmberOfFloors;
++
++  set totalNmberOfFloors(int value) {
++    _totalNmberOfFloors = value;
++  }
++
++  int get numberofBaths => _numberofBaths;
++
++  set numberofBaths(int value) {
++    _numberofBaths = value;
++  }
++
++  int get numberOfBeds => _numberOfRooms;
++
++  set numberOfBeds(int value) {
++    _numberOfRooms = value;
++  }
++
++  String get AD_TYPE => _AD_TYPE;
++}
+Index: lib/Pages/AdsPages/BottomRevealPostAdPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/AdsPages/BottomRevealPostAdPage.dart	(date 1608439842772)
++++ lib/Pages/AdsPages/BottomRevealPostAdPage.dart	(date 1608439842772)
+@@ -0,0 +1,217 @@
++import 'package:flutter/material.dart';
++import 'package:bottomreveal/bottomreveal.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/Pages/AdsPages/PostNonCommercialAdPage.dart';
++
++import 'AdsMainPage.dart';
++import 'PostCommercialAdPage.dart';
++
++class BottomRevealPostAdPage extends StatefulWidget {
++
++
++
++  @override
++  _BottomRevealPostAdPageState createState() => _BottomRevealPostAdPageState();
++}
++
++Color firstColor = Colors.deepOrangeAccent;
++Color secondColor = Colors.white;
++Color thirdColor = Colors.deepPurple;
++Color fourthColor = Colors.grey;
++
++class _BottomRevealPostAdPageState extends State<BottomRevealPostAdPage> {
++  final BottomRevealController _menuController = BottomRevealController();
++  var rentalLifeUserFromProvider;
++  @override
++  Widget build(BuildContext context) {
++    rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
++    return Scaffold(
++      // appBar: AppBar(
++      //   title: Text('Bottom Reveal Example App'),
++      // ),
++      body: BottomReveal(
++        openIcon: Icons.add,
++        closeIcon: Icons.minimize,
++        revealWidth: 100,
++        revealHeight: 100,
++        backColor: Color(0xff2D0C3F),
++        frontColor: Colors.grey.shade200,
++        rightContent: _buildRightMenu(),
++        bottomContent: _buildBottomContent(),
++        controller: _menuController,
++        body: //Center(child: Text(rentalLifeUserFromProvider.toString()))
++        AdsMainPage(),
++      ),
++    );
++  }
++
++  Widget _buildBottomContent() {
++    return Container(
++      decoration: BoxDecoration(
++        color: secondColor,
++        border: Border.all(
++          color: Colors.red,
++          width: 3,
++        ),
++        borderRadius: BorderRadius.circular(19),
++        // filled: true,
++        // fillColor: Colors.grey,
++        // contentPadding: const EdgeInsets.all(16.0),
++        // prefixIcon: Icon(Icons.search, color: Colors.white,),
++        // border: OutlineInputBorder(
++        //     gapPadding: 8.0,
++        //     borderSide: BorderSide(color: Colors.grey),
++        //     borderRadius: BorderRadius.circular(30.0)
++        // )
++      ),
++      // color: secondColor,//
++      padding: EdgeInsets.all(16.0),
++      child: GestureDetector(
++        onTap: (() {
++          Navigator.push(
++              context,
++              MaterialPageRoute(
++                  builder: (context) => PostNonCommercialAdPage(rentalLifeUserFromProvider)));
++        }),
++        child: Row(
++          children: [
++            Icon(Icons.home, color: firstColor),
++            SizedBox(
++              width: 10,
++            ),
++            Text(
++              "Post Non-Commercial Ad",
++              style: TextStyle(
++                color: firstColor,
++                fontSize: 18.0,
++              ),
++            ),
++          ],
++        ),
++      ),
++    );
++    //   TextField(
++    //
++    //   style: TextStyle(
++    //       color: Colors.white,
++    //       fontSize: 18.0
++    //   ),
++    //   decoration: InputDecoration(
++    //     filled: true,
++    //     fillColor: Colors.grey,
++    //     contentPadding: const EdgeInsets.all(16.0),
++    //     prefixIcon: Icon(Icons.search, color: Colors.white,),
++    //     border: OutlineInputBorder(
++    //         gapPadding: 8.0,
++    //         borderSide: BorderSide(color: Colors.grey),
++    //         borderRadius: BorderRadius.circular(30.0)
++    //     ),
++    //   ),
++    // );
++  }
++
++  Widget _buildRightMenu() {
++    return RotatedBox(
++      quarterTurns: 1,
++      child: Container(
++        width: 250,
++        decoration: BoxDecoration(
++          color: secondColor,
++          border: Border.all(
++            color: Colors.red,
++            width: 3,
++          ),
++          borderRadius: BorderRadius.circular(19),
++          // filled: true,
++          // fillColor: Colors.grey,
++          // contentPadding: const EdgeInsets.all(16.0),
++          // prefixIcon: Icon(Icons.search, color: Colors.white,),
++          // border: OutlineInputBorder(
++          //     gapPadding: 8.0,
++          //     borderSide: BorderSide(color: Colors.grey),
++          //     borderRadius: BorderRadius.circular(30.0)
++          // )
++        ),
++        // color: secondColor,//
++        padding: EdgeInsets.all(16.0),
++        child: GestureDetector(
++          onTap: (() {
++            Navigator.push(
++                context,
++                MaterialPageRoute(
++                    builder: (context) => PostCommercialAdPage()));
++          }),
++          child: Row(
++            children: [
++              Icon(Icons.monetization_on, color: firstColor),
++              SizedBox(
++                width: 10,
++              ),
++              Text(
++                "Post Commercial Ad",
++                style: TextStyle(
++                  color: firstColor,
++                  fontSize: 18.0,
++                ),
++              ),
++            ],
++          ),
++        ),
++      ),
++    );
++
++    // return Column(
++    //   mainAxisSize: MainAxisSize.min,
++    //   children: <Widget>[
++    //     MaterialButton(
++    //       height: 60.0,
++    //       padding: const EdgeInsets.all(0),
++    //       textColor: Colors.white,
++    //       minWidth: 60,
++    //       child: Icon(
++    //         Icons.video_library,
++    //         size: 50,
++    //       ),
++    //       color: Color(0xff644B77),
++    //       elevation: 0,
++    //       onPressed: () {
++    //         _menuController.close();
++    //       },
++    //     ),
++    //     const SizedBox(height: 10.0),
++    //     MaterialButton(
++    //       height: 60.0,
++    //       padding: const EdgeInsets.all(0),
++    //       textColor: Colors.white,
++    //       minWidth: 60,
++    //       child: Icon(
++    //         Icons.photo,
++    //         size: 50,
++    //       ),
++    //       color: Color(0xff644B77),
++    //       elevation: 0,
++    //       onPressed: () {
++    //         _menuController.close();
++    //       },
++    //     ),
++    //     const SizedBox(height: 10.0),
++    //     MaterialButton(
++    //       height: 60.0,
++    //       padding: const EdgeInsets.all(0),
++    //       textColor: Colors.white,
++    //       minWidth: 60,
++    //       child: Icon(
++    //         Icons.camera_alt,
++    //         size: 30,
++    //       ),
++    //       color: Color(0xff644B77),
++    //       elevation: 0,
++    //       onPressed: () {
++    //         _menuController.close();
++    //       },
++    //     ),
++    //   ],
++    // );
++  }
++}
+Index: lib/Pages/AuthenticationPages/RegisterWithEmailPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/AuthenticationPages/RegisterWithEmailPage.dart	(date 1608263661268)
++++ lib/Pages/AuthenticationPages/RegisterWithEmailPage.dart	(date 1608263661268)
+@@ -0,0 +1,185 @@
++import 'package:flutter/material.dart';
++import 'package:realestate/Service%20Classes/FirebaseUserAuthenticationService.dart';
++import 'package:realestate/shared/loading.dart';
++
++class RegisterWithEmailPage extends StatefulWidget {
++  final Function toggleView;
++
++  RegisterWithEmailPage({this.toggleView});
++
++  @override
++  _RegisterWithEmailPageState createState() => _RegisterWithEmailPageState();
++}
++
++class _RegisterWithEmailPageState extends State<RegisterWithEmailPage> {
++  final FirebaseUserAuthenticationService _authService = FirebaseUserAuthenticationService();
++  final _formKey = GlobalKey<FormState>();
++
++  bool loading = false;
++
++  //text field state
++  String email = '';
++  String firstName = '';
++  String lastName = '';
++  String password = '';
++  String confirmPassword = '';
++  String error = '';
++
++  @override
++  Widget build(BuildContext context) {
++    return loading
++        ? Loading()
++        : Container(
++        margin: const EdgeInsets.all(16.0),
++        decoration: BoxDecoration(
++          color: Colors.white,
++          borderRadius: BorderRadius.circular(16.0),
++        ),
++        child: Form(
++          key: _formKey,
++          child: ListView(
++            shrinkWrap: true,
++            padding: const EdgeInsets.all(16.0),
++            children: <Widget>[
++              /*Row(
++                    mainAxisSize: MainAxisSize.min,
++                    mainAxisAlignment: MainAxisAlignment.center,
++                    children: <Widget>[*/
++              // TextFormField(
++              //   decoration: InputDecoration(
++              //     hintText: "First Name",
++              //     border: OutlineInputBorder(),
++              //   ),
++              //   validator: ((val) =>
++              //   val.isEmpty ? 'First Name is mandatory' : null),
++              //   onChanged: (val) {
++              //     setState(() {
++              //       firstName = val;
++              //     });
++              //   },
++              // ),
++              // SizedBox(
++              //   height: 10,
++              // ),
++              // TextFormField(
++              //   decoration: InputDecoration(
++              //     hintText: "Last Name",
++              //     border: OutlineInputBorder(),
++              //   ),
++              //   validator: ((val) =>
++              //   val.isEmpty ? 'Last Name is mandatory' : null),
++              //   onChanged: (val) {
++              //     setState(() {
++              //       lastName = val;
++              //     });
++              //   },
++              // ),
++              // /*],
++              //     ),*/
++              // SizedBox(
++              //   height: 10,
++              // ),
++              TextFormField(
++                decoration: InputDecoration(
++                  suffixIcon: Icon(
++                    Icons.email,
++                    color: Colors.blueGrey,
++                  ),
++                  hintText: "Enter email",
++                  border: OutlineInputBorder(),
++                ),
++                validator: ((val) => val.isEmpty ? 'Enter an email' : null),
++                onChanged: (val) {
++                  setState(() {
++                    email = val;
++                  });
++                },
++              ),
++              SizedBox(
++                height: 10,
++              ),
++              TextFormField(
++                obscureText: true,
++                decoration: InputDecoration(
++                  suffixIcon: Icon(
++                    Icons.lock,
++                    color: Colors.blueGrey,
++                  ),
++                  hintText: "Enter password",
++                  border: OutlineInputBorder(),
++                ),
++                validator: ((val) => val.length < 6
++                    ? 'Password should be at least 6 characters long.'
++                    : null),
++                onChanged: (val) {
++                  setState(() {
++                    password = val;
++                  });
++                },
++              ),
++              SizedBox(
++                height: 10,
++              ),TextFormField(
++                obscureText: true,
++                decoration: InputDecoration(
++                  suffixIcon: Icon(
++                    Icons.lock,
++                    color: Colors.blueGrey,
++                  ),
++                  hintText: "Confirm password",
++                  border: OutlineInputBorder(),
++                ),
++                validator: ((val) => val.compareTo(password)==0
++                    ? null
++                    : 'Passwords mismatched'),
++                onChanged: (val) {
++                  setState(() {
++                    confirmPassword = val;
++                  });
++                },
++              ),
++              SizedBox(
++                height: 10,
++              ),
++              RaisedButton(
++                color: Colors.red,
++                textColor: Colors.white,
++                elevation: 0,
++                shape: RoundedRectangleBorder(
++                  borderRadius: BorderRadius.circular(20.0),
++                ),
++                child: Text("Signup"),
++                onPressed: () async {
++                  // print(email);
++                  // print(password);
++                  if (_formKey.currentState.validate()) {
++                    setState(() {
++                      loading = true;
++                    });
++                    // String name = firstName + " " + lastName;
++                    // print("NAME: (________________): " + name);
++                    dynamic result = await _authService.registerWithEmail(
++                        email, password);
++                    if (result == null) {
++                      setState(() {
++                        loading = false;
++                        return error = 'Please supply a valid email id';
++                      });
++                    }
++                  }
++                },
++              ),
++              SizedBox(
++                height: 0,
++              ),
++              Center(
++                child: Text(
++                  error,
++                  style: TextStyle(color: Colors.red, fontSize: 14),
++                ),
++              ),
++            ],
++          ),
++        ));
++  }
++}
+\ No newline at end of file
+Index: lib/ModelClasses/AdsModelClasses/CommercialAds.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/ModelClasses/AdsModelClasses/CommercialAds.dart	(date 1608424532682)
++++ lib/ModelClasses/AdsModelClasses/CommercialAds.dart	(date 1608424532682)
+@@ -0,0 +1,6 @@
++// import 'package:realestate/ModelClasses/AdsModelClasses/Ads.dart';
++//
++// abstract class  CommercialAds extends Ads {
++//
++//
++// }
+\ No newline at end of file
+Index: lib/Pages/UserBlockTestPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/UserBlockTestPage.dart	(date 1608426548778)
++++ lib/Pages/UserBlockTestPage.dart	(date 1608426548778)
+@@ -0,0 +1,39 @@
++// import 'package:flutter/cupertino.dart';
++// import 'package:flutter/material.dart';
++// import 'package:realestate/Bloc%20Classes/UserBloc.dart';
++// import 'file:///C:/Users/msnk5/StudioProjects/rental_life_real_estate/lib/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++//
++// class UserBlocTestPage{
++//
++// }
++//
++// class UserBlocTest extends StatefulWidget {
++//   @override
++//   _UserBlocTestState createState() => _UserBlocTestState();
++// }
++//
++// class _UserBlocTestState extends State<UserBlocTest> {
++//   final UserBloc _userbloc = new UserBloc();
++// @override
++//   void disposeAllStreams(){
++//     _userbloc.disposeAllStreams();
++//     super.dispose();
++//   }
++//
++//   @override
++//   Widget build(BuildContext context) {
++//     return Scaffold(
++//       appBar: AppBar(
++//         title: Text("User App"),
++//       ),
++//       body: Container(
++//         child: StreamBuilder<User>(
++//           stream: _userbloc.userStream,
++//           builder: (BuildContext context, AsyncSnapshot<User> snapshot){
++//               return Text("");
++//           },
++//         ),
++//       ),
++//     );
++//   }
++// }
+Index: lib/Service Classes/FirestoreDatabaseServicesForUser.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Service Classes/FirestoreDatabaseServicesForUser.dart	(date 1608438282214)
++++ lib/Service Classes/FirestoreDatabaseServicesForUser.dart	(date 1608438282214)
+@@ -0,0 +1,118 @@
++import 'package:cloud_firestore/cloud_firestore.dart';
++import 'package:flutter/cupertino.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++
++class FirestoreDatabaseServicesForUser {
++  final String rentalLifeUserID;
++
++  FirestoreDatabaseServicesForUser({@required this.rentalLifeUserID});
++
++//Collection reference
++  final CollectionReference userCollectionFirestore =
++      Firestore.instance.collection('user');
++
++//create a new document with uid
++  Future updateUserName(String userName) async {
++    return await userCollectionFirestore
++        .document(rentalLifeUserID)
++        .setData({'user name': userName});
++  }
++
++  // //create a new document with uid
++  // Future createRentalLifeUserFirestoreDocument(
++  //     {String name, String email}) async {
++  //   return await userCollectionFirestore.document(rentalLifeUserID).setData({
++  //     'name': name,
++  //     'email': email,
++  //   });
++  // }
++
++  //create a new document with uid
++  Future createRentalLifeUserFirestoreDocument(
++      RentalLifeUser rentalLifeUser) async {
++    return await userCollectionFirestore.document(rentalLifeUserID).setData({
++      'name': rentalLifeUser.name,
++      'email': rentalLifeUser.emailAddress,
++      'age': rentalLifeUser.age,
++      'phoneNum': rentalLifeUser.phoneNum,
++      'bio': rentalLifeUser.bio,
++      'userDisplayImageAddress': rentalLifeUser.userDisplayImageAddress,
++      'totalAdsPosted': rentalLifeUser.totalAdsPosted,
++      'totalTenantsConnected': rentalLifeUser.totalTenantsConnected,
++      'totalOwnersConnected': rentalLifeUser.totalOwnersConnected,
++    });
++  }
++
++  Future<RentalLifeUser> getRentalLifeUserFromFireStoreDocument() async {
++    final userFirestoreDocumentReference =
++        Firestore.instance.collection('user').document(rentalLifeUserID);
++    final DocumentSnapshot docSnapshot =
++        await userFirestoreDocumentReference.get();
++    // DocumentSnapshot snapshot = userFirestoreDocumentReference.snapshots();
++    RentalLifeUser rentalLifeUser = RentalLifeUser(
++      userID: rentalLifeUserID,
++      name: docSnapshot.data['name'],
++      phoneNum: docSnapshot.data['phoneNum'],
++      age: docSnapshot.data['age'],
++      emailAddress: docSnapshot.data['email'],
++      bio: docSnapshot.data['bio'],
++      totalAdsPosted: docSnapshot.data['totalAdsPosted'],
++      userDisplayImageAddress: docSnapshot.data['userDisplayImageAddress'],
++      totalTenantsConnected: docSnapshot.data['totalTenantsConnected'],
++      totalOwnersConnected: docSnapshot.data['totalOwnersConnected']
++    );
++    return rentalLifeUser;
++  }
++
++//create a new document with uid
++  Future updateRentalLifeUserData({String name, String email, int age}) async {
++    return await userCollectionFirestore
++        .document(rentalLifeUserID)
++        .setData({'name': name, 'email': email, 'age': age});
++  }
++
++// //create a new document with uid
++// Future updateUserData(String firstName, String lastName, String email, int age) async {
++//   return await userCollection
++//       .document(uid)
++//       .setData({'first name': firstName,'last name': lastName, 'email': email, 'age': age});
++// }
++
++//UserInfo list from snapshot
++  List<RentalLifeUser> _userInfoListFromSnapshot(QuerySnapshot snapshot) {
++    return snapshot.documents.map((firebaseDocument) {
++      return RentalLifeUser(
++          userID: rentalLifeUserID,
++          name: firebaseDocument.data['name'],
++          age: firebaseDocument.data['age'],
++          emailAddress: firebaseDocument.data['emailAddress'],
++          totalAdsPosted: firebaseDocument.data['totalAdsPosted'],
++          userDisplayImageAddress:
++              firebaseDocument.data['userDisplayImageAddress']);
++    }).toList();
++  }
++
++//Get user stream
++  Stream<List<RentalLifeUser>> get userDocumentsStream {
++    return userCollectionFirestore.snapshots().map(_userInfoListFromSnapshot);
++  }
++
++//Convert document snapshot into RentalLifeUser object
++  RentalLifeUser _userDocumentDataFromSnapshot(DocumentSnapshot snapshot) {
++    return RentalLifeUser(
++        userID: rentalLifeUserID,
++        name: snapshot.data['name'],
++        age: snapshot.data['age'],
++        emailAddress: snapshot.data['emailAddress'],
++        totalAdsPosted: snapshot.data['totalAdsPosted'],
++        userDisplayImageAddress: snapshot.data['userDisplayImageAddress']);
++  }
++
++//Get user document Stream
++  Stream<RentalLifeUser> get userDataDocument {
++    return userCollectionFirestore
++        .document(rentalLifeUserID)
++        .snapshots()
++        .map(_userDocumentDataFromSnapshot);
++  }
++}
+Index: lib/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/main.dart	(revision 12c283d1f9ff5c732ebd97120e6c09a85e6ff615)
++++ lib/main.dart	(date 1608438401494)
+@@ -1,12 +1,11 @@
+ import 'package:flutter/material.dart';
+-import 'package:google_sign_in/google_sign_in.dart';
+ import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
+ import 'package:realestate/model/user.dart';
+-import 'package:realestate/screens/ads/images_from_firebase_storage.dart';
+-import 'package:realestate/screens/ads/post_Ad_Screen.dart';
+-import 'package:realestate/screens/authenticate/welcome_screen.dart';
+ import 'package:realestate/screens/wrapper.dart';
+ import 'package:realestate/services/auth.dart';
++import 'Service Classes/FirebaseUserAuthenticationService.dart';
++import 'WrapperClasses/AuthenticationWrapper.dart';
+ 
+ void main() => runApp(MyApp());
+ 
+@@ -14,12 +13,22 @@
+   // This widget is the root of your application.
+   @override
+   Widget build(BuildContext context) {
++    //Old app
++    // return StreamProvider<User>.value(
++    //   value: AuthService().user,
++    //   child: MaterialApp(
++    //      home:
++    //      Wrapper()
++    //   ),
+ 
+-    return StreamProvider<User>.value(
+-      value: AuthService().user,
++    //NewApp
++
++    return StreamProvider<RentalLifeUser>.value(
++      value: FirebaseUserAuthenticationService().rentalLifeUserFromAuthService,
+       child: MaterialApp(
+-        home: Wrapper(),
++        home: AuthenticationWrapper(),
+       ),
++
+     );
+   }
+ }
+Index: lib/ModelClasses/AdsModelClasses/NonCommercialAds.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/ModelClasses/AdsModelClasses/NonCommercialAds.dart	(date 1608424532687)
++++ lib/ModelClasses/AdsModelClasses/NonCommercialAds.dart	(date 1608424532687)
+@@ -0,0 +1,6 @@
++// import 'package:realestate/ModelClasses/AdsModelClasses/Ads.dart';
++//
++// abstract class  NonCommercialAds extends Ads {
++//
++//   NonCommercialAds();
++// }
+\ No newline at end of file
+Index: lib/Service Classes/FirebaseUserAuthenticationService.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Service Classes/FirebaseUserAuthenticationService.dart	(date 1608438282209)
++++ lib/Service Classes/FirebaseUserAuthenticationService.dart	(date 1608438282209)
+@@ -0,0 +1,210 @@
++import 'package:cloud_firestore/cloud_firestore.dart';
++import 'package:firebase_auth/firebase_auth.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/model/user.dart';
++import 'package:google_sign_in/google_sign_in.dart';
++
++import 'FirestoreDatabaseServicesForUser.dart';
++
++class FirebaseUserAuthenticationService {
++  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
++  final GoogleSignIn _googleSignIn = GoogleSignIn();
++
++  //Register with email & password
++  Future<RentalLifeUser> registerWithEmail(
++      String email, String password) async {
++    try {
++      AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
++          email: email, password: password);
++      FirebaseUser userFromFirebase = result.user;
++
++      // //create new document for the userFromFirebase with the uid
++      // await FirestoreDatabaseServicesForUser(
++      //         rentalLifeUserID: userFromFirebase.uid)
++      //     .createRentalLifeUserFirestoreDocument(
++      //   name: name,
++      //   email: email,
++      // );
++
++      // return await _getFirebaseUserAsRentalLifeUserAfterRegistration(userFromFirebase);
++      return _getFirebaseUserAsRentalLifeUser(userFromFirebase);
++    } catch (e) {
++      print(e.toString());
++      return null;
++    }
++  }
++
++  //Sign out
++  Future signOut() async {
++    try {
++      return await _firebaseAuth.signOut();
++    } catch (e) {
++      print(e.toString());
++      return null;
++    }
++  }
++
++  //Create user object based on FirebaseUser after registering with email and password
++  Future<RentalLifeUser> _getFirebaseUserAsRentalLifeUserAfterRegistration(FirebaseUser firebaseUser) async {
++    if (firebaseUser != null) {
++      RentalLifeUser rentalLifeUser = RentalLifeUser(
++          userID: firebaseUser.uid, emailAddress: firebaseUser.email);
++      rentalLifeUser =  await _updateRentalLifeUserFromFirestoreDoc(rentalLifeUser);
++      return rentalLifeUser;
++    } else {
++      return null;
++    }
++  }
++
++  //Update RentalLifeUser object's instance variables from firestore document.
++  Future<RentalLifeUser> _updateRentalLifeUserFromFirestoreDoc(
++      RentalLifeUser rentalLifeUser) async {
++    DocumentSnapshot userFireStoreDocument = await Firestore.instance.collection('user').document(rentalLifeUser.uid).get();
++    rentalLifeUser.name = userFireStoreDocument.data['name'];
++    print(rentalLifeUser.name);
++    print(userFireStoreDocument.data['name']);
++    return rentalLifeUser;
++  }
++
++
++  //Create user object based on FirebaseUser
++
++  RentalLifeUser _getFirebaseUserAsRentalLifeUser(FirebaseUser firebaseUser) {
++    if (firebaseUser != null) {
++      RentalLifeUser rentalLifeUser = RentalLifeUser(
++          userID: firebaseUser.uid, emailAddress: firebaseUser.email, name: firebaseUser.displayName);
++      return rentalLifeUser;
++    } else {
++      return null;
++    }
++  }
++
++
++  //Auth change user stream
++  Stream<RentalLifeUser> get rentalLifeUserFromAuthService {
++    return _firebaseAuth.onAuthStateChanged
++        //.map((FirebaseUser user) => _userFromFireBaseUser(user));
++        // .map(_getFirebaseUserAsRentalLifeUser);
++        .map(_getFirebaseUserAsRentalLifeUser);
++  }
++
++  //Sign in anonymously
++  Future signinAnon() async {
++    try {
++      AuthResult result = await _firebaseAuth.signInAnonymously();
++      return _getFirebaseUserAsRentalLifeUser(result.user);
++    } catch (e) {
++      print(e.toString());
++      return null;
++    }
++  }
++
++  //Sign in with email and password
++  Future signInWithEmail(String email, String password) async {
++    try {
++      AuthResult result = await _firebaseAuth.signInWithEmailAndPassword(
++          email: email, password: password);
++      FirebaseUser user = result.user;
++      return _getFirebaseUserAsRentalLifeUser(user);
++    } catch (e) {
++      print(e.toString());
++      return null;
++    }
++  }
++
++  //Sign in with Google
++  Future signInWithGoogle() async {
++    print("SIGN IN WITH GOOGE MOETHOD");
++    try {
++      print("IN TRY BLOCK");
++      GoogleSignInAccount result = await _googleSignIn.signIn();
++      print("First statement executed");
++
++      final GoogleSignInAuthentication googleSignInAuthentication =
++          await result.authentication;
++      print("Second statement executed");
++
++      final AuthCredential credential = GoogleAuthProvider.getCredential(
++        accessToken: googleSignInAuthentication.accessToken,
++        idToken: googleSignInAuthentication.idToken,
++      );
++      print("Third statement executed");
++
++      final AuthResult authResult =
++          await _firebaseAuth.signInWithCredential(credential);
++      print("Fourth statement executed");
++
++      final FirebaseUser firebaseUser = authResult.user;
++      print("Fifth statement executed");
++
++      print("Printing firebaseUser.displayName: ${firebaseUser.displayName}");
++      // var name = user.displayName;
++      // name.split(" ");
++      // String firstName = name[0];
++      // String lastName = name[1];
++      //create new document for the user with the uid
++      // await FirestoreDatabaseServicesForUser(rentalLifeUserID: firebaseUser.uid)
++      //     .updateRentalLifeUserData();
++      return _getFirebaseUserAsRentalLifeUser(firebaseUser);
++    } catch (e) {
++      print(e.toString());
++      return null;
++    }
++  }
++
++/*
++  //Sign in with Facebook
++  Future<User> signInWithFacebook()async{
++    try {
++      final FacebookLogin facebookSignIn = new FacebookLogin();
++      final FacebookLoginResult result =
++      await facebookSignIn.logIn(['email']);
++
++      switch (result.status) {
++        case FacebookLoginStatus.loggedIn:
++          final FacebookAccessToken accessToken = result.accessToken;
++          print('''
++         Logged in!
++
++         Token: ${accessToken.token}
++         User id: ${accessToken.userId}
++         Expires: ${accessToken.expires}
++         Permissions: ${accessToken.permissions}
++         Declined permissions: ${accessToken.declinedPermissions}
++         ''');
++
++
++          final AuthCredential credential = FacebookAuthProvider.getCredential(accessToken: accessToken.toString());
++
++          final AuthResult authResult = await _firebaseAuth.signInWithCredential(credential);
++          final FirebaseUser user = authResult.user;
++          return _userFromFireBaseUser(user);
++
++
++          break;
++        case FacebookLoginStatus.cancelledByUser:
++          print('Login cancelled by the user.');
++          break;
++        case FacebookLoginStatus.error:
++          print('Something went wrong with the login process.\n'
++              'Here\'s the error Facebook gave us: ${result.errorMessage}');
++          break;
++      }
++    }catch(e){
++      print(e.toString());
++      return null;
++    }
++  }*/
++
++/*void _showMessage(String message) {
++    setState(() {
++      _message = message;
++    });
++  }*/
++
++/*Future<Null> _logOut() async {
++    await facebookSignIn.logOut();
++    _showMessage('Logged out.');
++  }*/
++
++}
+Index: lib/Pages/SettingsPages/Style.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/SettingsPages/Style.dart	(date 1608183627441)
++++ lib/Pages/SettingsPages/Style.dart	(date 1608183627441)
+@@ -0,0 +1,75 @@
++
++import 'package:flutter/material.dart';
++
++class Spacing {
++  static const double _matGridUnit = 8.0;
++  static double matGridUnit({scale = 1}) {
++    // Material design grid uses multiples of 8
++    // Multiples of 4 are acceptable if needed
++    // Only accept numbers that are full or half units of _matGridUnit
++    assert(scale % .5 == 0);
++    return _matGridUnit * scale;
++  }
++}
++
++class AppColors {
++  /// App Background
++  /// Off white
++  static const background = Color(0xFFF7F7F7);
++  static const cardBackground = Colors.white;
++  static const activeFillColor = Color(0xFFE0E0E0);
++
++  /// Text Theme
++  /// For cards, content, and canvas:
++  static const textColor = Color.fromRGBO(35, 35, 50, .7);
++
++  /// For 'Primary' theme
++  /// For headings
++  static const displayTextColor = Colors.black;
++
++  /// for 'Accent' theme
++  static const accentTextColor = Colors.white70;
++
++  static const purple = Color(0xFFB59FB5);
++
++  static MaterialColor primary = MaterialColor(0xFFC18083, _primarySwatch);
++  static MaterialColor accent = MaterialColor(0xFFFEEAE6, _accentSwatch);
++}
++
++Map<int, Color> _primarySwatch = {
++  50: Color(0xFFFFF0E9),
++  100: Color(0xFFFFDBCF),
++  200: Color(0xFFFCB8AB),
++  300: Color(0xFFF2A9A5),
++  400: Color(0xFFE29896),
++  500: Color(0xFFC18083),
++  600: Color(0xFFA36A72),
++  700: Color(0xFF84565E),
++  800: Color(0xFF664046),
++  900: Color(0xFF442B2D),
++};
++
++Map<int, Color> _accentSwatch = {
++  50: Color(0xFFFEEAE6),
++  100: Color(0xFFFFCEB9),
++  200: Color(0xFFFEAE8B),
++  300: Color(0xFFFC8F5C),
++  400: Color(0xFFFA7736),
++  500: Color(0xFFF86203),
++  600: Color(0xFFEE5C00),
++  700: Color(0xFFE05400),
++  800: Color(0xFFD24D00),
++  900: Color(0xFFBA4000),
++};
++
++class Elevation {
++  static List<BoxShadow> low = [
++    BoxShadow(color: Colors.black26, offset: Offset(1.0, 1.0), blurRadius: 1.0),
++  ];
++
++  static List<BoxShadow> high = [
++    BoxShadow(color: Colors.black26, offset: Offset(4.0, 4.0), blurRadius: 4.0),
++    BoxShadow(color: Colors.black26, offset: Offset(2.0, 2.0), blurRadius: 2.0),
++    BoxShadow(color: Colors.black26, offset: Offset(1.0, 1.0), blurRadius: 1.0),
++  ];
++}
+\ No newline at end of file
+Index: android/app/google-services.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- android/app/google-services.json	(revision 12c283d1f9ff5c732ebd97120e6c09a85e6ff615)
++++ android/app/google-services.json	(date 1608213905510)
+Index: lib/Bloc Classes/UserBloc.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Bloc Classes/UserBloc.dart	(date 1608426548769)
++++ lib/Bloc Classes/UserBloc.dart	(date 1608426548769)
+@@ -0,0 +1,59 @@
++// // TODO: imports
++// // TODO: list of employees
++// // TODO: stream controllers
++// // TODO: stream sink getter
++// // TODO: constructor - add data; listen to changes
++// // TODO: core functions
++// // TODO: dispose
++//
++// import 'dart:async';
++//
++// import 'package:flutter/cupertino.dart';
++// import 'file:///C:/Users/msnk5/StudioProjects/rental_life_real_estate/lib/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++//
++// class UserBloc {
++//   User _user;
++//
++//   final _userStreamController = StreamController<User>();
++//
++//   //Stream Controller
++//   final _userNameStreamController = StreamController<String>();
++//   final _userAgeStreamController = StreamController<int>();
++//
++//   //Stream getter
++//   Stream<User> get userStream => _userStreamController.stream;
++//   //Stream sink getter
++//   StreamSink<User> get userSink => _userStreamController.sink;
++//
++//   StreamSink<String> get userNameSink => _userNameStreamController.sink;
++//   StreamSink<int> get userAgeSink => _userAgeStreamController.sink;
++//
++//
++//   User get user => _user;
++//
++//   set user(User value) {
++//     _user = value;
++//   }
++//
++//   UserBloc(){
++//
++//     _userStreamController.add(_user);
++//     _userNameStreamController.stream.listen(_updateUserName);
++//     _userAgeStreamController.stream.listen(_updateUserAge);
++//   }
++//
++//   _updateUserName(String newName){
++//     _user.name = (newName);
++//     userSink.add(_user);
++//   }
++//   _updateUserAge(int newAge){
++//     _user.age = (newAge);
++//     userSink.add(_user);
++//   }
++//
++//   void disposeAllStreams(){
++//     _userStreamController.close();
++//     _userNameStreamController.close();
++//     _userAgeStreamController.close();
++//   }
++// }
+\ No newline at end of file
+Index: lib/ModelClasses/AdsModelClasses/Ads.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/ModelClasses/AdsModelClasses/Ads.dart	(date 1608426548785)
++++ lib/ModelClasses/AdsModelClasses/Ads.dart	(date 1608426548785)
+@@ -0,0 +1,116 @@
++import 'package:flutter/foundation.dart';
++
++abstract class  Ads {
++  String _adTitle;
++  String _adDescription;
++  String _adOwnerId;
++  int _adNumberByOwner;
++  int _numberOfAdImagesUploaded;
++  String _adLocation;
++  String _adPostDate;
++  int _adRent;
++  bool _isAdDeactivated;
++  int _totalThumbsUp;
++  int _totalRating;
++  String _adType;
++
++  Ads(
++      {String adTitle,
++      String adDescription,
++      @required String adOwnerId,
++      int adNumberByOwner,
++      int numberOfAdImagesUploaded,
++      String adLocation,
++      String adPostDate,
++      int adRent,
++      bool isAdDeactivated,
++      int totalThumbsUp,
++      int totalRating,
++        // String adType
++      }) {
++    this._adTitle = adTitle;
++    this._adDescription = adDescription;
++    this._adOwnerId = adOwnerId;
++    this._adNumberByOwner = adNumberByOwner;
++    this._numberOfAdImagesUploaded = numberOfAdImagesUploaded;
++    this._adLocation = adLocation;
++    this._adPostDate = adPostDate;
++    this._adRent = adRent;
++    this._isAdDeactivated = isAdDeactivated;
++    this._totalThumbsUp = totalThumbsUp;
++    this._totalRating = totalRating;
++    this._adType = adType;
++  }
++
++  int get totalRating => _totalRating;
++
++  set totalRating(int value) {
++    _totalRating = value;
++  }
++
++  int get totalThumbsUp => _totalThumbsUp;
++
++  set totalThumbsUp(int value) {
++    _totalThumbsUp = value;
++  }
++
++  bool get isAdDeactivated => _isAdDeactivated;
++
++  set isAdDeactivated(bool value) {
++    _isAdDeactivated = value;
++  }
++
++  int get adRent => _adRent;
++
++  set adRent(int value) {
++    _adRent = value;
++  }
++
++  String get adPostDate => _adPostDate;
++
++  set adPostDate(String value) {
++    _adPostDate = value;
++  }
++
++  String get adLocation => _adLocation;
++
++  set adLocation(String value) {
++    _adLocation = value;
++  }
++
++  int get numberOfAdImagesUploaded => _numberOfAdImagesUploaded;
++
++  set numberOfAdImagesUploaded(int value) {
++    _numberOfAdImagesUploaded = value;
++  }
++
++  int get adNumberByOwner => _adNumberByOwner;
++
++  set adNumberByOwner(int value) {
++    _adNumberByOwner = value;
++  }
++
++  String get adOwnerId => _adOwnerId;
++
++  set adOwnerId(String value) {
++    _adOwnerId = value;
++  }
++
++  String get adDescription => _adDescription;
++
++  set adDescription(String value) {
++    _adDescription = value;
++  }
++
++  String get adTitle => _adTitle;
++
++  set adTitle(String value) {
++    _adTitle = value;
++  }
++
++  String get adType => _adType;
++
++  set adType(String value) {
++    _adType = value;
++  }
++}
+Index: lib/Pages/MenuPages/AppMenuDrawer.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/MenuPages/AppMenuDrawer.dart	(date 1607800086399)
++++ lib/Pages/MenuPages/AppMenuDrawer.dart	(date 1607800086399)
+@@ -0,0 +1,50 @@
++import 'package:flutter/material.dart';
++
++class AppMenuDrawer extends StatelessWidget {
++  @override
++  Widget build(BuildContext context) {
++    return Drawer(
++      child: ListView(
++        children: <Widget>[
++                UserAccountsDrawerHeader(
++                  currentAccountPicture: CircleAvatar(
++                    backgroundImage:
++                    AssetImage("assets/images/apple-in-hand.jpg"),
++                  ),
++                  accountEmail: Text("Email"),
++                  accountName: Text("Name"),
++                  onDetailsPressed: () {
++                    //Navigator.pushReplacementNamed(
++                    //    context, ECommerceRoutes.userSettingsPage);
++                  },
++                ),
++          ListTile(
++            leading: Icon(Icons.apps),
++            title: Text("My Ads"),
++           // selected: _activeRoute == ECommerceRoutes.catalogPage,
++            onTap: () => Navigator.pop(context)//_navigate(ECommerceRoutes.catalogPage),
++          ),
++          ListTile(
++            leading: Icon(Icons.money),
++            title: Text("Cart"),
++            //selected: //_activeRoute == ECommerceRoutes.cartPage,
++            onTap: () =>  Navigator.pop(context)//_navigate(ECommerceRoutes.cartPage),
++          ),
++          ListTile(
++            leading: Icon(Icons.person),
++            title: Text("User Settings"),
++            //selected: _activeRoute == ECommerceRoutes.userSettingsPage,
++            onTap: () => Navigator.pop(context)// _navigate(ECommerceRoutes.userSettingsPage),
++          ),
++          AboutListTile(
++            icon: Icon(Icons.info),
++            applicationName: "Produce Store",
++            aboutBoxChildren: <Widget>[
++              Text("Thanks for reading Flutter in Action!"),
++            ],
++          ),
++        ],
++      ),
++    );
++  }
++}
+Index: lib/Pages/AdsPages/AdsMainPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/AdsPages/AdsMainPage.dart	(date 1608439380335)
++++ lib/Pages/AdsPages/AdsMainPage.dart	(date 1608439380335)
+@@ -0,0 +1,28 @@
++import 'package:flutter/material.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/Pages/MenuPages/AppMenuDrawerOvalRight.dart';
++
++class AdsMainPage extends StatefulWidget {
++  @override
++  _AdsMainPageState createState() => _AdsMainPageState();
++}
++
++Color firstColor = Colors.deepOrangeAccent;
++Color secondColor = Colors.white;
++Color thirdColor = Colors.deepPurple;
++Color fourthColor = Colors.grey;
++class _AdsMainPageState extends State<AdsMainPage> {
++  @override
++  Widget build(BuildContext context) {
++     final rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
++    return Scaffold(
++      appBar: AppBar(
++        backgroundColor: firstColor,
++        title: Text("Ads"),
++      ),
++      body: Center(child: Text(rentalLifeUserFromProvider.toString())),
++      drawer: AppMenuDrawerOvalRight(),
++    );
++  }
++}
+Index: lib/Pages/HomePages/FirstScreenAfterLoginDecider.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/HomePages/FirstScreenAfterLoginDecider.dart	(date 1608438749319)
++++ lib/Pages/HomePages/FirstScreenAfterLoginDecider.dart	(date 1608438749319)
+@@ -0,0 +1,88 @@
++import 'package:cloud_firestore/cloud_firestore.dart';
++import 'package:flutter/material.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/Pages/MenuPages/AppMenuDrawer.dart';
++import 'package:realestate/Pages/MenuPages/AppMenuDrawerOvalRight.dart';
++import 'package:realestate/Pages/MenuPages/RentalLifeBottomNavigationBar.dart';
++import 'package:realestate/Pages/SettingsPages/AddUserPersonalInfoSettings.dart';
++import 'package:realestate/Service%20Classes/FirebaseUserAuthenticationService.dart';
++import 'package:realestate/screens/home/user_List.dart';
++import 'package:realestate/shared/loading.dart';
++
++import 'RentalLifeHomePage.dart';
++
++class FirstScreenAfterLoginDecider extends StatefulWidget {
++  @override
++  _FirstScreenAfterLoginDeciderState createState() =>
++      _FirstScreenAfterLoginDeciderState();
++}
++
++class _FirstScreenAfterLoginDeciderState
++    extends State<FirstScreenAfterLoginDecider> {
++  FirebaseUserAuthenticationService _authService =
++      FirebaseUserAuthenticationService();
++  bool isUserDocumentExists = false;
++  bool isLoading = true;
++  bool firstTime = true;
++
++  @override
++  Widget build(BuildContext context) {
++    final rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
++
++    final usersRef = Firestore.instance
++        .collection('user')
++        .document(rentalLifeUserFromProvider.uid);
++    if (firstTime) {
++      // firstTime = false;
++      usersRef.get().then((docSnapshot) => {
++            if (docSnapshot.exists) //&& isLoading)
++              {
++                setState(() {
++                  // print("SAFDASD");
++                  isLoading = false;
++                  isUserDocumentExists = true;
++                })
++              }
++            else //if(isLoading)
++              {
++                setState(() {
++                  // print("ASFDASD");
++                  isLoading = false;
++                  isUserDocumentExists = false;
++                })
++              }
++          });
++    }
++
++    if (isLoading) {
++      return Loading();
++    } else {
++      if (isUserDocumentExists) {
++        // return DarkDrawerPage();
++        setState(() {
++          firstTime = false;
++        });
++        return RentalLifeBottomNavigationBar();//RentalLifeHomePage();
++      } else {
++        return AddUserPersonalInfoSettings();
++        // return Scaffold(
++        //   appBar: AppBar(title: Text("User Settings page."), actions: <Widget>[
++        //     FlatButton.icon(
++        //         onPressed: () async {
++        //           await _authService.signOut();
++        //         },
++        //         icon: Icon(Icons.person),
++        //         label: Text('Sign Out')),
++        //   ]),
++        //   body: Column(
++        //     children: [
++        //       Text(
++        //           "User document data doesn't exist because user didn't upload data. Update this field first.")
++        //     ],
++        //   ),
++        // );
++      }
++    }
++  }
++}
+Index: lib/Pages/SettingsPages/FormHeader.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/SettingsPages/FormHeader.dart	(date 1608184390489)
++++ lib/Pages/SettingsPages/FormHeader.dart	(date 1608184390489)
+@@ -0,0 +1,20 @@
++import 'package:flutter/material.dart';
++
++class FormHeader extends StatelessWidget {
++  final String title;
++
++  const FormHeader({Key key, this.title}) : super(key: key);
++
++  @override
++  Widget build(BuildContext context) {
++    return Column(
++      children: <Widget>[
++        Text(
++          title,
++          // style: Theme.of(context).textTheme.title.copyWith(fontWeight: FontWeight.w300),
++        ),
++        Divider(),
++      ],
++    );
++  }
++}
+\ No newline at end of file
+Index: lib/Pages/SettingsPages/FormFieldContainer.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/SettingsPages/FormFieldContainer.dart	(date 1608183627434)
++++ lib/Pages/SettingsPages/FormFieldContainer.dart	(date 1608183627434)
+@@ -0,0 +1,17 @@
++import 'package:flutter/material.dart';
++
++import 'Style.dart';
++
++class FormFieldContainer extends StatelessWidget {
++  final Widget child;
++
++  FormFieldContainer({this.child});
++
++  @override
++  Widget build(BuildContext context) {
++    return Container(
++      padding: EdgeInsets.only(bottom: Spacing.matGridUnit(scale: 2)),
++      child: child,
++    );
++  }
++}
+\ No newline at end of file
+Index: lib/ModelClasses/UserModelClasses/RentalLifeUser.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/ModelClasses/UserModelClasses/RentalLifeUser.dart	(date 1608439160066)
++++ lib/ModelClasses/UserModelClasses/RentalLifeUser.dart	(date 1608439160066)
+@@ -0,0 +1,98 @@
++//Model Classes
++
++import 'package:flutter/foundation.dart';
++
++class RentalLifeUser{
++  String _userID;
++
++  String _name;
++  String _phoneNum;
++  int _age;
++  String _emailAddress;
++  String _userDisplayImageAddress;
++  String _bio;
++  int _totalAdsPosted;
++  int _totalTenantsConnected;
++  int _totalOwnersConnected;
++
++
++  RentalLifeUser({@required String userID,String name, int age, String emailAddress, String phoneNum,
++    String userDisplayImageAddress, int totalAdsPosted, String bio, int totalTenantsConnected, int totalOwnersConnected}){
++    this._name = name;
++    this._age = age;
++    this._userID = userID;
++    this._emailAddress = emailAddress;
++    this._totalAdsPosted = totalAdsPosted ?? 0;
++    this._userDisplayImageAddress =userDisplayImageAddress ?? "https://lh3.googleusercontent.com/ogw/ADGmqu_y5fygpa9lyMo25tkCPurKjT0K579xX5UCogHaBw=s83-c-mo";
++    this._phoneNum = phoneNum;
++    this._bio = bio;
++    this.totalTenantsConnected = totalTenantsConnected ?? 0;
++    this.totalOwnersConnected = totalOwnersConnected ?? 0;
++  }
++
++  String get name => _name;
++
++  set name(String value) {
++    _name = value;
++  }
++
++  int get age => _age;
++
++  set age(int value) {
++    _age = value;
++  }
++
++  int get totalAdsPosted => _totalAdsPosted;
++
++  set totalAdsPosted(int value) {
++    _totalAdsPosted = value;
++  }
++
++  String get emailAddress => _emailAddress;
++
++  set emailAddress(String value) {
++    _emailAddress = value;
++  }
++
++
++  String get phoneNum => _phoneNum;
++
++  set phoneNum(String value) {
++    _phoneNum = value;
++  }
++
++  String get userDisplayImageAddress => _userDisplayImageAddress;
++
++  set userDisplayImageAddress(String value) {
++    _userDisplayImageAddress = value;
++  }
++
++  String get uid => _userID;
++
++  set uid(String value) {
++    _userID = value;
++  }
++
++  String get bio => _bio;
++
++  set bio(String value) {
++    _bio = value;
++  }
++
++  int get totalOwnersConnected => _totalOwnersConnected;
++
++  set totalOwnersConnected(int value) {
++    _totalOwnersConnected = value;
++  }
++
++  int get totalTenantsConnected => _totalTenantsConnected;
++
++  set totalTenantsConnected(int value) {
++    _totalTenantsConnected = value;
++  }
++
++  @override
++  String toString() {
++    return 'RentalLifeUser{_userID: $_userID, _name: $_name, _phoneNum: $_phoneNum, _age: $_age, _emailAddress: $_emailAddress, _userDisplayImageAddress: $_userDisplayImageAddress, _bio: $_bio, _totalAdsPosted: $_totalAdsPosted, _totalTenantsConnected: $_totalTenantsConnected, _totalOwnersConnected: $_totalOwnersConnected}';
++  }
++}
+\ No newline at end of file
+Index: lib/Pages/MenuPages/RentalLifeBottomNavigationBar.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/MenuPages/RentalLifeBottomNavigationBar.dart	(date 1608439380331)
++++ lib/Pages/MenuPages/RentalLifeBottomNavigationBar.dart	(date 1608439380331)
+@@ -0,0 +1,205 @@
++import 'package:flutter/material.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/Pages/AdsPages/AdsMainPage.dart';
++import 'package:realestate/Pages/AdsPages/BottomRevealPostAdPage.dart';
++import 'package:realestate/Pages/MenuPages/AppMenuDrawerOvalRight.dart';
++import 'package:realestate/Pages/SettingsPages/RentalLifeUserProfile.dart';
++import 'package:realestate/Service%20Classes/FirebaseUserAuthenticationService.dart';
++import 'package:realestate/Service%20Classes/FirestoreDatabaseServicesForUser.dart';
++
++class RentalLifeBottomNavigationBar extends StatefulWidget {
++  @override
++  _RentalLifeBottomNavigationBarState createState() =>
++      _RentalLifeBottomNavigationBarState();
++}
++
++Color firstColor = Colors.deepOrangeAccent;
++Color secondColor = Colors.white;
++Color thirdColor = Colors.deepPurple;
++Color fourthColor = Colors.grey;
++
++class _RentalLifeBottomNavigationBarState
++    extends State<RentalLifeBottomNavigationBar> {
++  int _currentPage;
++  FirebaseUserAuthenticationService _authService =
++      FirebaseUserAuthenticationService();
++
++  // RentalLifeUser get rentalLifeUserFromProvider => null;
++
++  @override
++  void initState() {
++    _currentPage = 0;
++    super.initState();
++  }
++
++  var rentalLifeUserFromProvider;
++
++  @override
++  Widget build(BuildContext context) {
++    rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
++
++    return FutureProvider<RentalLifeUser>.value(
++        value: FirestoreDatabaseServicesForUser(
++                rentalLifeUserID: rentalLifeUserFromProvider.uid)
++            .getRentalLifeUserFromFireStoreDocument(),
++        child: Scaffold(
++          // appBar: AppBar(
++          //   title: Text("Animated Bottom Navigation Bar"),
++          // ),
++          backgroundColor: Colors.grey.shade300,
++          body: getPage(_currentPage),
++          bottomNavigationBar: AnimatedBottomNav(
++              currentIndex: _currentPage,
++              onChange: (index) {
++                setState(() {
++                  _currentPage = index;
++                });
++              }),
++          // drawer: AppMenuDrawerOvalRight(),
++        ));
++  }
++
++  getPage(int page) {
++    switch (page) {
++      case 0:
++        return Center(
++            child: Container(
++          child: Text("Home Page"),
++        ));
++      case 1:
++        return BottomRevealPostAdPage();
++        //AdsMainPage();
++        // return Center(
++        //     child: Container(
++        //   child: Text("Profile Page"),
++        // ));
++      case 2:
++        // return BottomRevealAdMainPage();
++        return Center(
++            child: Container(
++          child: Text("Menu venue Page"),
++        ));
++    }
++  }
++}
++
++class AnimatedBottomNav extends StatelessWidget {
++  final int currentIndex;
++  final Function(int) onChange;
++
++  const AnimatedBottomNav({Key key, this.currentIndex, this.onChange})
++      : super(key: key);
++
++  @override
++  Widget build(BuildContext context) {
++    final rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
++    return Container(
++      height: kToolbarHeight,
++      decoration: BoxDecoration(color: firstColor),
++      child: Row(
++        children: <Widget>[
++          Expanded(
++            child: InkWell(
++              onTap: () => onChange(0),
++              child: BottomNavItem(
++
++                activeColor: secondColor,
++                //inactiveColor: fourthColor,
++                icon: Icons.home,
++                title: "Home",
++                isActive: currentIndex == 0,
++              ),
++            ),
++          ),
++          Expanded(
++            child: InkWell(
++              onTap: () => onChange(1),
++              child: BottomNavItem(
++                activeColor: secondColor,
++                icon: Icons.camera_alt_outlined,
++                title: "Ads",
++                isActive: currentIndex == 1,
++              ),
++            ),
++          ),
++          Expanded(
++            child: InkWell(
++              onTap: () => onChange(2),
++              child: BottomNavItem(
++                activeColor: secondColor,
++                icon: Icons.menu,
++                title: "Menu",
++                isActive: currentIndex == 2,
++              ),
++            ),
++          ),
++        ],
++      ),
++    );
++  }
++}
++
++class BottomNavItem extends StatelessWidget {
++  final bool isActive;
++  final IconData icon;
++  final Color activeColor;
++  final Color inactiveColor;
++  final String title;
++
++  const BottomNavItem(
++      {Key key,
++      this.isActive = false,
++      this.icon,
++      this.activeColor,
++      this.inactiveColor,
++      this.title})
++      : super(key: key);
++
++  @override
++  Widget build(BuildContext context) {
++    return AnimatedSwitcher(
++      transitionBuilder: (child, animation) {
++        return SlideTransition(
++          position: Tween<Offset>(
++            begin: const Offset(0.0, 1.0),
++            end: Offset.zero,
++          ).animate(animation),
++          child: child,
++        );
++      },
++      duration: Duration(milliseconds: 500),
++      reverseDuration: Duration(milliseconds: 200),
++      child: isActive
++          ? Container(
++              color: firstColor,
++              padding: const EdgeInsets.all(8.0),
++              child: Column(
++                mainAxisAlignment: MainAxisAlignment.center,
++                children: <Widget>[
++                  Text(
++                    title,
++                    style: TextStyle(
++                      fontWeight: FontWeight.bold,
++                      color: activeColor ?? Theme.of(context).primaryColor,
++                    ),
++                  ),
++                  const SizedBox(height: 5.0),
++                  Container(
++                    width: 5.0,
++                    height: 5.0,
++                    decoration: BoxDecoration(
++                      shape: BoxShape.circle,
++                      color: activeColor ?? Theme.of(context).primaryColor,
++                    ),
++                  ),
++                ],
++              ),
++            )
++          : Icon(
++              icon,
++              color: inactiveColor ?? Colors.grey,
++            ),
++    );
++  }
++}
+Index: pubspec.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pubspec.yaml	(revision 12c283d1f9ff5c732ebd97120e6c09a85e6ff615)
++++ pubspec.yaml	(date 1608426905130)
+@@ -42,6 +42,9 @@
+   search_map_place: 0.3.0
+   geolocator: ^5.3.2+1
+   location: ^2.3.5
++  flutter_custom_clippers: ^1.1.2
++  flushbar: ^1.10.4
++  bottomreveal: ^1.0.0
+ 
+   # The following adds the Cupertino Icons font to your application.
+   # Use with the CupertinoIcons class for iOS style icons.
+Index: lib/Pages/SettingsPages/DateInputField.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/SettingsPages/DateInputField.dart	(date 1608183278856)
++++ lib/Pages/SettingsPages/DateInputField.dart	(date 1608183278856)
+@@ -0,0 +1,52 @@
++import 'package:flutter/material.dart';
++
++class DateInputField extends StatelessWidget {
++  const DateInputField(
++      {Key key,
++        this.child,
++        this.labelText,
++        this.valueText,
++        this.valueStyle,
++        this.onPressed,
++        this.inputDecoration})
++      : assert(labelText != null),
++        super(key: key);
++
++  final String labelText;
++  final String valueText;
++  final TextStyle valueStyle;
++  final VoidCallback onPressed;
++  final Widget child;
++  final InputDecoration inputDecoration;
++
++  @override
++  Widget build(BuildContext context) {
++    return InkWell(
++      onTap: onPressed,
++      child: InputDecorator(
++        decoration: valueText == null
++            ? InputDecoration(
++          border: OutlineInputBorder(),
++        )
++            : InputDecoration(
++          labelText: labelText,
++          border: OutlineInputBorder(),
++        ),
++        baseStyle: valueStyle,
++        child: Row(
++          mainAxisAlignment: MainAxisAlignment.spaceBetween,
++          mainAxisSize: MainAxisSize.min,
++          children: <Widget>[
++            valueText != null
++                ? Text(valueText, style: valueStyle)
++                : Text(labelText, style: valueStyle),
++            Icon(Icons.calendar_today,
++                color: Theme.of(context).brightness == Brightness.light
++                    ? Colors.grey.shade700
++                    : Colors.white70),
++          ],
++        ),
++      ),
++    );
++  }
++}
+\ No newline at end of file
+Index: pubspec.lock
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pubspec.lock	(revision 12c283d1f9ff5c732ebd97120e6c09a85e6ff615)
++++ pubspec.lock	(date 1608426910979)
+@@ -36,13 +36,20 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "2.1.0-nullsafety.1"
++  bottomreveal:
++    dependency: "direct main"
++    description:
++      name: bottomreveal
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "1.0.0"
+   cached_network_image:
+     dependency: transitive
+     description:
+       name: cached_network_image
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "2.3.3"
++    version: "2.4.1"
+   characters:
+     dependency: transitive
+     description:
+@@ -168,7 +175,7 @@
+       name: firebase
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "7.3.2"
++    version: "7.3.3"
+   firebase_auth:
+     dependency: "direct main"
+     description:
+@@ -218,6 +225,13 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "3.1.6"
++  flushbar:
++    dependency: "direct main"
++    description:
++      name: flushbar
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "1.10.4"
+   flutter:
+     dependency: "direct main"
+     description: flutter
+@@ -237,6 +251,13 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "2.0.0"
++  flutter_custom_clippers:
++    dependency: "direct main"
++    description:
++      name: flutter_custom_clippers
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "1.1.2"
+   flutter_plugin_android_lifecycle:
+     dependency: transitive
+     description:
+@@ -309,14 +330,14 @@
+       name: google_maps_flutter_platform_interface
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "1.0.4"
++    version: "1.0.5"
+   google_sign_in:
+     dependency: "direct main"
+     description:
+       name: google_sign_in
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "4.5.5"
++    version: "4.5.6"
+   google_sign_in_platform_interface:
+     dependency: transitive
+     description:
+@@ -365,7 +386,7 @@
+       name: image_picker
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "0.6.7+12"
++    version: "0.6.7+17"
+   image_picker_platform_interface:
+     dependency: transitive
+     description:
+@@ -435,14 +456,14 @@
+       name: node_interop
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "1.1.1"
++    version: "1.2.1"
+   node_io:
+     dependency: transitive
+     description:
+       name: node_io
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "1.1.1"
++    version: "1.2.0"
+   octo_image:
+     dependency: transitive
+     description:
+@@ -470,7 +491,7 @@
+       name: path_provider
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "1.6.22"
++    version: "1.6.24"
+   path_provider_linux:
+     dependency: transitive
+     description:
+@@ -484,21 +505,21 @@
+       name: path_provider_macos
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "0.0.4+4"
++    version: "0.0.4+6"
+   path_provider_platform_interface:
+     dependency: transitive
+     description:
+       name: path_provider_platform_interface
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "1.0.3"
++    version: "1.0.4"
+   path_provider_windows:
+     dependency: transitive
+     description:
+       name: path_provider_windows
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "0.0.4+1"
++    version: "0.0.4+3"
+   pedantic:
+     dependency: transitive
+     description:
+@@ -533,7 +554,7 @@
+       name: provider
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "4.3.2+2"
++    version: "4.3.2+3"
+   pub_semver:
+     dependency: transitive
+     description:
+@@ -547,7 +568,7 @@
+       name: quiver
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "2.1.4+1"
++    version: "2.1.5"
+   rxdart:
+     dependency: transitive
+     description:
+@@ -671,7 +692,7 @@
+       name: win32
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "1.7.3"
++    version: "1.7.4"
+   xdg_directories:
+     dependency: transitive
+     description:
+Index: lib/Pages/HomePages/RentalLifeHomePage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/HomePages/RentalLifeHomePage.dart	(date 1608438401485)
++++ lib/Pages/HomePages/RentalLifeHomePage.dart	(date 1608438401485)
+@@ -0,0 +1,56 @@
++import 'package:flutter/material.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/Pages/MenuPages/AppMenuDrawerOvalRight.dart';
++import 'package:realestate/Service%20Classes/FirebaseUserAuthenticationService.dart';
++import 'package:realestate/Service%20Classes/FirestoreDatabaseServicesForUser.dart';
++
++class RentalLifeHomePage extends StatefulWidget {
++
++  // bool _toShowSnackbar = false;
++
++  @override
++  _RentalLifeHomePageState createState() => _RentalLifeHomePageState();
++}
++
++// final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
++
++class _RentalLifeHomePageState extends State<RentalLifeHomePage> {
++  FirebaseUserAuthenticationService _authService =
++      FirebaseUserAuthenticationService();
++
++  @override
++  Widget build(BuildContext context) {
++
++    final rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
++    return FutureProvider<RentalLifeUser>.value(
++        value: FirestoreDatabaseServicesForUser(
++                rentalLifeUserID: rentalLifeUserFromProvider.uid)
++            .getRentalLifeUserFromFireStoreDocument(),
++        child: Scaffold(
++          // key: _scaffoldKey,
++
++          appBar: AppBar(title: Text("RentalLifeHome"), actions: <Widget>[
++            FlatButton.icon(
++                onPressed: () async {
++                  await _authService.signOut();
++                },
++                icon: Icon(Icons.person),
++                label: Text('Sign Out')),
++          ]),
++          body: Column(
++            children: [
++              Text("RentalLifeHome Body"),
++              Text(
++                  "Rental Life User Name:  ${rentalLifeUserFromProvider.name}"),
++              Text("Rental Life User uid: ${rentalLifeUserFromProvider.uid}"),
++              Text(
++                  "Rental Life User email: ${rentalLifeUserFromProvider.emailAddress}"),
++            ],
++          ),
++          drawer: AppMenuDrawerOvalRight(),
++
++          // drawer: AppMenuDrawer(),
++        ));
++  }
++}
+Index: lib/Pages/SettingsPages/UserProfileForm.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/SettingsPages/UserProfileForm.dart	(date 1608183627452)
++++ lib/Pages/SettingsPages/UserProfileForm.dart	(date 1608183627452)
+@@ -0,0 +1,92 @@
++import 'package:flutter/material.dart';
++import 'package:realestate/Pages/SettingsPages/FormFieldContainer.dart';
++
++class UserProfileForm extends StatefulWidget {
++  @override
++  _UserProfileFormState createState() => _UserProfileFormState();
++}
++
++class _UserProfileFormState extends State<UserProfileForm> {
++  TextEditingController _nameController;
++  TextEditingController _emailController;
++  // UserBloc _bloc;
++  bool _userInformationHasBeenUpdated = false;
++  String _prevName;
++  String _prevContact;
++  //
++  // @override
++  // void didChangeDependencies() async {
++  //
++  //   super.didChangeDependencies();
++  // }
++  //
++  // void onChangeName() {
++  //   if (_prevName == _nameController.text && _prevContact == _emailController.text) return;
++  //   setState(() {
++  //     _userInformationHasBeenUpdated = true;
++  //   });
++  // }
++  //
++  // void onChangeEmail() {
++  //   if (_prevName == _nameController.text && _prevContact == _emailController.text) return;
++  //   setState(() {
++  //     _userInformationHasBeenUpdated = true;
++  //   });
++  // }
++
++  FlatButton get submitButton => FlatButton(
++    onPressed: _userInformationHasBeenUpdated
++        ? () {
++      // _bloc.updateUserInformationSink.add(
++      //   UpdateUserEvent(
++      //     ECommerceUser(name: _nameController.text, contact: _emailController.text),
++      //   ),
++      // );
++      // showDialog(
++      //     context: context,
++      //     builder: (context) {
++      //       return AlertDialog(
++      //         content: Text(
++      //             "Submitted Name: ${_nameController.text}, Submitted Contact: ${_emailController.text}"),
++      //       );
++      //     });
++    }
++        : null,
++    child: Text("Submit info"),
++  );
++
++  @override
++  Widget build(BuildContext context) {
++    Widget avatar = Padding(
++        padding: EdgeInsets.all(8.0),
++        child: CircleAvatar(
++          backgroundImage: AssetImage("assets/images/apple-in-hand.jpg"),
++          radius: 60.0,
++        ));
++
++    return Column(
++      children: <Widget>[
++        avatar,
++        FormFieldContainer(
++          child: TextField(
++            decoration: InputDecoration(
++              border: OutlineInputBorder(),
++              labelText: "Name:",
++            ),
++            controller: _nameController,
++          ),
++        ),
++        FormFieldContainer(
++          child: TextField(
++            decoration: InputDecoration(
++              border: OutlineInputBorder(),
++              labelText: "Contact:",
++            ),
++            controller: _emailController,
++          ),
++        ),
++        submitButton,
++      ],
++    );
++  }
++}
+\ No newline at end of file
+Index: lib/Pages/SettingsPages/RentalLifeUserProfile.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/SettingsPages/RentalLifeUserProfile.dart	(date 1608438401489)
++++ lib/Pages/SettingsPages/RentalLifeUserProfile.dart	(date 1608438401489)
+@@ -0,0 +1,301 @@
++import 'dart:io';
++import 'package:flutter/material.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/Pages/HomePages/FirstScreenAfterLoginDecider.dart';
++import 'package:realestate/Pages/HomePages/RentalLifeHomePage.dart';
++import 'package:realestate/Pages/SettingsPages/UpdateUserPersonalInfo.dart';
++
++class RentalLifeUserProfile extends StatefulWidget {
++  RentalLifeUser _rentalLifeUser;
++
++  RentalLifeUserProfile(this._rentalLifeUser);
++
++  @override
++  _RentalLifeUserProfileState createState() => _RentalLifeUserProfileState();
++}
++
++final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
++
++class _RentalLifeUserProfileState extends State<RentalLifeUserProfile> {
++
++  @override
++  Widget build(BuildContext context) {
++    // RentalLifeUser _rentalLifeUser = Provider.of<RentalLifeUser>(context);
++    return Scaffold(
++        key: _scaffoldKey,
++        floatingActionButton: FloatingActionButton(
++          child: Icon(
++            Icons.arrow_back,
++            color: Colors.white,
++          ),
++          backgroundColor: Colors.deepOrange,
++          onPressed: () {
++            Navigator.pop(context);
++          },
++        ),
++        backgroundColor: Color.fromRGBO(255, 255, 255, .9),
++        body: SafeArea(
++          child: ListView(
++            children: <Widget>[
++              Stack(
++                children: <Widget>[
++                  Container(
++                    width: double.infinity,
++                    height: 330,
++                    color: Colors.deepOrange,
++                  ),
++                  Positioned(
++                    top: 10,
++                    right: 10,
++                    child: FlatButton.icon(
++                      label: Text(
++                        "Settings",
++                        style: TextStyle(color: Colors.white),
++                      ),
++                      icon: Icon(
++                        Icons.settings,
++                        color: Colors.white,
++                      ),
++                      onPressed: () async {
++                        String result = await Navigator.push(
++                            context,
++                            MaterialPageRoute(
++                                builder: (context) =>
++                                    UpdateUserPersonalInfoSettings(
++                                        widget._rentalLifeUser)));
++                        if (result.compareTo('Updated') == 0) {
++                          Navigator.pop(context);
++                          Navigator.pop(context);
++                          Navigator.pop(context, "UserdocumentChanged");
++                          Navigator.push(
++                              context,
++                              MaterialPageRoute(
++                                  builder: (context) => FirstScreenAfterLoginDecider()));
++                          //   Navigator.push(
++                          //       context,
++                          //       MaterialPageRoute(
++                          //           builder: (context) => RentalLifeUserProfile(widget._rentalLifeUser)));
++                          //final snackBar =
++                          // _scaffoldKey.currentState.showSnackBar(
++                          //     SnackBar(
++                          //       content: Text('Yay! A SnackBar!'),
++                          //       duration: Duration(seconds: 3),
++                          //       action: SnackBarAction(
++                          //         label: 'Undo',
++                          //         onPressed: () {
++                          //           // Some code to undo the change.
++                          //         },
++                          //       ),
++                          //     ));
++                        }
++                      },
++                    ),
++                  ),
++                  Column(
++                    children: <Widget>[
++                      // Container(
++                      //     height: 90,
++                      //     margin: EdgeInsets.only(top: 60),
++                      //     child: CircleAvatar(
++                      //       radius: 50,
++                      //       backgroundColor: Colors.white,
++                      //       child: PNetworkImage(
++                      //           "https://lh3.googleusercontent.com/ogw/ADGmqu_y5fygpa9lyMo25tkCPurKjT0K579xX5UCogHaBw=s83-c-mo"),
++                      //     )),
++                      Container(
++                        height: 150,
++                        margin: EdgeInsets.only(top: 60),
++                        alignment: Alignment.center,
++                        decoration: BoxDecoration(
++                            shape: BoxShape.circle,
++                            gradient: LinearGradient(
++                                colors: [Colors.white, Colors.deepOrangeAccent])),
++                        child: CircleAvatar(
++                          radius: 73,
++                          backgroundImage: NetworkImage(widget._rentalLifeUser.userDisplayImageAddress
++                              ),
++                        ),
++                      ),
++                      Padding(
++                        padding: EdgeInsets.all(4),
++                      ),
++                      Text(
++                        widget._rentalLifeUser.name,
++                        style: TextStyle(
++                            color: Colors.white,
++                            fontWeight: FontWeight.w500,
++                            fontSize: 20),
++                        textAlign: TextAlign.center,
++                      ),
++                      Padding(
++                        padding: EdgeInsets.all(4),
++                      ),
++                      Text(
++                        ("${widget._rentalLifeUser.age.toString()} years old."),
++                        style: TextStyle(
++                            color: Colors.white,
++                            fontWeight: FontWeight.w400,
++                            fontSize: 16),
++                        textAlign: TextAlign.center,
++                      ),
++                      Container(
++                        margin: EdgeInsets.only(top: 15),
++                        padding: EdgeInsets.all(10),
++                        child: Card(
++                          child: Row(
++                            mainAxisAlignment: MainAxisAlignment.spaceAround,
++                            children: <Widget>[
++                              Column(
++                                children: <Widget>[
++                                  Container(
++                                      padding:
++                                          EdgeInsets.only(top: 15, bottom: 5),
++                                      child: Text("Ads Posted",
++                                          style: TextStyle(
++                                              color: Colors.black54))),
++                                  Container(
++                                      padding: EdgeInsets.only(bottom: 15),
++                                      child: Text(
++                                          widget._rentalLifeUser.totalAdsPosted
++                                              .toString(),
++                                          style: TextStyle(
++                                              color: Colors.black87,
++                                              fontSize: 16))),
++                                ],
++                              ),
++                              Column(
++                                children: <Widget>[
++                                  Container(
++                                      padding:
++                                          EdgeInsets.only(top: 15, bottom: 5),
++                                      child: Text("Tenants Connected",
++                                          style: TextStyle(
++                                              color: Colors.black54))),
++                                  Container(
++                                      padding: EdgeInsets.only(bottom: 15),
++                                      child: Text(widget._rentalLifeUser.totalTenantsConnected.toString(),
++                                          style: TextStyle(
++                                              color: Colors.black87,
++                                              fontSize: 16))),
++                                ],
++                              ),
++                              Column(
++                                children: <Widget>[
++                                  Container(
++                                      padding:
++                                          EdgeInsets.only(top: 10, bottom: 5),
++                                      child: Text("Owners Connected",
++                                          style: TextStyle(
++                                              color: Colors.black54))),
++                                  Container(
++                                      padding: EdgeInsets.only(bottom: 10),
++                                      child: Text(widget._rentalLifeUser.totalOwnersConnected.toString(),
++                                          style: TextStyle(
++                                              color: Colors.black87,
++                                              fontSize: 16))),
++                                ],
++                              ),
++                            ],
++                          ),
++                        ),
++                      ),
++                      Container(
++                        padding: EdgeInsets.all(10),
++                        child: Column(
++                          children: <Widget>[
++                            Card(
++                              child: Container(
++                                alignment: Alignment.topLeft,
++                                padding: EdgeInsets.all(15),
++                                child: Column(
++                                  children: <Widget>[
++                                    Container(
++                                      alignment: Alignment.topLeft,
++                                      child: Text(
++                                        "User Information",
++                                        style: TextStyle(
++                                          color: Colors.black87,
++                                          fontWeight: FontWeight.w500,
++                                          fontSize: 16,
++                                        ),
++                                        textAlign: TextAlign.left,
++                                      ),
++                                    ),
++                                    Divider(
++                                      color: Colors.black38,
++                                    ),
++                                    Container(
++                                        child: Column(
++                                      children: <Widget>[
++                                        ListTile(
++                                          contentPadding: EdgeInsets.symmetric(
++                                              horizontal: 12, vertical: 4),
++                                          leading: Icon(Icons.my_location),
++                                          title: Text("Location"),
++                                          subtitle: Text("Rawalpindi"),
++                                        ),
++                                        ListTile(
++                                          leading: Icon(Icons.email),
++                                          title: Text("Email"),
++                                          subtitle: Text(widget
++                                              ._rentalLifeUser.emailAddress),
++                                        ),
++                                        ListTile(
++                                          leading: Icon(Icons.phone),
++                                          title: Text("Phone"),
++                                          subtitle: Text(
++                                              widget._rentalLifeUser.phoneNum),
++                                        ),
++                                        ListTile(
++                                          leading: Icon(Icons.person),
++                                          title: Text("About Me"),
++                                          subtitle:
++                                              Text(widget._rentalLifeUser.bio),
++                                        ),
++                                      ],
++                                    ))
++                                  ],
++                                ),
++                              ),
++                            )
++                          ],
++                        ),
++                      ),
++                    ],
++                  )
++                ],
++              ),
++            ],
++          ),
++        ));
++  }
++}
++
++// class UserInfo extends StatelessWidget {
++//   @override
++//   Widget build(BuildContext context) {
++//     return ;
++//   }
++// }
++
++class PNetworkImage extends StatelessWidget {
++  final String image;
++  final BoxFit fit;
++  final double width, height;
++
++  const PNetworkImage(this.image, {Key key, this.fit, this.height, this.width})
++      : super(key: key);
++
++  @override
++  Widget build(BuildContext context) {
++    return Image.network(
++      image,
++      // placeholder: (context, url) => Center(child: CircularProgressIndicator()),
++      // errorWidget: (context, url, error) => Image.asset('assets/placeholder.jpg',fit: BoxFit.cover,),
++      fit: fit,
++      width: width,
++      height: height,
++    );
++  }
++}
+Index: lib/Pages/SettingsPages/AddUserPersonalInfoSettings.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/SettingsPages/AddUserPersonalInfoSettings.dart	(date 1608438401481)
++++ lib/Pages/SettingsPages/AddUserPersonalInfoSettings.dart	(date 1608438401481)
+@@ -0,0 +1,579 @@
++import 'package:flutter/material.dart';
++import 'package:image_picker/image_picker.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/Pages/SettingsPages/DateInputField.dart';
++import 'package:realestate/Pages/SettingsPages/FormFieldContainer.dart';
++import 'package:realestate/Pages/SettingsPages/Style.dart';
++import 'package:realestate/Service%20Classes/FirebaseUserAuthenticationService.dart';
++import 'package:realestate/Service%20Classes/FirestoreDatabaseServicesForUser.dart';
++import 'package:realestate/shared/loading.dart';
++
++class AddUserPersonalInfoSettings extends StatefulWidget {
++  @override
++  _AddUserPersonalInfoSettingsState createState() =>
++      _AddUserPersonalInfoSettingsState();
++}
++
++class _AddUserPersonalInfoSettingsState extends State<AddUserPersonalInfoSettings> {
++
++  FirebaseUserAuthenticationService _firebaseUserAuthenticationService = FirebaseUserAuthenticationService();
++  @override
++  void didChangeDependencies() {
++    super.didChangeDependencies();
++  }
++
++  bool _formChanged = false;
++  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
++  bool loading = false;
++  String _name;
++  String _phoneNum;
++  String _age;
++
++  // String _emailAddress;
++  String _userDisplayImageAddress;
++  int _totalAdsPosted;
++  String _bio;
++
++  @override
++  Widget build(BuildContext context) {
++    final rentalLifeUser = Provider.of<RentalLifeUser>(context);
++    // return Scaffold(
++    //     appBar: new AppBar(
++    //   backgroundColor: Colors.red[600],
++    //   centerTitle: true,
++    //   title: Form(
++    //     key: _formKey,
++    //     onChanged: _onFormChange,
++    //     onWillPop: _onWillPop,
++    //     child: SingleChildScrollView(
++    //       child: Column(
++    //         children: <Widget>[
++    //           // _titleField,
++    //           // _costField,
++    //           // _dateAddedField,
++    //           // // _categoryDropdownField,
++    //           // _imageField,
++    //           Divider(
++    //             height: 32.0,
++    //           ),
++    //           Row(
++    //             mainAxisAlignment: MainAxisAlignment.end,
++    //             children: <Widget>[
++    //               Padding(
++    //                 padding: const EdgeInsets.all(8.0),
++    //                 child: FlatButton(
++    //                   textColor: Colors.red[400],
++    //                   child: Text("Cancel"),
++    //                   onPressed: () {
++    //                     Navigator.pop(context);
++    //                   },
++    //                 ),
++    //               ),
++    //               Padding(
++    //                 padding: const EdgeInsets.all(8.0),
++    //                 child: RaisedButton(
++    //                   color: Colors.blue[400],
++    //                   child: Text("Submit"),
++    //                   onPressed: _submitForm,
++    //                 ),
++    //               )
++    //             ],
++    //           ),
++    //         ],
++    //       ),
++    //     ),
++    //   ),
++    // ));
++
++    return Scaffold(
++        appBar: new AppBar(
++          backgroundColor: Colors.red[600],
++          centerTitle: true,
++          title: Column(children: [
++            Text(
++              "User Settings",
++              style: TextStyle(
++                color: Colors.white,
++                fontSize: 22,
++              ),
++            ),
++            Text(
++              "Update your Info",
++              style: TextStyle(
++                color: Colors.white54,
++                fontSize: 17,
++              ),
++            ),
++          ]),
++        ),
++        body: SingleChildScrollView(
++            child: Container(
++                margin: const EdgeInsets.all(16.0),
++                decoration: BoxDecoration(
++                  color: Colors.white,
++                  borderRadius: BorderRadius.circular(16.0),
++                ),
++                child: Form(
++                  onChanged: _onFormChange,
++                  onWillPop: _onWillPop,
++                  key: _formKey,
++                  child: ListView(
++                    shrinkWrap: true,
++                    padding: const EdgeInsets.all(16.0),
++                    children: <Widget>[
++                      TextFormField(
++                        autovalidateMode: AutovalidateMode.onUserInteraction,
++                        autofocus: true,
++                        decoration: InputDecoration(
++                          suffixIcon: Icon(
++                            Icons.drive_file_rename_outline,
++                            color: Colors.blueGrey,
++                          ),
++                          labelText: "Name",
++                          hintText: "Required",
++                          border: OutlineInputBorder(),
++                        ),
++                        validator: ((val) {
++                          print(
++                              "Name field VAlue length: ${val.length}, val: $val");
++                          if (val.length < 3) {
++                            return 'Name too short';
++                          } else if (val.length > 15) {
++                            return 'Name too long';
++                          }
++                          return null;
++                        }),
++                        onChanged: (val) {
++                          setState(() {
++                            _name = val;
++                          });
++                        },
++                      ),
++                      SizedBox(
++                        height: 20,
++                      ),
++                      TextFormField(
++                        autovalidateMode: AutovalidateMode.onUserInteraction,
++                        // autofocus: true,
++                        decoration: InputDecoration(
++                          prefixIcon: Padding(
++                              padding: EdgeInsets.all(15), child: Text('+92 ')),
++                          suffixIcon: Icon(
++                            Icons.phone_android_sharp,
++                            color: Colors.blueGrey,
++                          ),
++                          labelText: "Mobile Number ",
++                          hintText: "(Required)",
++                          border: OutlineInputBorder(),
++                        ),
++                        validator: ((val) {
++                          print(
++                              "Phone # VAlue length: ${val.length}, val: $val");
++                          if (val.length > 10) {
++                            return 'Mobile Number too long';
++                          } else if (val.length < 10) {
++                            return 'Mobile Number too short';
++                          }
++                          return null;
++                        }),
++                        onChanged: (val) {
++                          setState(() {
++                            _phoneNum = val; //(val as int);
++                          });
++                        },
++                      ),
++                      // TextFormField(
++                      //   autovalidateMode: AutovalidateMode.onUserInteraction,
++                      //   keyboardType: TextInputType.number,
++                      //   decoration: InputDecoration(
++                      //     prefixIcon: Padding(
++                      //         padding: EdgeInsets.all(15), child: Text('+92 ')),
++                      //     suffixIcon: Icon(
++                      //       Icons.phone_android_sharp,
++                      //       color: Colors.blueGrey,
++                      //     ),
++                      //     labelText: "Mobile Number ",
++                      //     hintText: "(Optional)",
++                      //     border: OutlineInputBorder(),
++                      //   ),
++                      //   validator: ((val) {
++                      //     print("Phone # VAlue length: ${val.length}, val: $val");
++                      //     if (val.length > 10) {
++                      //       return 'Mobile Number too long';
++                      //     }  else if (val.length < 10) {
++                      //       return 'Mobile Number too short';
++                      //     }
++                      //     return null;
++                      //   }),
++                      //   onChanged: (val) {
++                      //     setState(() {
++                      //       _phoneNum = (val as int);
++                      //
++                      //     });
++                      //   },
++                      // ),
++                      SizedBox(
++                        height: 20,
++                      ),
++
++                      TextFormField(
++                        autovalidateMode: AutovalidateMode.onUserInteraction,
++                        keyboardType: TextInputType.number,
++                        decoration: InputDecoration(
++                          suffixIcon: Icon(
++                            Icons.calendar_today_rounded,
++                            color: Colors.blueGrey,
++                          ),
++                          labelText: "Age",
++                          hintText: "Required",
++                          border: OutlineInputBorder(),
++                        ),
++                        validator: ((val) {
++                          if (val.length > 2 || val.length==0) {
++                            return 'Invalid age. Should be in year.';
++                          }
++                          return null;
++                        }),
++                        onChanged: (val) {
++                          setState(() {
++                            _age = val;
++                          });
++                        },
++                      ),
++
++                      SizedBox(
++                        height: 20,
++                      ),
++
++                      TextFormField(
++                        enabled: false,
++                        decoration: InputDecoration(
++                          suffixIcon: Icon(
++                            Icons.email,
++                            color: Colors.blueGrey,
++                          ),
++                          labelText: rentalLifeUser.emailAddress,
++                          border: OutlineInputBorder(),
++                        ),
++                        // onChanged: (val) {
++                        //   setState(() {
++                        //     _age = val as int;
++                        //   });
++                        // },
++                      ),
++
++                      SizedBox(
++                        height: 20,
++                      ),
++                      TextFormField(
++                        maxLines: 10,
++                        decoration: InputDecoration(
++                          suffixIcon: Icon(
++                            Icons.info,
++                            color: Colors.blueGrey,
++                          ),
++                          labelText: "Update your bio",
++                          hintText: "Required",
++                          border: OutlineInputBorder(),
++                        ),
++                        validator: ((val) => (val.length <= 10 ||
++                                val.length >= 180)
++                            ? 'Bio should be minimum 10 and maximum 180 characters long.'
++                            : null),
++                        onChanged: (val) {
++                          setState(() {
++                            _bio = val;
++                          });
++                        },
++                      ),
++                      Divider(
++                        height: 32.0,
++                      ),
++                      Row(
++                        mainAxisAlignment: MainAxisAlignment.end,
++                        children: <Widget>[
++                          Padding(
++                            padding: const EdgeInsets.all(8.0),
++                            child: FlatButton(
++                              textColor: Colors.red[400],
++                              child: Text("Cancel"),
++                              onPressed: () async {
++                                bool toCancel = await _onWillPop();
++                                if (toCancel) {
++                                  //Navigator.pop(context);
++                                  _firebaseUserAuthenticationService.signOut();
++                                }
++                              },
++                            ),
++                          ),
++                          Padding(
++                            padding: const EdgeInsets.all(8.0),
++                            child: RaisedButton(
++                              color: Colors.red,
++                              textColor: Colors.white,
++                              elevation: 0,
++                              shape: RoundedRectangleBorder(
++                                borderRadius: BorderRadius.circular(20.0),
++                              ),
++                              child: Text("Submit"),
++                              onPressed: (() =>
++                                  _submitUserPersonalInfoForm(rentalLifeUser)),
++                            ),
++                          )
++                        ],
++                      ),
++                      // RaisedButton(
++                      //     color: Colors.red,
++                      //     textColor: Colors.white,
++                      //     elevation: 0,
++                      //     shape: RoundedRectangleBorder(
++                      //       borderRadius: BorderRadius.circular(20.0),
++                      //     ),
++                      //     child: Text("Next"),
++                      //     onPressed: () async {
++                      //       if (_formKey.currentState.validate()) {
++                      //         /*Navigator.push(
++                      //       context,
++                      //       MaterialPageRoute(
++                      //           builder: (context) => BottomNavigationWidget()),
++                      //     );*/
++                      //         //create new document for the this ad
++                      //         // await AdsFirestoreService(uid: user.uid)
++                      //         //     .updateAdData(title, desc, user.uid);
++                      //
++                      //         // Navigator.push(
++                      //         //   context,
++                      //         //   MaterialPageRoute(
++                      //         //       builder: (context) => ImageCapture()),
++                      //         // );
++                      //       }
++                      //     }),
++                    ],
++                  ),
++                ))));
++  }
++
++  /// ****************
++  /// Form Widgets Region
++  ///
++  Widget get _titleField {
++    return Padding(
++      padding: const EdgeInsets.only(top: 8.0),
++      child: FormFieldContainer(
++        child: Scaffold(
++          body: Container(
++            child: TextFormField(
++              decoration: InputDecoration(
++                border: OutlineInputBorder(),
++                helperText: "Required",
++                labelText: "Title",
++              ),
++              autofocus: true,
++              validator: (String val) {
++                if (val.isEmpty) {
++                  return "Field cannot be left blank";
++                }
++                return null;
++              },
++              // onSaved: (String val) => _newProduct.title = val,
++            ),
++          ),
++        ),
++      ),
++    );
++  }
++
++  Widget get _costField {
++    return FormFieldContainer(
++      child: Scaffold(
++        body: TextFormField(
++          decoration: InputDecoration(
++            border: OutlineInputBorder(),
++            labelText: "Cost Per Unit",
++            helperText: "Required",
++          ),
++          keyboardType: TextInputType.numberWithOptions(),
++          autovalidate: true,
++          validator: (String val) {
++            if (val.isEmpty) {
++              return "Field cannot be left blank";
++            }
++            if (double.tryParse(val) == null) {
++              return "Field must contain a valid number.";
++            }
++            return null;
++          },
++          // onSaved: (String val) => _newProduct.cost = double.tryParse(val),
++        ),
++      ),
++    );
++  }
++
++  // Widget get _categoryDropdownField {
++  //   return FormFieldContainer(
++  //     child: DropdownButtonFormField(
++  //       decoration: InputDecoration(
++  //         border: OutlineInputBorder(),
++  //         labelText: "Category",
++  //       ),
++  //       // value: _newProduct.category,
++  //       // onChanged: (ProductCategory newSelection) {
++  //       //   setState(() => _newProduct.category = newSelection);
++  //       // },
++  //       // items: ProductCategory.values.map((ProductCategory category) {
++  //       //   return DropdownMenuItem(value: category, child: Text(category.toString()));
++  //       // }).toList(),
++  //     ),
++  //   );
++  // }
++
++  Widget get _dateAddedField {
++    return FormFieldContainer(
++      child: FormField(
++        builder: (FormFieldState state) {
++          return DateInputField(
++            labelText: "Date Added",
++            // valueText: _newProduct.dateAdded != null ? formatDate(_newProduct.dateAdded) : null,
++            onPressed: () async {
++              var date = await showDatePicker(
++                  context: context,
++                  initialDate: DateTime.now(),
++                  firstDate: DateTime.now().subtract(Duration(days: 365)),
++                  lastDate: DateTime.now().add(Duration(days: 365)));
++              // setState(() => _newProduct.dateAdded = date);
++            },
++          );
++        },
++        onSaved: (val) {},
++        validator: (val) {
++          return null;
++        },
++        initialValue: formatDate(DateTime.now()),
++      ),
++    );
++  }
++
++  Widget get _imageField {
++    return Stack(
++      alignment: Alignment.center,
++      children: <Widget>[
++        ConstrainedBox(
++          constraints: BoxConstraints(
++            maxHeight: 150.0,
++          ),
++          child: Container(
++              // decoration: _image,
++              ),
++        ),
++        // _selected == null ? Text("Select an image") : Container(),
++        Positioned(
++          right: 8.0,
++          bottom: 8.0,
++          child: FloatingActionButton(
++            backgroundColor: AppColors.primary[500],
++            foregroundColor: Colors.grey[300],
++            child: Icon(Icons.photo_library),
++            onPressed: () async {
++              // File image = await ImagePicker.pickImage(source: ImageSource.gallery);
++              // setState(() {
++              //   _selected = image;
++              // });
++            },
++          ),
++        ),
++      ],
++    );
++  }
++
++  // BoxDecoration get _image {
++  //   // return _selected == null
++  //       ? BoxDecoration(color: Colors.grey[300])
++  //       : BoxDecoration(
++  //     image: DecorationImage(image: FileImage(_selected), fit: BoxFit.cover),
++  //   );
++  // }
++
++  ///
++  /// End Form Widgets Region
++  /// ****************
++  /// ****************
++  /// Form Callbacks Region
++  ///
++  void _onFormChange() {
++    setState(() {
++      _formChanged = true;
++    });
++  }
++
++  Future<bool> _onWillPop() {
++    if (!_formChanged) return Future<bool>.value(true);
++    return showDialog<bool>(
++        context: context,
++        builder: (BuildContext context) {
++          return AlertDialog(
++                content: Text(
++                    "Are you sure you want to abandon the form? Any changes will be lost."),
++                actions: <Widget>[
++                  FlatButton(
++                    child: Text("Cancel"),
++                    onPressed: () => Navigator.of(context).pop(false),
++                    textColor: Colors.black,
++                  ),
++                  FlatButton(
++                    child: Text("Abandon"),
++                    textColor: Colors.red,
++                    onPressed: () => Navigator.pop(context, true),
++                  ),
++                ],
++              ) ??
++              false;
++        });
++  }
++
++  void _submitUserPersonalInfoForm(RentalLifeUser userFromProvider) {
++    final FormState form = _formKey.currentState;
++    print("IN Submit method");
++    if (_formKey.currentState.validate()) {
++      RentalLifeUser rentalLifeUser = new RentalLifeUser(
++          userID: userFromProvider.uid,
++          name: _name,
++          age:  int.parse(_age),
++          emailAddress: userFromProvider.emailAddress,
++          bio: _bio,
++          phoneNum: _phoneNum,
++          totalAdsPosted: userFromProvider.totalAdsPosted,
++          userDisplayImageAddress: userFromProvider.userDisplayImageAddress,
++      totalTenantsConnected: userFromProvider.totalTenantsConnected,
++      totalOwnersConnected: userFromProvider.totalOwnersConnected);
++      FirestoreDatabaseServicesForUser databaseServicesForUser =
++          FirestoreDatabaseServicesForUser(
++              rentalLifeUserID: userFromProvider.uid);
++      databaseServicesForUser
++          .createRentalLifeUserFirestoreDocument(
++              rentalLifeUser);
++    }
++  }
++
++// _formKey.currentState.save();
++// // _bloc.addNewProduct.add(AddProductEvent(_newProduct));
++// // _userBloc.addNewProductToUserProductsSink.add(NewUserProductEvent(_newProduct));
++// Navigator.of(context).pop();
++}
++
++bool isNumeric(String s) {
++  if (s == null) {
++    return false;
++  }
++  return double.tryParse(s) != null;
++}
++
++///
++/// End Form Methods Region
++/// ****************
++String formatDate(DateTime d) {
++  var month = d.month;
++  var day = d.day;
++  var year = d.year;
++  return "$month/$day/$year";
++}
+Index: lib/Pages/SettingsPages/UpdateUserPersonalInfo.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/SettingsPages/UpdateUserPersonalInfo.dart	(date 1608441837913)
++++ lib/Pages/SettingsPages/UpdateUserPersonalInfo.dart	(date 1608441837913)
+@@ -0,0 +1,440 @@
++import 'package:cloud_firestore/cloud_firestore.dart';
++import 'package:flutter/material.dart';
++import 'package:image_picker/image_picker.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/Pages/SettingsPages/DateInputField.dart';
++import 'package:realestate/Pages/SettingsPages/FormFieldContainer.dart';
++import 'package:realestate/Pages/SettingsPages/Style.dart';
++import 'package:realestate/Service%20Classes/FirebaseUserAuthenticationService.dart';
++import 'package:realestate/Service%20Classes/FirestoreDatabaseServicesForUser.dart';
++import 'package:realestate/shared/loading.dart';
++
++class UpdateUserPersonalInfoSettings extends StatefulWidget {
++  RentalLifeUser _rentalLifeUser = null;
++
++
++  UpdateUserPersonalInfoSettings(this._rentalLifeUser);
++
++  @override
++  _UpdateUserPersonalInfoSettingsState createState() =>
++      _UpdateUserPersonalInfoSettingsState();
++}
++
++class _UpdateUserPersonalInfoSettingsState
++    extends State<UpdateUserPersonalInfoSettings> {
++  FirebaseUserAuthenticationService _firebaseUserAuthenticationService =
++      FirebaseUserAuthenticationService();
++
++  @override
++  void didChangeDependencies() {
++    super.didChangeDependencies();
++  }
++
++  bool _formChanged = false;
++  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
++  // bool loading = false;
++  String _name ;
++  String _phoneNum;
++  String _age;
++
++  // String _userDisplayImageAddress;
++  // int _totalAdsPosted;
++  String _bio;
++  // dynamic rentalLifeUserFromProvider;
++
++  // bool isFirstTime = true;
++
++  @override
++  Widget build(BuildContext context) {
++    // final rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
++    // print("Printing name");
++    // print(_name);
++    // print("Printing phone num");
++    //
++    // print(_phoneNum);
++    // print("Printing age");
++    //
++    // print(_age);
++    // print("Printing bio");
++    //
++    // print(_bio);
++
++    // if (isFirstTime) {
++    //   rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
++    //   final userFirestoreDocumentReference = Firestore.instance
++    //       .collection('user')
++    //       .document(rentalLifeUserFromProvider.uid);
++    //   // print(rentalLifeUserFromProvider.uid);
++    //   // DocumentSnapshot snapshot = userFirestoreDocumentReference.snapshots();
++    //   userFirestoreDocumentReference.get().then((docSnapshot) {
++    //     // final DocumentSnapshot docSnapshot = await userFirestoreDocumentReference.get();
++    //
++    //     setState(() {
++    //       print("IN SET STATE METHDO");
++    //       _name = docSnapshot.data['name'];
++    //       _phoneNum = docSnapshot.data['phoneNum'];
++    //       _age = docSnapshot.data['age'];
++    //       _bio = docSnapshot.data['bio'];
++    //       _name = docSnapshot.data['name'];
++    //       isFirstTime = false;
++    //
++    //       print("Printing name");
++    //       print(_name);
++    //       print("Printing phone num");
++    //
++    //       print(_phoneNum);
++    //       print("Printing age");
++    //
++    //       print(_age);
++    //       print("Printing bio");
++    //     });
++    //   });
++    //   // print("is First Time");
++    //   //
++    //   //   // _totalAdsPosted = docSnapshot.data['totalAdsPosted'];
++    //   //   // _userDisplayImageAddress = docSnapshot.data['userDisplayImageAddress'];
++    //   //   setState(() {
++    //   //     print("Printing name");
++    //   //     print(_name);
++    //   //     print("Printing phone num");
++    //   //
++    //   //     print(_phoneNum);
++    //   //     print("Printing age");
++    //   //
++    //   //     print(_age);
++    //   //     print("Printing bio");
++    //   //
++    //   //     isFirstTime = false;
++    //   //   });
++    // }
++
++    // final rentalLifeUser = Provider.of<RentalLifeUser>(context);
++
++    // final rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
++
++    return Scaffold(
++        appBar: new AppBar(
++          backgroundColor: Colors.red[600],
++          centerTitle: true,
++          title: Column(children: [
++            Text(
++              "User Settings",
++              style: TextStyle(
++                color: Colors.white,
++                fontSize: 22,
++              ),
++            ),
++            Text(
++              "Update your Info",
++              style: TextStyle(
++                color: Colors.white54,
++                fontSize: 17,
++              ),
++            ),
++          ]),
++        ),
++        body: SingleChildScrollView(
++            child: Container(
++                margin: const EdgeInsets.all(16.0),
++                decoration: BoxDecoration(
++                  color: Colors.white,
++                  borderRadius: BorderRadius.circular(16.0),
++                ),
++                child: Form(
++                  onChanged: _onFormChange,
++                  onWillPop: _onWillPop,
++                  key: _formKey,
++                  child: ListView(
++                    shrinkWrap: true,
++                    padding: const EdgeInsets.all(16.0),
++                    children: <Widget>[
++                      TextFormField(
++                        initialValue: widget._rentalLifeUser.name,//_name,
++                        autovalidateMode: AutovalidateMode.onUserInteraction,
++                        // autofocus: true,
++                        decoration: InputDecoration(
++                          suffixIcon: Icon(
++                            Icons.drive_file_rename_outline,
++                            color: Colors.blueGrey,
++                          ),
++                          labelText: "Name ",
++                          hintText: "Required",
++                          border: OutlineInputBorder(),
++                        ),
++                        validator: ((val) {
++                          if (val.length < 3) {
++                            return 'Name too short';
++                          } else if (val.length > 15) {
++                            return 'Name too long';
++                          }
++                          return null;
++                        }),
++                        onChanged: (val) {
++                          setState(() {
++                            _name = val;
++                          });
++                        },
++                      ),
++                      SizedBox(
++                        height: 20,
++                      ),
++                      TextFormField(
++                        initialValue: widget._rentalLifeUser.phoneNum,
++                        autovalidateMode: AutovalidateMode.onUserInteraction,
++                        // autofocus: true,
++                        decoration: InputDecoration(
++                          prefixIcon: Padding(
++                              padding: EdgeInsets.all(15), child: Text('+92 ')),
++                          suffixIcon: Icon(
++                            Icons.phone_android_sharp,
++                            color: Colors.blueGrey,
++                          ),
++                          labelText: "Mobile # ",
++                          hintText: "(Required)",
++                          border: OutlineInputBorder(),
++                        ),
++                        validator: ((val) {
++                          if (val.length > 10) {
++                            return 'Mobile Number too long';
++                          } else if (val.length < 10) {
++                            return 'Mobile Number too short';
++                          }
++                          return null;
++                        }),
++                        onChanged: (val) {
++                          setState(() {
++                            _phoneNum = val; //(val as int);
++                          });
++                        },
++                      ),
++                      SizedBox(
++                        height: 20,
++                      ),
++                      TextFormField(
++                        initialValue: widget._rentalLifeUser.age.toString(),
++                        autovalidateMode: AutovalidateMode.onUserInteraction,
++                        keyboardType: TextInputType.number,
++                        decoration: InputDecoration(
++                          suffixIcon: Icon(
++                            Icons.calendar_today_rounded,
++                            color: Colors.blueGrey,
++                          ),
++                          labelText: "Age ",
++                          hintText: "Required",
++                          border: OutlineInputBorder(),
++                        ),
++                        validator: ((val) {
++                          if (val.length > 2) {
++                            return 'Invalid age. Should be in year.';
++                          }
++                          return null;
++                        }),
++                        onChanged: (val) {
++                          setState(() {
++                            _age = val;
++                          });
++                        },
++                      ),
++                      SizedBox(
++                        height: 20,
++                      ),
++                      TextFormField(
++                        initialValue: widget._rentalLifeUser.emailAddress,
++                        enabled: false,
++                        decoration: InputDecoration(
++                          suffixIcon: Icon(
++                            Icons.email,
++                            color: Colors.blueGrey,
++                          ),
++                          labelText: "Email ",
++                          border: OutlineInputBorder(),
++                        ),
++                      ),
++                      SizedBox(
++                        height: 20,
++                      ),
++                      TextFormField(
++                        initialValue: widget._rentalLifeUser.bio,
++                        maxLines: 10,
++                        decoration: InputDecoration(
++                          suffixIcon: Icon(
++                            Icons.info,
++                            color: Colors.blueGrey,
++                          ),
++                          labelText: "Bio ",
++                          hintText: "Required",
++                          border: OutlineInputBorder(),
++                        ),
++                        validator: ((val) => (val.length <= 10 ||
++                                val.length >= 180)
++                            ? 'Bio should be minimum 10 and maximum 180 characters long.'
++                            : null),
++                        onChanged: (val) {
++                          setState(() {
++                            _bio = val;
++                          });
++                        },
++                      ),
++                      Divider(
++                        height: 32.0,
++                      ),
++                      Row(
++                        mainAxisAlignment: MainAxisAlignment.end,
++                        children: <Widget>[
++                          Padding(
++                            padding: const EdgeInsets.all(8.0),
++                            child: FlatButton(
++                              textColor: Colors.red[400],
++                              child: Text("Cancel"),
++                              onPressed: () async {
++                                bool toCancel = await _onWillPop();
++                                // print(" Cancel Button");
++
++                                if (toCancel) {
++                                  // print("CANCELLED");
++                                  Navigator.pop(context, "Cancelled");
++                                  // _firebaseUserAuthenticationService.signOut();
++                                }
++                              },
++                            ),
++                          ),
++                          Padding(
++                            padding: const EdgeInsets.all(8.0),
++                            child: RaisedButton(
++                              color: Colors.red,
++                              textColor: Colors.white,
++                              elevation: 0,
++                              shape: RoundedRectangleBorder(
++                                borderRadius: BorderRadius.circular(20.0),
++                              ),
++                              child: Text("Update"),
++                              onPressed: (() {
++
++                                _submitUserPersonalInfoForm(
++                                    widget._rentalLifeUser);
++                                final snackBar = SnackBar(
++                                  content: Text('Yay! A SnackBar!'),
++                                  action: SnackBarAction(
++                                    label: 'Undo',
++                                    onPressed: () {
++                                      // Some code to undo the change.
++                                    },
++                                  ),
++                                );
++                              }
++                            ),
++                          ))
++                        ],
++                      ),
++                    ],
++                  ),
++                ))));
++  }
++
++  Widget get _imageField {
++    return Stack(
++      alignment: Alignment.center,
++      children: <Widget>[
++        ConstrainedBox(
++          constraints: BoxConstraints(
++            maxHeight: 150.0,
++          ),
++          child: Container(
++              // decoration: _image,
++              ),
++        ),
++        // _selected == null ? Text("Select an image") : Container(),
++        Positioned(
++          right: 8.0,
++          bottom: 8.0,
++          child: FloatingActionButton(
++            backgroundColor: AppColors.primary[500],
++            foregroundColor: Colors.grey[300],
++            child: Icon(Icons.photo_library),
++            onPressed: () async {
++              // File image = await ImagePicker.pickImage(source: ImageSource.gallery);
++              // setState(() {
++              //   _selected = image;
++              // });
++            },
++          ),
++        ),
++      ],
++    );
++  }
++
++  void _onFormChange() {
++    setState(() {
++      _formChanged = true;
++    });
++  }
++
++  Future<bool> _onWillPop() {
++    if (!_formChanged) return Future<bool>.value(true);
++    return showDialog<bool>(
++        context: context,
++        builder: (BuildContext context) {
++          return AlertDialog(
++                content: Text(
++                    "Are you sure you want to abandon the form? Any changes will be lost."),
++                actions: <Widget>[
++                  FlatButton(
++                    child: Text("Cancel"),
++                    onPressed: () => Navigator.of(context).pop(false),
++                    textColor: Colors.black,
++                  ),
++                  FlatButton(
++                    child: Text("Abandon"),
++                    textColor: Colors.red,
++                    onPressed: () => Navigator.pop(context, true),
++                  ),
++                ],
++              ) ??
++              false;
++        });
++  }
++
++  void _submitUserPersonalInfoForm(RentalLifeUser userWithOldValues) {
++    final FormState form = _formKey.currentState;
++    print("IN Submit method");
++    if (_formKey.currentState.validate()) {
++
++// if(_name != null){
++//   userWithOldValues.name = _name;
++// }if(_age != null){
++//   userWithOldValues = _name;
++// }if(_name != null){
++//   userWithOldValues.name = _name;
++// }if(_name != null){
++//   userWithOldValues.name = _name;
++// }
++//       RentalLifeUser rentalLifeUser
++      widget._rentalLifeUser= new RentalLifeUser(
++          userID: userWithOldValues.uid,
++          name: _name?? userWithOldValues.name,
++           age: int.parse((_age?? userWithOldValues.age.toString())),
++          emailAddress: userWithOldValues.emailAddress,
++          bio: _bio?? userWithOldValues.bio,
++          phoneNum: _phoneNum?? userWithOldValues.phoneNum,
++          totalAdsPosted: userWithOldValues.totalAdsPosted,
++          userDisplayImageAddress: userWithOldValues.userDisplayImageAddress);
++      FirestoreDatabaseServicesForUser databaseServicesForUser =
++          FirestoreDatabaseServicesForUser(
++              rentalLifeUserID: userWithOldValues.uid);
++      databaseServicesForUser
++          .createRentalLifeUserFirestoreDocument(
++          widget._rentalLifeUser);
++      FirestoreDatabaseServicesForUser(rentalLifeUserID:userWithOldValues.uid ).getRentalLifeUserFromFireStoreDocument();
++      Navigator.pop(context, 'Updated');
++      //Navigator.pop(context);
++    }
++  }
++
++  bool isNumeric(String s) {
++    if (s == null) {
++      return false;
++    }
++    return double.tryParse(s) != null;
++  }
++}
+Index: .gradle/5.2.1/gc.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- .gradle/5.2.1/gc.properties	(date 1608260507611)
++++ .gradle/5.2.1/gc.properties	(date 1608260507611)
+@@ -0,0 +1,0 @@
+Index: lib/Pages/MenuPages/AppMenuDrawerOvalRight.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Pages/MenuPages/AppMenuDrawerOvalRight.dart	(date 1608438401505)
++++ lib/Pages/MenuPages/AppMenuDrawerOvalRight.dart	(date 1608438401505)
+@@ -0,0 +1,178 @@
++import 'package:cloud_firestore/cloud_firestore.dart';
++import 'package:flushbar/flushbar.dart';
++import 'package:flutter/material.dart';
++import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
++import 'package:cached_network_image/cached_network_image.dart';
++import 'package:provider/provider.dart';
++import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
++import 'package:realestate/Pages/HomePages/FirstScreenAfterLoginDecider.dart';
++import 'package:realestate/Pages/HomePages/RentalLifeHomePage.dart';
++import 'package:realestate/Pages/SettingsPages/RentalLifeUserProfile.dart';
++import 'package:realestate/Pages/SettingsPages/UpdateUserPersonalInfo.dart';
++import 'package:realestate/Service%20Classes/FirebaseUserAuthenticationService.dart';
++
++class AppMenuDrawerOvalRight extends StatelessWidget {
++  final Color primary = Color(0xff291747);
++  final Color active = Color(0xff6C48AB);
++  FirebaseUserAuthenticationService _firebaseUserAuthenticationService =
++      FirebaseUserAuthenticationService();
++
++  @override
++  Widget build(BuildContext context) {
++    // final String image =
++    //     "";
++    final rentalLifeUserFromProvider = Provider.of<RentalLifeUser>(context);
++    return ClipPath(
++      clipper: OvalRightBorderClipper(),
++      child: Drawer(
++        child: Container(
++          padding: const EdgeInsets.only(left: 16.0, right: 40),
++          decoration: BoxDecoration(
++              color: primary, boxShadow: [BoxShadow(color: Colors.black45)]),
++          width: 300,
++          child: SafeArea(
++            child: SingleChildScrollView(
++              child: Column(
++                children: <Widget>[
++                  Container(
++                    padding: EdgeInsets.all(5),
++                    alignment: Alignment.centerRight,
++                    child: FlatButton.icon(
++                      label: Text(
++                        "Logout",
++                        style: TextStyle(color: active),
++                      ),
++                      icon: Icon(
++                        Icons.power_settings_new,
++                        color: active,
++                      ),
++                      onPressed: () {
++                        _firebaseUserAuthenticationService.signOut();
++                      },
++                    ),
++                    // child: IconButton(
++                    //
++                    //   icon: Icon(
++                    //     Icons.power_settings_new,
++                    //     color: active,
++                    //   ),
++                    //   onPressed: () {
++                    //     _firebaseUserAuthenticationService.signOut();
++                    //   },
++                    // ),
++                  ),
++                  Container(
++                    height: 90,
++                    alignment: Alignment.center,
++                    decoration: BoxDecoration(
++                        shape: BoxShape.circle,
++                        gradient: LinearGradient(
++                            colors: [Colors.pink, Colors.deepPurple])),
++                    child: CircleAvatar(
++                      radius: 40,
++                      backgroundImage: NetworkImage(rentalLifeUserFromProvider.userDisplayImageAddress),
++                    ),
++                  ),
++                  SizedBox(height: 5.0),
++                  Text(
++                    rentalLifeUserFromProvider.name,
++                    style: TextStyle(color: Colors.white, fontSize: 18.0),
++                  ),
++                  Text(
++                    rentalLifeUserFromProvider.emailAddress,
++                    style: TextStyle(color: active, fontSize: 16.0),
++                  ),
++                  SizedBox(height: 30.0),
++                  _buildRow(Icons.home, "Home"),
++                  _buildDivider(),
++                  GestureDetector(
++                      onTap: (() async {
++                        String result = await Navigator.push(
++                            context,
++                            MaterialPageRoute(
++                                builder: (context) => RentalLifeUserProfile(
++                                    rentalLifeUserFromProvider)));
++                      }),
++                      child: _buildRow(Icons.person_pin, "Your profile")),
++                  _buildDivider(),
++                  GestureDetector(
++                    child: _buildRow(Icons.settings, "Settings"),
++                    onTap: (() async {
++                      String result = await Navigator.push(
++                          context,
++                          MaterialPageRoute(
++                              builder: (context) =>
++                                  UpdateUserPersonalInfoSettings(
++                                      rentalLifeUserFromProvider)));
++                      if (result.compareTo('Updated') == 0) {
++                        Navigator.pop(context);
++                        Navigator.pop(context, "UserdocumentChanged");
++                        Navigator.push(
++                            context,
++                            MaterialPageRoute(
++                                builder: (context) => FirstScreenAfterLoginDecider()));
++
++                        // final flushbar = Flushbar(
++                        //     title: "Some",
++                        //     message: "text",
++                        //     duration: Duration(seconds: 3),
++                        //     mainButton: FlatButton(onPressed: () {}));
++
++                        // final snackBar = SnackBar(
++                        //   content: Text('Yay! Profile Updated!'),
++                        //   action: SnackBarAction(
++                        //     label: 'Great',
++                        //     onPressed: () {
++                        //       // Navigator.pop(context);
++                        //     },
++                        //   ),
++                        // );
++                        // Navigator.push(
++                        //     context,
++                        //     MaterialPageRoute(
++                        //         builder: (context) => flushbar));
++                      }
++                    }),
++                    // () =>
++                    // Navigator.push(context, MaterialPageRoute(
++                    // builder: (context) => UpdateUserPersonalInfoSettings()),
++                  ),
++                  // ),
++                  _buildDivider(),
++                  _buildRow(Icons.email, "Contact us"),
++                  _buildDivider(),
++                  _buildRow(Icons.info_outline, "Help"),
++                  _buildDivider(),
++                ],
++              ),
++            ),
++          ),
++        ),
++      ),
++    );
++  }
++
++  Divider _buildDivider() {
++    return Divider(
++      color: active,
++    );
++  }
++
++  Widget _buildRow(IconData icon, String title) {
++    final TextStyle tStyle = TextStyle(color: active, fontSize: 16.0);
++    return Container(
++      padding: const EdgeInsets.symmetric(vertical: 8.0),
++      child: Row(children: [
++        Icon(
++          icon,
++          color: active,
++        ),
++        SizedBox(width: 10.0),
++        Text(
++          title,
++          style: tStyle,
++        ),
++      ]),
++    );
++  }
++}
+diff --git .gradle/5.2.1/fileChanges/last-build.bin .gradle/5.2.1/fileChanges/last-build.bin
+new file mode 100644
+index 0000000000000000000000000000000000000000..f76dd238ade08917e6712764a16a22005a50573d
+GIT binary patch
+literal 1
+Ic${MZ000310RR91
+
+diff --git .gradle/5.2.1/fileHashes/fileHashes.lock .gradle/5.2.1/fileHashes/fileHashes.lock
+new file mode 100644
+index 0000000000000000000000000000000000000000..dec68e1772485c3adcd48088dae66b466554fe2d
+GIT binary patch
+literal 17
+Tc${N?R>B*<cXqHJ0~7!NFnR;S
+
