@@ -6,7 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
 // import 'package:location/location.dart';
 
-// import 'package:location/location.dart';
+import 'package:location/location.dart';
 import 'package:realestate/screens/ads/set_Location.dart';
 import 'package:search_map_place/search_map_place.dart';
 import 'dart:math' as Math;
@@ -21,14 +21,18 @@ class HomeAdDescriptionPage extends StatefulWidget {
   _HomeAdDescriptionPageState createState() => _HomeAdDescriptionPageState();
 }
 
-String description;
-double latitude;
-double longitude;
-String locationDescription;
-Position _currentPosition;
+
 
 class _HomeAdDescriptionPageState extends State<HomeAdDescriptionPage>
     with AutomaticKeepAliveClientMixin<HomeAdDescriptionPage> {
+
+  String description;
+  double latitude;
+  double longitude;
+  String locationDescription;
+  Position _currentPosition;
+
+
   @override
   bool get wantKeepAlive => true;
 
@@ -56,7 +60,10 @@ class _HomeAdDescriptionPageState extends State<HomeAdDescriptionPage>
             padding: const EdgeInsets.all(16.0),
             children: <Widget>[
               TextFormField(
-                // initialValue: widget._rentalLifeUser.bio,
+
+                onSaved: (newValue) async {
+                  await storeAdDescriptionDataToDocument();
+                },
                 maxLines: 10,
                 decoration: InputDecoration(
                   suffixIcon: Icon(
@@ -83,9 +90,7 @@ class _HomeAdDescriptionPageState extends State<HomeAdDescriptionPage>
                     description = val;
                   });
                 },
-                onSaved: (newValue) async {
-                  await storeAdDescriptionDataToDocument();
-                },
+
               ),
               Divider(
                 height: 32.0,
@@ -157,10 +162,10 @@ class _HomeAdDescriptionPageState extends State<HomeAdDescriptionPage>
                       latLng = geolocation.coordinates;
                       latitude = latLng.latitude;
                       longitude = latLng.longitude;
-                      locationDescription = place.description;
+                      locationDescription = place.description.toString();
                       print(latLng.latitude);
                       print(latLng.longitude);
-                      print(place.description);
+                      print("Place Description ${place.description.toString()}");
                       //newAd.location = geolocation;
                       //   newAd.location = geolocation.coordinates;
 
@@ -194,10 +199,16 @@ class _HomeAdDescriptionPageState extends State<HomeAdDescriptionPage>
   }
 
   Future storeAdDescriptionDataToDocument() async {
+    print("In storeAdDescriptionDataToDocument method:");
+    print("getDocumentName() ${getDocumentName()}");
+    print("description: $description");
+    print("locationDescription: $locationDescription");
+    print("latitude: $latitude");
+    print("longitude: $longitude");
     return await Firestore.instance
         .collection('AdsDocument')
         .document(getDocumentName())
-        .updateData({
+        .setData({
       'description': description,
       'locationDescription': locationDescription,
       'latitude': latitude,

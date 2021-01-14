@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:realestate/ModelClasses/UserModelClasses/RentalLifeUser.dart';
 import 'package:realestate/Pages/AdsPages/PostHomeAds/HomeAdDescriptionPage.dart';
 import 'package:realestate/Pages/AdsPages/PostHomeAds/HomeAdImagesPage.dart';
+import 'package:realestate/shared/loading.dart';
 
 import 'HomeAdDetailsPage.dart';
 
@@ -24,7 +25,7 @@ Color fourthColor = Colors.grey;
 bool isDetailsTabCompleted = false;
 bool isDescriptionTabCompleted = false;
 bool isImagesTabCompleted = false;
-
+// bool isLoading = false;
 class _PostHomeAdPageState extends State<PostHomeAdPage> {
   String details;
 
@@ -62,26 +63,35 @@ class _PostHomeAdPageState extends State<PostHomeAdPage> {
                         FormDescriptionKey.currentState.validate() &&
                         FormImagesKey.currentState.validate()) {
                       print("Form validated");
+                      // setState(() {
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => Loading()));
+                      // });
+
                       await FormDetailsKey.currentState.save();
                       await FormDescriptionKey.currentState.save();
                       await FormImagesKey.currentState.save();
+                      // Navigator.pop(
+                      //     context);
                       print("Details $details");
                     } else {
-                      SnackBar _snackbar =
-                          SnackBar(content: Text('Form Fields not validated'));
-                      if (!FormDetailsKey.currentState.validate()) {
-                        _snackbar =
-                            SnackBar(content: Text('Please Insert Ad Details'));
-                      } else if (!FormDescriptionKey.currentState.validate()) {
-                        _snackbar = SnackBar(
-                            content:
-                                Text('Please Insert Description and Location'));
-                      } else if (!FormImagesKey.currentState.validate()) {
-                        _snackbar = SnackBar(
-                            content: Text('Please Insert Atleast one image'));
-                      }
-                      _globalKey.currentState.showSnackBar(_snackbar);
-                      setState(() {});
+                      // SnackBar _snackbar =
+                      //     SnackBar(content: Text('Form Fields not validated'));
+                      // if (!FormDetailsKey.currentState.validate()) {
+                      //   _snackbar =
+                      //       SnackBar(content: Text('Please Insert Ad Details'));
+                      // } else if (!FormDescriptionKey.currentState.validate()) {
+                      //   _snackbar = SnackBar(
+                      //       content:
+                      //           Text('Please Insert Description and Location'));
+                      // } else if (!FormImagesKey.currentState.validate()) {
+                      //   _snackbar = SnackBar(
+                      //       content: Text('Please Insert Atleast one image'));
+                      // }
+                      // _globalKey.currentState.showSnackBar(_snackbar);
+                      // setState(() {});
                       print("Form not validated");
                     }
                   }),

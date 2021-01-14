@@ -72,7 +72,8 @@ class _BottomRevealPostAdPageState extends State<BottomRevealPostAdPage> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => PostNonCommercialAdPage(rentalLifeUserFromProvider)));
+                  builder: (context) =>
+                      PostNonCommercialAdPage(rentalLifeUserFromProvider)));
         }),
         child: Row(
           children: [

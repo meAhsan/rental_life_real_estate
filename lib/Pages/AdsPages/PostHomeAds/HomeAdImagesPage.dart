@@ -44,17 +44,19 @@ class _HomeAdImagesPageState extends State<HomeAdImagesPage>
                   child: SizedBox(
                     height: 0,
                     child: TextFormField(
-                      initialValue: "",
+                      initialValue: " ",
                       onSaved: ((val) async {
                         await uploadImages();
                         // updateUserInfo();
                         await writeUpdatedInfoToUserDocument();
                       }),
-                      enabled: false,
+                      //enabled: false,
                       validator: (val) {
+                        print("VAlidating Home ads images sections");
                         if (images.length > 0) {
                           return null;
                         } else {
+                          print("Upload some images");
                           return "Upload some images";
                         }
                       },

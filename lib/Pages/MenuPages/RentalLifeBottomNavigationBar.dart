@@ -6,8 +6,11 @@ import 'package:realestate/Pages/AdsPages/AdsMainPage.dart';
 import 'package:realestate/Pages/AdsPages/BottomRevealPostAdPage.dart';
 import 'package:realestate/Pages/AdsPages/DisplayAdPages/HomeAdDetailedDisplayPage.dart';
 import 'package:realestate/Pages/AdsPages/DisplayAdPages/HomeAdsCards.dart';
+import 'package:realestate/Pages/ChatPages/ChatRoomsScreen.dart';
+import 'package:realestate/Pages/ChatPages/SearchChat.dart';
 import 'package:realestate/Pages/ImagesPages/first.dart';
 import 'package:realestate/Pages/MenuPages/AppMenuDrawerOvalRight.dart';
+import 'package:realestate/Pages/SearchUserAdsPages/SearchUserAdsFirstPage.dart';
 import 'package:realestate/Pages/SettingsPages/RentalLifeUserProfile.dart';
 import 'package:realestate/Service%20Classes/FirebaseUserAuthenticationService.dart';
 import 'package:realestate/Service%20Classes/FirestoreDatabaseServicesForUser.dart';
@@ -78,33 +81,37 @@ class _RentalLifeBottomNavigationBarState
         //)
     );
       case 1:
+        return SearchUserAdsFirstPage();
+
+
+        case 2:
         return BottomRevealPostAdPage();
       //AdsMainPage();
       // return Center(
       //     child: Container(
       //   child: Text("Profile Page"),
       // ));
-      case 2:
-        //return BikeDetailsPage(null);
+      case 3:
         // return BottomRevealAdMainPage();
-        return
-          Center(
-            child: Container(
-          child: RaisedButton(
-            child: Text("Press to reveal ad details."),
-            onPressed: () async {
-              // final tempAdDocumnet = Firestore.instance
-              //     .collection('AdsDocument')
-              //     .document("XBAM8FwVLZPNXd4DhXT9Ftn67Zh21");
-              // final DocumentSnapshot docSnapshot = await tempAdDocumnet.get();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeAdsCardsPage()),
-                //HomeAdDetailedDisplayPage(docSnapshot)
-              );
-            },
-          ),
-        ));
+        return ChatRoom(rentalLifeUserFromProvider);
+    //SearchChatScreen(rentalLifeUserFromProvider);
+        //   Center(
+        //     child: Container(
+        //   child: RaisedButton(
+        //     child: Text("Press to reveal ad details."),
+        //     onPressed: () async {
+        //       // final tempAdDocumnet = Firestore.instance
+        //       //     .collection('AdsDocument')
+        //       //     .document("XBAM8FwVLZPNXd4DhXT9Ftn67Zh21");
+        //       // final DocumentSnapshot docSnapshot = await tempAdDocumnet.get();
+        //       Navigator.push(
+        //         context,
+        //         MaterialPageRoute(builder: (context) => HomeAdsCardsPage()),
+        //         //HomeAdDetailedDisplayPage(docSnapshot)
+        //       );
+        //     },
+        //   ),
+        // ));
     }
   }
 }
@@ -135,14 +142,14 @@ class AnimatedBottomNav extends StatelessWidget {
                 isActive: currentIndex == 0,
               ),
             ),
-          ),
-          Expanded(
+          ),Expanded(
             child: InkWell(
               onTap: () => onChange(1),
               child: BottomNavItem(
                 activeColor: secondColor,
-                icon: Icons.camera_alt_outlined,
-                title: "Ads",
+                //inactiveColor: fourthColor,
+                icon: Icons.search,
+                title: "Search",
                 isActive: currentIndex == 1,
               ),
             ),
@@ -152,9 +159,20 @@ class AnimatedBottomNav extends StatelessWidget {
               onTap: () => onChange(2),
               child: BottomNavItem(
                 activeColor: secondColor,
-                icon: Icons.menu,
-                title: "Menu",
-                isActive: currentIndex == 2,
+                icon: Icons.camera_alt_outlined,
+                title: "Ads",
+                isActive: currentIndex ==2,
+              ),
+            ),
+          ),
+          Expanded(
+            child: InkWell(
+              onTap: () => onChange(3),
+              child: BottomNavItem(
+                activeColor: secondColor,
+                icon: Icons.chat,
+                title: "Chats",
+                isActive: currentIndex == 3,
               ),
             ),
           ),

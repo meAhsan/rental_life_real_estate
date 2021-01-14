@@ -158,4 +158,44 @@ class FirestoreDatabaseServicesForUser {
         .snapshots()
         .map(_userDocumentDataFromSnapshot);
   }
+
+
+  getUserByName (String username) async {
+
+    return await Firestore.instance.collection('user')
+        .where('name',isEqualTo: username).getDocuments();
+
+  }
+
+  createChatRoom(String chatRoomId, chatRoomMap){
+    Firestore.instance.collection('ChatRoom')
+        .document(chatRoomId).setData(chatRoomMap).catchError((e){
+      print(e.toString());
+    });
+  }
+
+  addConversationMessages(String ChatRoomId, messageMap){
+    Firestore.instance.collection("ChatRoom")
+        .document(ChatRoomId)
+        .collection("chats")
+        .add(messageMap).catchError((e){print(e.toString());});
+
+  }
+
+  getConversationMessages(String ChatRoomId) async{
+    return await Firestore.instance.collection("ChatRoom")
+        .document(ChatRoomId)
+        .collection("chats")
+        .orderBy("time", descending: false)
+        .snapshots();
+
+  }
+
+  getChatRooms(String username) async {
+    return await Firestore.instance.collection('ChatRoom')
+        .where('users', arrayContains: username)
+        .snapshots();
+
+  }
+
 }
